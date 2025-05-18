@@ -1,0 +1,60 @@
+.conteudoForm {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    font-weight: 600;
+
+}
+
+.backgroundFormulario {
+    background-color: #f9f8fe;
+    
+}
+
+h4, h5 {
+    font-weight: 700;
+}
+
+.conteudoForm input {
+    background-color: #ececec;
+    padding: 1rem;
+    margin-top: 0.5rem;
+}
+
+.conteudoForm label {
+    margin-top: 0.5rem;
+}
+
+small {
+    font-size: 0.7rem;
+
+}
+/* button {
+    background-color: #F6AA1C;
+} */
+
+.imgResumo{
+    background-color: #E2E3FF;
+    padding: 1rem;
+}
+
+.resumoTotal{
+    background-color:#fef6e8;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 1.0rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Remove as setas do input number no Chrome, Safari, Edge e Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove as setas do input number no Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
