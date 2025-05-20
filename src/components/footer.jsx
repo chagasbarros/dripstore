@@ -1,8 +1,8 @@
 import React from "react";
-import logoDripPB from "../assests/logo/DigitallFooter.svg";
-import twiter from "../assests/logo/twiter.svg"
-import insta from "../assests/logo/insta.svg"
-import face from "../assests/logo/face.svg"
+import logoDripPB from "../assets/logo/DigitallFooter.svg";
+import twiter from "../assets/logo/twiter.svg"
+import insta from "../assets/logo/insta.svg"
+import face from "../assets/logo/face.svg"
 const footer = () => {
     return (
       <footer className="bg-dark text-light pt-5 mt-2">

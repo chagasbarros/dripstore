@@ -1,5 +1,5 @@
 import styles from './FormCadastro.module.css'
-import Sneakers from "../assests/finalizarCompra/Sneakers.svg"
+import Sneakers from "../assets/finalizarCompra/Sneakers.svg"
 import FormaPagamento from './FormaPagamento';
 
 
