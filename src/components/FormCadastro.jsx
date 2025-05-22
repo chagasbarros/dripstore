@@ -72,70 +72,9 @@ const FormCadastro = () => {
                     />
                   </div>
 
-                  <div className="bg-white my-3 mb-2 d-flex flex-column p-5">
-                    <h5>Informações de Entrega</h5>
-                    <hr />
+                  <FormCep/>
 
-                    <label htmlFor="cep">CEP *</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="number"
-                      name="cep"
-                      id="cep"
-                      required
-                      placeholder="Insira seu CEP sem o traço"
-                      pattern="[0-9]{1,8}"
-                      minLength={8}
-                      maxLength={8}
-                    />
-
-                    <label htmlFor="endereco">Endereco *</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="text"
-                      name="endereco"
-                      id="endereco"
-                      required
-                      placeholder="Insira seu endereço"
-                      minLength="10"
-                      maxLength="80"
-                    />
-
-                    <label htmlFor="bairro">Bairro *</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="text"
-                      name="bairro"
-                      id="bairro"
-                      required
-                      placeholder="Insira seu bairro"
-                      minLength="5"
-                      maxLength="20"
-                    />
-
-                    <label htmlFor="cidade">Cidade *</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="text"
-                      name="cidade"
-                      id="cidade"
-                      required
-                      placeholder="Insira sua cidade"
-                      minLength="5"
-                      maxLength="20"
-                    />
-
-                    <label htmlFor="complemento">Complemento</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="text"
-                      name="complemento"
-                      id="complemento"
-                      placeholder="Insira complemento"
-                      minLength="5"
-                      maxLength="20"
-                    />
-                  </div>
+                  
                   <FormaPagamento/>
 
                   <div className="bg-white my-3 mb-2 d-flex flex-column p-5">
