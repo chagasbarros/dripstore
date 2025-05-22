@@ -51,13 +51,12 @@ let [endereco, setEndereco] = useState({
                     <label htmlFor="cep">CEP *</label>
                     <input
                       className='form-control opacity-50'
-                      type="number"
+                      type="text"
                       name="cep"
                       id="cep"
                       required
                       placeholder="Insira seu CEP sem o traço"
                       pattern="[0-9]{1,8}"
-                      minLength={8}
                       maxLength={8}
                       value={cep}
                       onChange={handleCepChange}

@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import logoDrip from "../assets/logo/Vector.svg"
 import cartDrip from "../assets/logo/carrinho.svg"
 import { Link } from "react-router-dom"
+import Formulario from "../pages/Formulario";
 
 
 const Header = () => {
@@ -109,13 +110,14 @@ const Header = () => {
               >
                 Cadastre-se
               </a>
-              <a
+              <Link
+                to={"/Formulario"}
                 href="#"
                 className="btn btn-pink text-white fw-bold"
                 style={{ backgroundColor: "#d10f7d" }}
               >
                 Entrar
-              </a>
+              </Link>
               <a href="#" className="ms-3">
                 <img
                   src={cartDrip}
