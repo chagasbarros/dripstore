@@ -2,11 +2,8 @@ import React, { useContext, useState } from "react"
 import logoDrip from "../assets/logo/Vector.svg"
 import cartDrip from "../assets/logo/carrinho.svg"
 import { Link } from "react-router-dom"
-<<<<<<< HEAD
 import { SearchContext } from "../contexts/SearchContext"
-=======
 import Formulario from "../pages/Formulario";
->>>>>>> 3d6a4dbad13f7be0b19dda17d0c446c10fb137ec
 
 
 const Header = () => {
