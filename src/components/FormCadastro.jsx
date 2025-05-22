@@ -1,6 +1,7 @@
 import styles from './FormCadastro.module.css'
 import Sneakers from "../assets/finalizarCompra/Sneakers.svg"
 import FormaPagamento from './FormaPagamento';
+import FormCep from './FormCep'
 
 
 const FormCadastro = () => {
@@ -10,12 +11,12 @@ const FormCadastro = () => {
         <div
           className={`${styles.backgroundFormulario} ${styles.conteudoForm} `}
         >
-          <h2 className="fw-bold mt-2">Finalizar Compra</h2>
+          <h2 className="fw-bold mt-2 ms-2">Finalizar Compra</h2>
 
           <form>
             <div className="container">
               <div className="row">
-                <fieldset className="col-7">
+                <fieldset className="col-sm-12 col-md-7">
                   <div className="bg-white mt-4 d-flex flex-column p-5 form-group">
                     <h5>Informações Pessoais</h5>
                     <hr />
@@ -72,95 +73,71 @@ const FormCadastro = () => {
                     />
                   </div>
 
-                  <div className="bg-white my-3 mb-2 d-flex flex-column p-5">
-                    <h5>Informações de Entrega</h5>
-                    <hr />
+                  <FormCep/>
 
-                    <label htmlFor="cep">CEP *</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="number"
-                      name="cep"
-                      id="cep"
-                      required
-                      placeholder="Insira seu CEP sem o traço"
-                      pattern="[0-9]{1,8}"
-                      minLength={8}
-                      maxLength={8}
-                    />
-
-                    <label htmlFor="endereco">Endereco *</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="text"
-                      name="endereco"
-                      id="endereco"
-                      required
-                      placeholder="Insira seu endereço"
-                      minLength="10"
-                      maxLength="80"
-                    />
-
-                    <label htmlFor="bairro">Bairro *</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="text"
-                      name="bairro"
-                      id="bairro"
-                      required
-                      placeholder="Insira seu bairro"
-                      minLength="5"
-                      maxLength="20"
-                    />
-
-                    <label htmlFor="cidade">Cidade *</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="text"
-                      name="cidade"
-                      id="cidade"
-                      required
-                      placeholder="Insira sua cidade"
-                      minLength="5"
-                      maxLength="20"
-                    />
-
-                    <label htmlFor="complemento">Complemento</label>
-                    <input
-                      className='form-control opacity-50'
-                      type="text"
-                      name="complemento"
-                      id="complemento"
-                      placeholder="Insira complemento"
-                      minLength="5"
-                      maxLength="20"
-                    />
-                  </div>
+                  
                   <FormaPagamento/>
+                  {/* CARD RESUMO (MOBILE) */}
+                  <fieldset className="d-block d-md-none col-12 bg-white d-flex flex-column p-5 mt-4">
+                  <h3>Resumo</h3>
+                  <hr />
+                  <div className='d-flex align-items-center gap-3'>
+                    <div className={styles.imgResumo}><img src={Sneakers} alt="img de tenis" /></div>
+                    <div><p>Tênis Nike Revolution 6 Next Nature Masculino</p></div>
+                  </div>
+                  
+                  <hr />
+
+                  <div className='d-flex justify-content-between'>
+                    <div>
+                        <p className='opacity-50'>subtotal:</p>
+                        <p className='opacity-50'>Frete:</p>
+                        <p className='opacity-50'>Desconto: </p>
+                    </div>
+                    <div>
+                        <p>R$: 219,00</p>
+                        <p>R$: 0,00</p>
+                        <p>R$: 30,00</p>
+                    </div>
+                  </div>
+
+                  <div className={styles.resumoTotal}>
+                    <div>
+                        <h3>Total </h3>
+                    </div>
+                    <div>
+                        <p className='m-0 text-end h3 fw-semibold'>R$: 219,00</p>
+                        <small className='opacity-50'>ou 10x de R$: 21,00 sem juros</small>
+                    </div>
+                    
+                  </div>
+
+                  <button className='btn btn-warning text-white fw-bold p-2 ' type="submit">Realizar Pagamento</button>
+                </fieldset>
 
                   <div className="bg-white my-3 mb-2 d-flex flex-column p-5">
-        <h3>Finalizar Compra</h3>
-        <hr />
-        <div className="d-flex justify-content-between mb-5">
-          <div>
-            <h3>Total</h3>
-          </div>
-          <div>
-            <p className="m-0 text-end text-danger ">R$: 219,00</p>
-            <small className="opacity-50">ou 10x de R$: 21,00 sem juros</small>
-          </div>
-        </div>
-        <button
-          className="btn btn-warning text-white fw-bold p-2 mb-5"
-          type="submit">
-          Realizar Pagamento
-        </button>
+                    <h3>Finalizar Compra</h3>
+                    <hr />
+                    <div className="d-flex justify-content-between mb-5">
+                      <div>
+                        <h3>Total</h3>
+                      </div>
+                      <div>
+                        <p className="m-0 text-end text-danger ">R$: 219,00</p>
+                        <small className="opacity-50">ou 10x de R$: 21,00 sem juros</small>
+                      </div>
+                  </div>
+                    <button
+                      className="btn btn-warning text-white fw-bold p-2 mb-5"
+                      type="submit">
+                      Realizar Pagamento
+                    </button>
       </div>
 
                   
                 </fieldset>
-
-                <fieldset className="col-5 bg-white d-flex flex-column p-5 mt-4">
+        {/* CARD RESUMO DESKTOP*/}
+                <fieldset className="d-none d-md-block col-5 bg-white d-flex flex-column p-5 mt-4">
                   <h3>Resumo</h3>
                   <hr />
                   <div className='d-flex align-items-center gap-3'>
