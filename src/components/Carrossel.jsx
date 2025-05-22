@@ -1,9 +1,9 @@
 import React from "react";
-import tenis from "../assests/logo/tenis.svg";
-import bolinha from "../assests/logo/bolinha.svg";
-import camisa from "../assests/logo/camisa.svg";
-import fone from "../assests/logo/fone.svg";
-import sapato from "../assests/logo/sapato.svg";
+import tenis from "../assets/logo/tenis.svg";
+import bolinha from "../assets/logo/bolinha.svg";
+import camisa from "../assets/logo/camisa.svg";
+import fone from "../assets/logo/fone.svg";
+import sapato from "../assets/logo/sapato.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 

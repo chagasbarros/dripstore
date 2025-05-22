@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import barras from "../assests/finalizarCompra/barras.svg"
-import logoPix from "../assests/finalizarCompra/logoPix.png"
-import qrCode from "../assests/finalizarCompra/qrCode.png"
+import barras from "../assets/finalizarCompra/barras.svg"
+import logoPix from "../assets/finalizarCompra/logoPix.png"
+import qrCode from "../assets/finalizarCompra/qrCode.png"
 
 function FormaPagamento() {
   const [formaPagamento, setFormaPagamento] = useState('');

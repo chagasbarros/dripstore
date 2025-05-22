@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import logoDrip from "../assests/logo/Vector.svg";
-import cartDrip from "../assests/logo/carrinho.svg";
+import React, { useState } from "react"
+import logoDrip from "../assets/logo/Vector.svg"
+import cartDrip from "../assets/logo/carrinho.svg"
+import { Link } from "react-router-dom"
 
 
 const Header = () => {
@@ -60,9 +61,9 @@ const Header = () => {
             </form>
             <ul className="navbar-nav me-auto mt-3 mt-lg-0 d-xl-flex d-lg-none">
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link fw-bold"
-                  href="#"
+                  to={'/'}
                   style={{
                     fontSize: "14px",
                     color: "#d10f7d",
@@ -70,34 +71,34 @@ const Header = () => {
                   }}
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link text-dark"
-                  href="#"
+                  to={'/Produtos'}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Produtos
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link text-dark"
-                  href="#"
+                  to={'/Categoria'}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
-                  Categorias
-                </a>
+                  Categoria
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link text-dark"
-                  href="#"
+                  to={'/MeusPedidos'}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Meus Pedidos
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="d-flex align-items-center mt-3 mt-lg-0">
