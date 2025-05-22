@@ -5,6 +5,7 @@ import Carrossel from "./components/Carrossel";
 import FormCadastro from "./components/FormCadastro";
 import FormPagamento from "./components/FormaPagamento";
 import FormaPagamento from "./components/FormaPagamento";
+import FormCep from "./components/FormCep";
 
 
 
@@ -15,7 +16,7 @@ function App() {
   return (
     <div>
       <Header />
-      <FormCadastro/>
+      <FormCep/>
       
       <Carrossel />
       <Footer />
