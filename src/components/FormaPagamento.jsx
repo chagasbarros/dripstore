@@ -13,7 +13,7 @@ function FormaPagamento() {
         <hr />
 
         <h4>Forma de pagamento</h4>
-        <div className="d-flex gap-5 mb-2">
+        <div className="d-flex flex-column flex-md-row gap-5 mb-2">
           <div className="d-flex gap-2">
             <input
               type="radio"
