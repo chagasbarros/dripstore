@@ -1,14 +1,16 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import logoDrip from "../assets/logo/Vector.svg"
 import cartDrip from "../assets/logo/carrinho.svg"
 import { Link } from "react-router-dom"
+import { SearchContext } from "../contexts/SearchContext"
 
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const {setSearchTerm} = useContext(SearchContext)
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(!isMenuOpen)
   };
 
   return (
@@ -47,6 +49,7 @@ const Header = () => {
               <input
                 className="form-control me-2"
                 type="search"
+                onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Pesquisar produto..."
                 aria-label="Search"
                 style={{ maxWidth: "350px", padding: "0.5rem" }}
@@ -63,7 +66,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link fw-bold"
-                  to={'/'}
+                  to={'/DripStore'}
                   style={{
                     fontSize: "14px",
                     color: "#d10f7d",
@@ -76,7 +79,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to={'/Produtos'}
+                  to={'/DripStore/Produtos'}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Produtos
@@ -85,7 +88,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to={'/Categoria'}
+                  to={'/DripStore/Categoria'}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Categoria
@@ -94,7 +97,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to={'/MeusPedidos'}
+                  to={'/DripStore/MeusPedidos'}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Meus Pedidos

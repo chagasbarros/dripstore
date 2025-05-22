@@ -1,8 +1,11 @@
 import React from 'react'
+import Ordenar from '../components/Ordenar'
 
 const Produtos = () => {
   return (
-    <div>Produtos</div>
+    <>
+      <Ordenar />
+    </>
   )
 }
 

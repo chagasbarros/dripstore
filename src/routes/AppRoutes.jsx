@@ -9,11 +9,11 @@ import Formulario from '../pages/Formulario'
 const AppRoutes = () => {
   return (
     <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/Produtos' element={<Produtos />} />
-        <Route path='/Categoria' element={<Categoria />} />
-        <Route path='/MeusPedidos' element={<MeusPedidos />} />
-        <Route path='/Formulario' element={<Formulario />} />
+        <Route path='/DripStore' element={<Home />} />
+        <Route path='/DripStore/Produtos' element={<Produtos />} />
+        <Route path='/DripStore/Categoria' element={<Categoria />} />
+        <Route path='/DripStore/MeusPedidos' element={<MeusPedidos />} />
+        <Route path='/DripStore/Formulario' element={<Formulario />} />
     </Routes>
   )
 }
