@@ -1,17 +1,16 @@
-import React, { useContext, useState } from "react"
-import logoDrip from "../assets/logo/Vector.svg"
-import cartDrip from "../assets/logo/carrinho.svg"
-import { Link } from "react-router-dom"
-import { SearchContext } from "../contexts/SearchContext"
+import React, { useContext, useState } from "react";
+import logoDrip from "../assets/logo/Vector.svg";
+import cartDrip from "../assets/logo/carrinho.svg";
+import { Link } from "react-router-dom";
+import { SearchContext } from "../contexts/SearchContext";
 import Formulario from "../pages/Formulario";
 
-
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const {setSearchTerm} = useContext(SearchContext)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { setSearchTerm } = useContext(SearchContext);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -67,7 +66,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link fw-bold"
-                  to={'/DripStore'}
+                  to={"/DripStore"}
                   style={{
                     fontSize: "14px",
                     color: "#d10f7d",
@@ -80,7 +79,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to={'/DripStore/Produtos'}
+                  to={"/DripStore/Produtos"}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Produtos
@@ -89,7 +88,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to={'/DripStore/Categoria'}
+                  to={"/DripStore/Categoria"}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Categoria
@@ -98,7 +97,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to={'/DripStore/MeusPedidos'}
+                  to={"/DripStore/MeusPedidos"}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Meus Pedidos
@@ -106,15 +105,15 @@ const Header = () => {
               </li>
             </ul>
             <div className="d-flex align-items-center mt-3 mt-lg-0">
-              <a
+              <Link
+                to={"/DripStore/Formulario"}
                 href="#"
                 className="me-3 text-decoration-none text-cian fw-bold"
                 style={{ fontSize: "14px", whiteSpace: "nowrap" }}
               >
                 Cadastre-se
-              </a>
+              </Link>
               <Link
-                to={"/Formulario"}
                 href="#"
                 className="btn btn-pink text-white fw-bold"
                 style={{ backgroundColor: "#d10f7d" }}
@@ -177,7 +176,6 @@ const Header = () => {
         </ul>
       </div>
     </header>
-    
   );
 };
 
