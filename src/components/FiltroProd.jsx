@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './FiltroProd.module.css'
 
 const FiltroProd = () => {
   return (
@@ -21,7 +22,7 @@ const FiltroProd = () => {
                 <label htmlFor="Puma"> Puma</label><br/>
             </div>
             <div>
-                <p className="p-tema-filtro">Categoria</p>
+                <p className={`styles.p-tema-filtro`}>Categoria</p>
                 <input id="Esporte e lazer" type="checkbox" className="Checkbox"/>
                 <label htmlFor="Esporte e lazer"> Esporte e lazer</label><br/>
                 <input id="Casual" type="checkbox" className="Checkbox"/>
