@@ -6,6 +6,28 @@ import fone from "../assets/logo/fone.svg";
 import sapato from "../assets/logo/sapato.svg";
 import styles from './Carrossel.module.css';
 
+const slides = [
+  {
+    title: "Queima de estoque Nike🔥",
+    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    img: tenis,
+    alt: "Tenis"
+  },
+  {
+    title: "Promoção exclusiva Nike🔥",
+    desc: "Aproveite descontos imperdíveis em toda a linha.",
+    img: tenis,
+    alt: "Tenis"
+  },
+  {
+    title: "Promoção exclusiva Nike🔥",
+    desc: "Aproveite descontos imperdíveis em toda a linha.",
+    img: tenis,
+    alt: "Tenis"
+  },
+  // Adicione mais slides aqui se quiser
+];
+
 const Carrossel = () => {
   return (
     <div className="container-fluid mb-5">
@@ -20,20 +42,47 @@ const Carrossel = () => {
         />
 
         <div
-          id="carouselExampleSlidesOnly"
+          id="carouselExample"
           className="carousel slide"
           data-bs-ride="carousel"
         >
           <div className="carousel-inner">
-            <div className="carousel-item active">
-              <div className="d-flex">
-                <div className="container d-md-none d-lg-block d-none">
-                  <h1 className="fw-bold">
-                    Queima de <br />estoque Nike🔥
-                  </h1>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  </p>
+            {slides.map((slide, idx) => (
+              <div
+                className={`carousel-item${idx === 0 ? " active" : ""}`}
+                key={idx}
+              >
+                <div className="d-flex">
+                  <div className="container d-md-none d-lg-block d-none">
+                    <h1 className="fw-bold">
+                      {slide.title.split("🔥")[0]}<br />estoque Nike🔥
+                    </h1>
+                    <p>{slide.desc}</p>
+                    <a href="#">
+                      <button className={styles.butaoo}>
+                        <div>
+                          <span>
+                            <p>Ver-Ofertas</p>
+                          </span>
+                        </div>
+                        <div>
+                          <span>
+                            <p>Interesse?</p>
+                          </span>
+                        </div>
+                      </button>
+                    </a>
+                  </div>
+                  <img
+                    src={slide.img}
+                    className={`d-block w-100 ${styles.sapatin}`}
+                    alt={slide.alt}
+                    style={{ objectFit: "contain", maxHeight: "400px" }}
+                  />
+                </div>
+                <div className="container d-md-block d-lg-none">
+                  <h1 className="fw-bold">{slide.title}</h1>
+                  <p>{slide.desc}</p>
                   <a href="#">
                     <button className={styles.butaoo}>
                       <div>
@@ -49,88 +98,8 @@ const Carrossel = () => {
                     </button>
                   </a>
                 </div>
-                <img
-                  src={tenis}
-                  className={`d-block w-100 ${styles.sapatin}`}
-                  alt="Tenis"
-                  style={{ objectFit: "contain", maxHeight: "400px" }}
-                />
               </div>
-              <div className="container d-md-block d-lg-none">
-                <h1 className="fw-bold">
-                  Queima de <br />estoque Nike🔥
-                </h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                <a href="#">
-                  <button className={styles.butaoo}>
-                    <div>
-                      <span>
-                        <p>Ver-Ofertas</p>
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <p>Interesse?</p>
-                      </span>
-                    </div>
-                  </button>
-                </a>
-              </div>
-            </div>
-            {/* Repita os outros slides conforme necessário */}
-            <div className="carousel-item">
-              <div className="d-flex">
-                <div className="container d-md-none d-lg-block d-none">
-                  <h1 className="fw-bold">
-                    Queima de <br />estoque Nike🔥
-                  </h1>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  </p>
-                  <a href="#">
-                    <button className={styles.butaoo}>
-                      <div>
-                        <span>
-                          <p>Ver-Ofertas</p>
-                        </span>
-                      </div>
-                      <div>
-                        <span>
-                          <p>Interesse?</p>
-                        </span>
-                      </div>
-                    </button>
-                  </a>
-                </div>
-                <img
-                  src={tenis}
-                  className={`d-block w-100 ${styles.sapatin}`}
-                  alt="Tenis"
-                  style={{ objectFit: "contain", maxHeight: "400px" }}
-                />
-              </div>
-              <div className="container d-md-block d-lg-none">
-                <h1 className="fw-bold">
-                  Queima de <br />estoque Nike🔥
-                </h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                <a href="#">
-                  <button className={styles.butaoo}>
-                    <div>
-                      <span>
-                        <p>Ver-Ofertas</p>
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <p>Interesse?</p>
-                      </span>
-                    </div>
-                  </button>
-                </a>
-              </div>
-            </div>
-            {/* Adicione mais slides conforme necessário */}
+            ))}
           </div>
         </div>
       </div>
