@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
 import styles from './Header.module.css';
 
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { setSearchTerm } = useContext(SearchContext);
@@ -74,7 +73,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link fw-bold"
-                  to="/DripStore"
+                  to={"/DripStore"}
                   style={{
                     fontSize: "14px",
                     color: "#d10f7d",
@@ -87,7 +86,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to="/DripStore/Produtos"
+                  to={"/DripStore/Produtos"}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Produtos
@@ -96,7 +95,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to="/DripStore/Categoria"
+                  to={"/DripStore/Categoria"}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Categoria
@@ -105,7 +104,7 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link text-dark"
-                  to="/DripStore/MeusPedidos"
+                  to={"/DripStore/MeusPedidos"}
                   style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Meus Pedidos
@@ -114,14 +113,15 @@ const Header = () => {
             </ul>
             <div className="d-flex align-items-center mt-3 mt-lg-0">
               <Link
-                to="/DripStore/Cadastro"
+                to={"/DripStore/Formulario"}
+                href="#"
                 className="me-3 text-decoration-none text-cian fw-bold"
                 style={{ fontSize: "14px", whiteSpace: "nowrap" }}
               >
                 Cadastre-se
               </Link>
               <Link
-                to="/Formulario"
+                href="#"
                 className="btn btn-pink text-white fw-bold"
                 style={{ backgroundColor: "#d10f7d" }}
               >
