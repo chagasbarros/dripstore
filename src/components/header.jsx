@@ -3,7 +3,7 @@ import logoDrip from "../assets/logo/Vector.svg";
 import cartDrip from "../assets/logo/carrinho.svg";
 import { Link } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
-import Formulario from "../pages/Formulario";
+import styles from './Header.module.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,11 +13,15 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <header className="sticky-top bg-light shadow-sm">
+    <header className="sticky-top bg-light shadow-sm</header>">
       <nav className="navbar navbar-expand-lg navbar-light px-4 py-3">
         <div className="container-fluid">
-          <a className="navbar-brand d-flex align-items-center" href="#">
+          <Link className="navbar-brand d-flex align-items-center" to="#">
             <img
               src={logoDrip}
               alt="Logo"
@@ -30,7 +34,7 @@ const Header = () => {
             >
               Digital Store
             </span>
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -45,9 +49,12 @@ const Header = () => {
             className={`collapse navbar-collapse ${isMenuOpen ? "show" : ""}`}
             id="navbarNav"
           >
-            <form className="d-flex mx-auto w-100 mt-3 mt-lg-0 justify-content-lg-center">
+            <form
+              className="d-flex mx-auto w-100 mt-3 mt-lg-0 justify-content-lg-center"
+              onSubmit={handleSearch}
+            >
               <input
-                className="form-control me-2"
+                className={`${styles.form}`}
                 type="search"
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Pesquisar produto..."
@@ -55,11 +62,11 @@ const Header = () => {
                 style={{ maxWidth: "350px", padding: "0.5rem" }}
               />
               <button
-                className="btn btn-outline pesquisa"
+                className={`btn btn-outline ${styles.pesquisa}`}
                 type="submit"
-                style={{ padding: "0.5rem 1rem" }}
+                
               >
-                Pesquisar
+                <i class="bi bi-search"></i>
               </button>
             </form>
             <ul className="navbar-nav me-auto mt-3 mt-lg-0 d-xl-flex d-lg-none">
@@ -120,13 +127,13 @@ const Header = () => {
               >
                 Entrar
               </Link>
-              <a href="#" className="ms-3">
+              <Link to="/DripStore/Carrinho" className="ms-3">
                 <img
                   src={cartDrip}
                   alt="Carrinho"
                   style={{ width: "30px", height: "30px" }}
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -134,9 +141,9 @@ const Header = () => {
       <div className="container col d-lg-flex d-none d-xl-none d-md-none">
         <ul className="navbar-nav me-auto d-flex flex-row mt-lg-0">
           <li className="nav-item mx-2">
-            <a
+            <Link
               className="nav-link fw-bold"
-              href="#"
+              to="/DripStore"
               style={{
                 fontSize: "14px",
                 color: "#d10f7d",
@@ -144,34 +151,34 @@ const Header = () => {
               }}
             >
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-item mx-2">
-            <a
+            <Link
               className="nav-link text-dark"
-              href="#"
+              to="/DripStore/Produtos"
               style={{ fontSize: "14px", whiteSpace: "nowrap" }}
             >
               Produtos
-            </a>
+            </Link>
           </li>
           <li className="nav-item mx-2">
-            <a
+            <Link
               className="nav-link text-dark"
-              href="#"
+              to="/DripStore/Categoria"
               style={{ fontSize: "14px", whiteSpace: "nowrap" }}
             >
-              Categorias
-            </a>
+              Categoria
+            </Link>
           </li>
           <li className="nav-item mx-2">
-            <a
+            <Link
               className="nav-link text-dark"
-              href="#"
+              to="/DripStore/MeusPedidos"
               style={{ fontSize: "14px", whiteSpace: "nowrap" }}
             >
               Meus Pedidos
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
