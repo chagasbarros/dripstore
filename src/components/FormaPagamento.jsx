@@ -5,6 +5,10 @@ import qrCode from "../assets/finalizarCompra/qrCode.png"
 
 function FormaPagamento() {
   const [formaPagamento, setFormaPagamento] = useState('');
+  
+  function copiar(){
+    alert('Finalize o cadastro!!!')
+  }
 
   return (
     <div>
@@ -62,7 +66,7 @@ function FormaPagamento() {
               />
 
               <div className="mt-3 ">
-                <div className="d-flex justify-content-between">
+                <div className="d-flex flex-column flex-md-row justify-content-between">
                   <div>
                     <label htmlFor="numeroCartao">Numero do Cartão *</label>
                     <input
@@ -134,7 +138,7 @@ function FormaPagamento() {
                     <p>Código de Barras</p>
                     <hr />
                     <img src={barras} alt="Uma imagem de código de barras" />
-                    <button className="btn btn-warning text-white fw-bold p-2 d-block">
+                    <button onClick={copiar} type='button' className="btn btn-warning text-white fw-bold p-2 d-block">
                       Copiar código
                     </button>
                   </div>
@@ -143,24 +147,22 @@ function FormaPagamento() {
 
           {formaPagamento === 'pix' && (
              <div className="">
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex flex-column flex-md-row justify-content-center gap-5 align-items-center">
                       <div>
                         <img src={logoPix} alt="logo do pix" />
                       </div>
-                      <div>
+                      <div >
                         <img src={qrCode} width={175} alt="Imagem de QR Code" />
                       </div>
                   </div>
                   <div className="text-center">
                       <h5>Código de pagamento</h5>
                       <p>
-                        Escanei o QR Code ou Copie e cole o código abaixo no app da sua
-                        instituição financeira pra finalizar a compra.
+                        Escanei o QR Code ou Copie e cole o código abaixo para finalizar a compra.
                       </p>
                       <p>Valor do pagamento</p>
                       <h3>R$ 219,00</h3>
-                      <p>"7777geracao9999tech1111projeto0000drip2222Store"</p>
-                      <button className="btn btn-warning text-white fw-bold p-2">
+                      <button type='button' onClick={copiar}  className="btn btn-warning text-white fw-bold p-2">
                           Copiar código
                       </button>
                   </div>
