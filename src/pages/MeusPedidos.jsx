@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Carrinho from "../components/Carrinho";
 
 const MeusPedidos = () => {
-  return (
-    <div>MeusPedidos</div>
-  )
-}
+  return <Carrinho />;
+};
 
-export default MeusPedidos
+export default MeusPedidos;
