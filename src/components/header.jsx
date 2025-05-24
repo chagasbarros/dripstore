@@ -114,7 +114,7 @@ const Header = () => {
                 Cadastre-se
               </a>
               <Link
-                to={"/Formulario"}
+                to={"/DripStore/Formulario"}
                 href="#"
                 className="btn btn-pink text-white fw-bold"
                 style={{ backgroundColor: "#d10f7d" }}
