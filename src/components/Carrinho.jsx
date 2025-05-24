@@ -30,16 +30,17 @@ export default function PaginaCarrinho() {
         <div className="col-12 col-lg-9 pe-lg-4">
           {/* CARD DO CARRINHO */}
           <div className="card p-3 p-md-4 mb-4 border-0 shadow-sm">
-            {/* CABEÇALHO SIMPLIFICADO PARA MOBILE */}
-            <div className="row align-items-center border-bottom pb-3 mb-3 mx-0">
-              <div className="col-12 mb-3 mb-md-0">
+            {/* CABEÇALHO */}
+            <div className="row border-bottom pb-3 mb-3 mx-0">
+              <div className="col-12 col-md-6 mb-3 mb-md-0">
                 <h5 className="fw-bold mb-0">MEU CARRINHO</h5>
               </div>
-              {/* RÓTULOS APENAS DESKTOP */}
-              <div className="col-12 d-none d-md-flex justify-content-between text-uppercase small fw-semibold">
-                <div className="text-center flex-grow-1">Quantidade</div>
-                <div className="text-center flex-grow-1">Unitário</div>
-                <div className="text-center flex-grow-1">Total</div>
+              <div className="col-12 col-md-6 d-none d-md-block">
+                <div className="d-flex justify-content-between text-uppercase small fw-semibold">
+                  <div className="text-center" style={{ width: "120px" }}>Quantidade</div>
+                  <div className="text-center" style={{ width: "100px" }}>Unitário</div>
+                  <div className="text-center" style={{ width: "100px" }}>Total</div>
+                </div>
               </div>
             </div>
 
@@ -50,45 +51,35 @@ export default function PaginaCarrinho() {
                   <i className="bi bi-cart-x fs-1 text-muted"></i>
                 </div>
                 <h5 className="text-muted mb-2">Seu carrinho está vazio</h5>
-                <p className="text-muted mb-4">
-                  Adicione produtos para continuar sua compra
-                </p>
+                <p className="text-muted mb-4">Adicione produtos para continuar sua compra</p>
                 <button
-                  className={`${styles.correstaurar} btn px-4 py-2 rounded-3`}
+                  className={`${styles.correstaurar} border-0 px-4 py-2 rounded-3`}
                   onClick={() => setItemRemovido(false)}
                 >
                   Restaurar item
                 </button>
               </div>
             ) : (
-              <div className="row align-items-center mx-0">
+              <div className="row mx-0">
                 {/* INFORMAÇÕES DO PRODUTO */}
-                <div className="col-12 col-md-6 mb-4 mb-md-0">
-                  <div className="d-flex align-items-center">
-                    <div className="position-relative me-3 flex-shrink-0">
-                      <img
-                        src="./src/assets/carrinho/sapato.png"
-                        alt="Tênis"
-                        className="rounded-3"
-                        style={{
-                          width: "120px",
-                          height: "100px",
-                          objectFit: "contain",
-                          backgroundColor: "#E2E3FF",
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <h6 className="mb-1 fw-semibold">
-                        Tênis Nike Revolution 6 Next Nature Masculino
-                      </h6>
-                      <div className="text-muted small">
-                        Cor: Vermelho / Branco
-                      </div>
-                      <div className="text-muted small">
-                        Tamanho: <strong>42</strong>
-                      </div>
-                    </div>
+                <div className="col-12 col-md-6 d-flex align-items-center mb-3 mb-md-0">
+                  <div className="position-relative me-3 flex-shrink-0">
+                    <img
+                      src="./src/assets/carrinho/sapato.png"
+                      alt="Tênis"
+                      className="rounded-3"
+                      style={{
+                        width: "120px",
+                        height: "100px",
+                        objectFit: "contain",
+                        backgroundColor: "#E2E3FF",
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <h6 className="mb-1 fw-semibold">Tênis Nike Revolution 6 Next Nature Masculino</h6>
+                    <div className="text-muted small">Cor: Vermelho / Branco</div>
+                    <div className="text-muted small">Tamanho: <strong>42</strong></div>
                   </div>
                 </div>
 
@@ -96,20 +87,14 @@ export default function PaginaCarrinho() {
                 <div className="col-12 col-md-6">
                   {/* RÓTULOS PARA MOBILE */}
                   <div className="d-flex d-md-none justify-content-between small fw-semibold mb-2 text-muted px-2">
-                    <div className="text-center" style={{ width: "33%" }}>
-                      Quantidade
-                    </div>
-                    <div className="text-center" style={{ width: "33%" }}>
-                      Unitário
-                    </div>
-                    <div className="text-center" style={{ width: "33%" }}>
-                      Total
-                    </div>
+                    <div className="text-center" style={{ width: "33%" }}>Quantidade</div>
+                    <div className="text-center" style={{ width: "33%" }}>Unitário</div>
+                    <div className="text-center" style={{ width: "33%" }}>Total</div>
                   </div>
-
-                  <div className="row align-items-center g-3">
+                  
+                  <div className="d-flex justify-content-between align-items-center">
                     {/* QUANTIDADE */}
-                    <div className="col-4 col-md-4">
+                    <div style={{ width: "120px" }}>
                       <div className="d-flex flex-column align-items-center">
                         <div className="d-flex align-items-center mb-2">
                           <button
@@ -138,17 +123,15 @@ export default function PaginaCarrinho() {
                     </div>
 
                     {/* PREÇO UNITÁRIO */}
-                    <div className="col-4 col-md-4 text-center">
+                    <div className="text-center" style={{ width: "100px" }}>
                       <div className="text-decoration-line-through text-muted small mb-1">
                         R$ 219,00
                       </div>
-                      <div className="fw-semibold">
-                        R$ {precoUnitario.toFixed(2)}
-                      </div>
+                      <div className="fw-semibold">R$ {precoUnitario.toFixed(2)}</div>
                     </div>
 
                     {/* TOTAL */}
-                    <div className="col-4 col-md-4 text-center">
+                    <div className="text-center" style={{ width: "100px" }}>
                       <div className="text-decoration-line-through text-muted small mb-1">
                         R$ 219,00
                       </div>
@@ -166,22 +149,20 @@ export default function PaginaCarrinho() {
             {/* CUPOM E FRETE */}
             <div className="row g-3">
               <div className="col-12 col-md-6">
-                <label className="form-label fw-semibold">
-                  Cupom de desconto
-                </label>
+                <label className="form-label fw-semibold">Cupom de desconto</label>
                 <div className="d-flex">
                   <input
                     type="text"
                     className={`form-control rounded-2 ${styles.BotaoOk}`}
                     placeholder="Insira seu código"
-                    style={{
+                    style={{ 
                       width: "280px",
                       height: "60px",
                       border: "1px solid #f5f5f5",
-                      backgroundColor: "#f5f5f5",
+                      backgroundColor: "#f5f5f5"
                     }}
                   />
-                  <button
+                  <button 
                     className={`${styles.BotaoOk} btn ms-2 rounded-2`}
                     style={{
                       width: "114px",
@@ -189,7 +170,7 @@ export default function PaginaCarrinho() {
                       backgroundColor: "#f5f5f5",
                       color: "#c92071",
                       fontWeight: "700",
-                      border: "1px solid #f5f5f5",
+                      border: "1px solid #f5f5f5"
                     }}
                   >
                     OK
@@ -204,14 +185,14 @@ export default function PaginaCarrinho() {
                     type="text"
                     className={`form-control rounded-2 ${styles.BotaoOk}`}
                     placeholder="Insira seu CEP"
-                    style={{
+                    style={{ 
                       width: "280px",
                       height: "60px",
                       border: "1px solid #f5f5f5",
-                      backgroundColor: "#f5f5f5",
+                      backgroundColor: "#f5f5f5"
                     }}
                   />
-                  <button
+                  <button 
                     className={`${styles.BotaoOk} btn ms-2 rounded-2`}
                     style={{
                       width: "114px",
@@ -219,7 +200,7 @@ export default function PaginaCarrinho() {
                       backgroundColor: "#f5f5f5",
                       color: "#c92071",
                       fontWeight: "700",
-                      border: "1px solid #f5f5f5",
+                      border: "1px solid #f5f5f5"
                     }}
                   >
                     OK
@@ -232,10 +213,7 @@ export default function PaginaCarrinho() {
           {/* PRODUTOS RELACIONADOS */}
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h5 className="fw-bold mb-0">Produtos Relacionados</h5>
-            <a
-              href="#"
-              className="text-decoration-none text-danger fw-semibold"
-            >
+            <a href="#" className={`${styles.corvertodos} text-decoration-none fw-semibold`}>
               Ver todos →
             </a>
           </div>
@@ -246,16 +224,11 @@ export default function PaginaCarrinho() {
                 <div className="card h-100 border-0 shadow-sm hover-shadow transition-all">
                   <div className="card-body p-3">
                     {i === 0 && (
-                      <span
-                        className={`${styles.corbotao} badge position-absolute top-0 start-0 m-2 text-black`}
-                      >
+                      <span className={`${styles.corbotao} badge position-absolute top-0 start-0 m-2 text-black`}> 
                         30% OFF
                       </span>
                     )}
-                    <div
-                      className="d-flex justify-content-center align-items-center"
-                      style={{ height: "120px" }}
-                    >
+                    <div className="d-flex justify-content-center align-items-center m-4 pb-3" style={{ height: "120px" }}>
                       <img
                         src="./src/assets/carrinho/nike-shoe.png"
                         alt="Produto"
@@ -268,9 +241,7 @@ export default function PaginaCarrinho() {
                     </div>
                     <div className="mt-3">
                       <small className="text-muted d-block">Tênis</small>
-                      <h6 className="fw-semibold mb-1">
-                        K-Swiss V8 - Masculino
-                      </h6>
+                      <h6 className="fw-semibold mb-1">K-Swiss V8 - Masculino</h6>
                       <div className="d-flex align-items-center">
                         <small className="text-muted text-decoration-line-through me-2">
                           R$ 200,00
@@ -289,7 +260,7 @@ export default function PaginaCarrinho() {
         <div className="col-12 col-lg-3 mt-4 mt-lg-0 h-50">
           <div className="card border-0 shadow-sm p-4 h-100">
             <h5 className="fw-bold mb-4">RESUMO DO PEDIDO</h5>
-
+            
             <div className="mb-3">
               <div className="d-flex justify-content-between mb-2">
                 <span className="text-muted">Subtotal:</span>
@@ -309,9 +280,7 @@ export default function PaginaCarrinho() {
 
             <div className="d-flex justify-content-between mb-3">
               <span className="fw-bold">Total</span>
-              <span className="fw-bold fs-5 text-danger">
-                R$ {total.toFixed(2)}
-              </span>
+              <span className="fw-bold fs-5 text-danger">R$ {total.toFixed(2)}</span>
             </div>
 
             <small className="d-block text-center text-muted mb-4">
