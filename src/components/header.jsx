@@ -113,15 +113,13 @@ const Header = () => {
             </ul>
             <div className="d-flex align-items-center mt-3 mt-lg-0">
               <Link
-                to="/DripStore/Cadastro"
+                to={"/DripStore/Formulario"}
                 className="me-3 text-decoration-none text-cian fw-bold"
                 style={{ fontSize: "14px", whiteSpace: "nowrap" }}
               >
                 Cadastre-se
               </Link>
               <Link
-                to={"/DripStore/Formulario"}
-                href="#"
                 className="btn btn-pink text-white fw-bold"
                 style={{ backgroundColor: "#d10f7d" }}
               >
