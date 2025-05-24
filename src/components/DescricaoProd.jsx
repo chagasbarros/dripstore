@@ -12,7 +12,7 @@ const DescricaoProd = () => {
 
         <section className="row">
             <div className="col-md-6">
-                <div className="galeria mb-3 d-flex justify-content-center" style={{backgroundColor:  '#E2E3FF', }}>
+                <div className="galeria mb-3 d-flex justify-content-center" style={{backgroundColor:  '#E2E3FF', padding: '100px' }}>
                     <img src={tenisNike2} alt="Tenis Nike"/>
                 </div>
                 <div className="d-flex justify-content-between" >
