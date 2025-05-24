@@ -1,10 +1,20 @@
+const FormDadosPessoais = ({formDados, setFormDados}) => {
+       const handleChange = (e) => {
+        const { name, value} = e.target
+        setFormDados((prev) => ({
+            ...prev,
+            usuario: {
+                ...prev.usuario, 
+                [name]: value
+            }
+        }))
 
-
-const FormDadosPessoais = () => {
+        }
+       
     
     return (
         <>
-            <div className="bg-white mt-4 d-flex flex-column p-5 form-group">
+            <div className="bg-white d-flex flex-column p-5 form-group">
                     <h5>Informações Pessoais</h5>
                     <hr />
 
@@ -13,7 +23,8 @@ const FormDadosPessoais = () => {
                       className='form-control opacity-50'
                       type="text"
                       name="nome"
-                      id="nome"
+                      value={formDados.usuario.nome}
+                      onChange={handleChange}
                       required
                       placeholder="Insira seu nome"
                       minLength="10"
@@ -25,7 +36,8 @@ const FormDadosPessoais = () => {
                       className='form-control opacity-50'
                       type="text"
                       name="cpf"
-                      id="cpf"
+                      value={formDados.usuario.cpf}
+                      onChange={handleChange}
                       required
                       placeholder="Insira seu CPF"
                       pattern="[0-9]{1,11}"
@@ -38,7 +50,8 @@ const FormDadosPessoais = () => {
                       className='form-control opacity-50'
                       type="email"
                       name="email"
-                      id="email"
+                      value={formDados.usuario.email}
+                      onChange={handleChange}
                       required
                       placeholder="Insira seu email"
                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
@@ -51,7 +64,8 @@ const FormDadosPessoais = () => {
                       className='form-control opacity-50'
                       type="tel"
                       name="celular"
-                      id="celular"
+                      value={formDados.usuario.celular}
+                      onChange={handleChange}
                       required
                       placeholder="Insira seu Número"
                       minLength={11}

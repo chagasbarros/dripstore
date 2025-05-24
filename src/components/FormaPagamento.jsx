@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import barras from "../assets/finalizarCompra/barras.svg"
-import logoPix from "../assets/finalizarCompra/logoPix.png"
-import qrCode from "../assets/finalizarCompra/qrCode.png"
 
-function FormaPagamento() {
-  const [formaPagamento, setFormaPagamento] = useState('');
-  
-  function copiar(){
-    alert('Finalize o cadastro!!!')
+const FormaPagamento = ({ formDados, setFormDados}) => {
+
+  const handleMetodoChange = (e) => {
+    const metodoSelecionado = e.target.value
+    setFormDados((prev) => ({
+      ...prev,
+      pagamento: {
+        ...prev.pagamento,
+        metodo: metodoSelecionado        
+      }
+    }))
   }
+
+const metodo = formDados.pagamento.metodo
 
   return (
     <div>
@@ -21,10 +25,12 @@ function FormaPagamento() {
           <div className="d-flex gap-2">
             <input
               type="radio"
-              name="pagamento"
+              name="metodo"
               id="cartao"
               value="cartao"
-              onChange={(e) => setFormaPagamento(e.target.value)}
+              checked={formDados.pagamento.metodo === "cartao"}
+              onChange={handleMetodoChange}
+              
             />
             <label htmlFor="cartao">Cartão de Crédito ou Débito</label>
           </div>
@@ -32,10 +38,12 @@ function FormaPagamento() {
           <div className="d-flex gap-2">
             <input
               type="radio"
-              name="pagamento"
+              name="metodo"
               id="pix"
               value="pix"
-              onChange={(e) => setFormaPagamento(e.target.value)}
+              checked={formDados.pagamento.metodo === "pix"}
+              onChange={handleMetodoChange}
+              
             />
             <label htmlFor="pix">Pix</label>
           </div>
@@ -43,17 +51,19 @@ function FormaPagamento() {
           <div className="d-flex gap-2">
             <input
               type="radio"
-              name="pagamento"
+              name="metodo"
               id="boleto"
               value="boleto"
-              onChange={(e) => setFormaPagamento(e.target.value)}
+              checked={formDados.pagamento.metodo === 'boleto'}
+              onChange={handleMetodoChange}
+              
             />
             <label htmlFor="boleto">Boleto</label>
           </div>
         </div>
 
         <div>
-          {formaPagamento === "cartao" && (
+          {metodo === "cartao" && (
             <div>
               <label htmlFor="nomeCartao">Nome do Cartão *</label>
               <input
@@ -105,67 +115,16 @@ function FormaPagamento() {
             </div>
           )}
 
-          {formaPagamento === 'boleto' && (
-              <div>
+          {metodo === 'boleto' && (
+              <div className='mt-5'>
                  
-                  <div className="d-flex flex-column gap-1">
-                    <label htmlFor="pagador">Pagador</label>
-                    <input
-                      type="text"
-                      name="pagador"
-                      id="pagador"
-                      className="form-control opacity-50"
-                    />
-
-                    <label htmlFor="dataVencimento">Data de vencimento</label>
-                    <input
-                      type="date"
-                      name="dataVencimento"
-                      id="dataVencimento"
-                      className="form-control opacity-50"
-                   />
-
-                    <label htmlFor="valorTotal">Valor a pagar</label>
-                    <input
-                      type="number"
-                      name="valorTotal"
-                      id="valorTotal"
-                      className="form-control opacity-50"
-                    />
-                  </div>
-
-                  <div className="mt-5">
-                    <p>Código de Barras</p>
-                    <hr />
-                    <img src={barras} alt="Uma imagem de código de barras" />
-                    <button onClick={copiar} type='button' className="btn btn-warning text-white fw-bold p-2 d-block">
-                      Copiar código
-                    </button>
-                  </div>
+                  <h3 className='text-center'>O <strong>boleto </strong> será gerado após a finalização do cadastro.</h3>                  
               </div>
           )}
 
-          {formaPagamento === 'pix' && (
-             <div className="">
-                  <div className="d-flex flex-column flex-md-row justify-content-center gap-5 align-items-center">
-                      <div>
-                        <img src={logoPix} alt="logo do pix" />
-                      </div>
-                      <div >
-                        <img src={qrCode} width={175} alt="Imagem de QR Code" />
-                      </div>
-                  </div>
-                  <div className="text-center">
-                      <h5>Código de pagamento</h5>
-                      <p>
-                        Escanei o QR Code ou Copie e cole o código abaixo para finalizar a compra.
-                      </p>
-                      <p>Valor do pagamento</p>
-                      <h3>R$ 219,00</h3>
-                      <button type='button' onClick={copiar}  className="btn btn-warning text-white fw-bold p-2">
-                          Copiar código
-                      </button>
-                  </div>
+          {metodo === 'pix' && (
+             <div className='mt-5'>
+                  <h3 className='text-center'>O <strong>QR CODE </strong> será gerado após a finalização do cadastro.</h3>
               </div>
           )}
         </div>
