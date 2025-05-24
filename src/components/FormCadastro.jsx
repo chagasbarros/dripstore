@@ -1,28 +1,70 @@
-import styles from "./FormCadastro.module.css";
-import Sneakers from "../assets/finalizarCompra/Sneakers.svg";
+import { useState } from "react";
 import FormaPagamento from "./FormaPagamento";
 import FormCep from "./FormCep";
 import FormDadosPessoais from "./FormDadosPessoais";
 import FormResumo from "./FormResumo";
 
 const FormCadastro = () => {
+
+  const [formDados, setFormDados] = useState({
+    usuario: {
+      nome: "",
+      cpf: "",
+      email: "",
+      celular: ""
+    },
+
+    entrega: {
+      cep: "",
+      rua: "",
+      bairro: "",
+      cidade: "",
+      complemento:""
+    },
+
+    pagamento: {
+      metodo: 'cartao',
+
+      cartao: {
+        nomeCartao: '',
+        numeroCartao: '',
+        validade: '',
+        cvv: ''
+      },
+
+      boleto: {
+        nome: '',
+        cpf: '',
+        vencimento: '',
+        valorTotal: ''
+      },
+
+      pix: {
+        nome:'',
+        chave:''
+      }
+    }
+  })
+
+  const handleSubmit = (e) => {
+      e.preventDefault()
+      console.log('Dados do formulário: ', formDados)
+  }
+
+
   return (
     <>
-      <div className={`${styles.backgroundFormulario} ${styles.conteudoForm} `}>
-    
-
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="container">
-            <h2 className="fw-bold mt-2 ms-2">Finalizar Compra</h2>
+            <h2 className="fw-bold mt-5 ms-2">Finalizar Compra</h2>
             <div className="row">
               <fieldset className="col-sm-12 col-md-7">
-                <FormDadosPessoais />
-                <FormCep />
-                <FormaPagamento />
+                <FormDadosPessoais formDados={formDados} setFormDados={setFormDados} />
+                <FormCep formDados={formDados} setFormDados={setFormDados} />
+                <FormaPagamento formDados={formDados} setFormDados={setFormDados} />
                 <div className="d-block d-md-none">
-                  <FormResumo/>
+                  <FormResumo formDados={formDados} setFormDados={setFormDados}/>
                 </div>
-                
                 <div className="bg-white my-3 mb-2 d-flex flex-column p-5">
                           <hr />
                           <div className="d-flex justify-content-between mb-5">
@@ -45,16 +87,11 @@ const FormCadastro = () => {
                         </div> 
               </fieldset>
               <fieldset className="col-md-5 d-none d-md-block">
-                <FormResumo/>
+                <FormResumo formDados={formDados} setFormDados={setFormDados}/>
               </fieldset>
-              
-              
             </div>
           </div>
         </form>
-
-        <form action=""></form>
-      </div>
     </>
   );
 };

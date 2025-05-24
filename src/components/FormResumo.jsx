@@ -6,7 +6,7 @@ const FormResumo = () => {
     return (
       <>
         {/* CARD RESUMO (MOBILE) */}
-        <fieldset className="d-block d-md-none col-12 bg-white d-flex flex-column p-5 mt-4">
+        <fieldset className="d-block d-md-none col-12 bg-white d-flex flex-column p-5">
           <h3>Resumo</h3>
           <hr />
           <div className="d-flex align-items-center gap-3">
@@ -55,7 +55,7 @@ const FormResumo = () => {
         
 
         {/* CARD RESUMO DESKTOP */}
-        <fieldset className="d-none d-md-block bg-white d-flex flex-column p-5 mt-4">
+        <fieldset className="d-none d-md-block bg-white d-flex flex-column p-5">
           <h3>Resumo</h3>
           <hr />
           <div className="d-flex align-items-center gap-3">
