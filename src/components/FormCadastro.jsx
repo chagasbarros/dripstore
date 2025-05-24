@@ -149,7 +149,7 @@ const FormCadastro = () => {
 
                   <div className='d-flex justify-content-between'>
                     <div>
-                        <p className='opacity-50'>subtotal:</p>
+                        <p className='opacity-50'>Subtotal:</p>
                         <p className='opacity-50'>Frete:</p>
                         <p className='opacity-50'>Desconto: </p>
                     </div>
