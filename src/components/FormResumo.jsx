@@ -76,7 +76,7 @@ const FormResumo = () => {
               <p className="opacity-50">Desconto: </p>
             </div>
             <div>
-              <p>R$: 219,00</p>
+              <p>R$: 210,00</p>
               <p>R$: 0,00</p>
               <p>R$: 30,00</p>
             </div>
@@ -87,9 +87,9 @@ const FormResumo = () => {
               <h3>Total </h3>
             </div>
             <div>
-              <p className="m-0 text-end h3 fw-semibold">R$: 219,00</p>
+              <p className="m-0 text-end h3 fw-semibold">R$: 180,00</p>
               <small className="opacity-50">
-                ou 10x de R$: 21,00 sem juros
+                ou 10x de R$: 18,00 sem juros
               </small>
             </div>
           </div>

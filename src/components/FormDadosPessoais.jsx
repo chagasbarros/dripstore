@@ -87,8 +87,8 @@ const FormDadosPessoais = ({formDados, setFormDados}) => {
                       onChange={handleChange}
                       required
                       placeholder="Insira seu Número"
-                      minLength={11}
-                      maxLength={11}
+                      minLength={15}
+                      maxLength={15}
 
                     />
                   </div>
