@@ -1,3 +1,4 @@
+import { useState } from "react"
 
 const FormaPagamento = ({ formDados, setFormDados}) => {
 
@@ -13,6 +14,13 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
   }
 
 const metodo = formDados.pagamento.metodo
+
+const [numeroCartao, setNumeroCartao] = useState('')
+
+  const handleCepChange = (e) => {
+    const valor = e.target.value.replace(/\D/g, ''); // remove tudo que não for número
+    setNumeroCartao(valor);
+  };
 
   return (
     <div>
@@ -68,9 +76,11 @@ const metodo = formDados.pagamento.metodo
               <label htmlFor="nomeCartao">Nome do Cartão *</label>
               <input
                 className="form-control opacity-50"
-                type="number"
+                type="text"
                 name="nomeCartao"
                 id="nomeCartao"
+                minLength={10}
+                maxLength={50}
                 required
                 placeholder="Insira o nome do Cartão"
               />
@@ -81,11 +91,15 @@ const metodo = formDados.pagamento.metodo
                     <label htmlFor="numeroCartao">Numero do Cartão *</label>
                     <input
                       className="form-control opacity-50"
-                      type="number"
+                      type="text"
                       name="numeroCartao"
                       id="numeroCartao"
                       required
                       placeholder="Insira o numero do Cartão"
+                      minLength={16}
+                      maxLength={16}
+                      onChange={handleCepChange}
+                      value={numeroCartao}
                     />
                   </div>
                   <div>
@@ -105,12 +119,15 @@ const metodo = formDados.pagamento.metodo
               </div>
               <label htmlFor="ccv"> CVV *</label>
               <input
-                type="number"
+                type="text"
                 name="ccv"
                 id="ccv"
                 required
                 placeholder="Insira o CVV"
                 className="form-control opacity-50"
+                pattern="[0-9]{1,3}"
+                minLength={3}
+                maxLength={3}
               />
             </div>
           )}

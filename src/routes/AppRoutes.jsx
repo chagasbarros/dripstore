@@ -5,6 +5,7 @@ import Produtos from "../pages/Produtos";
 import Categoria from "../pages/Categorias";
 import MeusPedidos from "../pages/MeusPedidos";
 import Formulario from "../pages/Formulario";
+import Sucesso from "../pages/Sucesso";
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Route path="/DripStore/Categoria" element={<Categoria />} />
       <Route path="/DripStore/MeusPedidos" element={<MeusPedidos />} />
       <Route path="/DripStore/Formulario" element={<Formulario />} />
+      <Route path="/DripStore/Sucesso" element={<Sucesso/>} />
     </Routes>
   );
 };

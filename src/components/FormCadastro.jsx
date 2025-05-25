@@ -3,6 +3,7 @@ import FormaPagamento from "./FormaPagamento";
 import FormCep from "./FormCep";
 import FormDadosPessoais from "./FormDadosPessoais";
 import FormResumo from "./FormResumo";
+import {useNavigate} from 'react-router-dom'
 
 const FormCadastro = () => {
 
@@ -46,9 +47,12 @@ const FormCadastro = () => {
     }
   })
 
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
       e.preventDefault()
       console.log('Dados do formulário: ', formDados)
+      navigate('/DripStore/Sucesso')
   }
 
 
