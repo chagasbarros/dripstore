@@ -41,3 +41,30 @@
 a {
   text-decoration: none !important;
 }
+.linkHover {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.linkHover::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: #d10f7d;
+  transition: width 0.3s ease;
+}
+
+.linkHover:hover {
+  color: #d10f7d;
+}
+
+.linkHover:hover::after {
+  width: 100%;
+}
+
+.active {
+  color: #d10f7d !important;
+}

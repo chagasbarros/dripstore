@@ -95,3 +95,80 @@
 }
 
 
+.parent {
+  margin: 1rem;
+  width: 260px;
+}
+
+.card {
+  position: relative;
+  background: #e8f0fa;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.1);
+}
+.card img {
+  width: 100%;
+}
+
+.content-box {
+  padding: 1rem 1.2rem;
+  background: white;
+  border-top: 1px solid #ddd;
+  text-align: left;
+}
+
+.card-title {
+  display: block;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.card-content {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.see-more {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #fff;
+  background-color: #ff2e7e;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.see-more:hover {
+  background-color: #e0266e;
+}
+
+.date-box {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e9ffc9;
+  border-radius: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  text-align: center;
+}
+.date-box .month {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #4aa71b;
+  display: block;
+}
+.date-box .date {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4aa71b;
+}
