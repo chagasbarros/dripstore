@@ -103,55 +103,61 @@ const Carrossel = () => {
           </div>
         </div>
       </div>
-      <div className="container justify-content-center align-content-center text-center">
-        <h2 className="mb-5 fw-bold mt-5" style={{ color: "#474747" }}>
-          Coleção em Destaque
-        </h2>
-        <div id="cartao" className="flex-lg-row flex-column d-flex text-start justify-content-center align-items-center">
-          <div className={styles.parent}>
-            <div className={styles.card}>
-              <img src={camisa} alt="Camisa Supreme" />
-              <div className={styles["content-box"]}>
-                <span className={styles["card-title"]}>Camisa Supreme</span>
-                <p className={styles["card-content"]}>Camisa super confortavel</p>
-                <span className={styles["see-more"]}>Add Cart</span>
-              </div>
-              <div className={styles["date-box"]}>
-                <span className={styles.month}>Maio</span>
-                <span className={styles.date}>12</span>
-              </div>
+       <div className="container justify-content-center align-content-center text-center">
+      <h2 className="mb-5 fw-bold mt-5" style={{ color: "#474747" }}>
+        Coleções em destaque
+      </h2>
+
+      <div
+        id="cartao"
+        className="flex-lg-row flex-column d-flex text-start justify-content-center align-items-center"
+      >
+        {/* Card 1 */}
+        <div className={styles.parent}>
+          <div className={styles.card}>
+            <img src={camisa} alt="Camisa Supreme" />
+            <div className={styles["date-box"]}>
+              <span className={styles.month}>30% OFF</span>
+            </div>
+            <div className={styles["content-box"]}>
+              <span className={styles["card-title"]}>Novo drop Supreme</span>
+              <p className={styles["card-content"]}>Camisa super confortável</p>
+              <span className={styles["see-more"]}>Comprar</span>
             </div>
           </div>
-          <div className={styles.parent}>
-            <div className={styles.card}>
-              <img src={fone} alt="Fone Gamer" />
-              <div className={styles["content-box"]}>
-                <span className={styles["card-title"]}>Fone Gamer</span>
-                <p className={styles["card-content"]}>Melhor qualidade de audio</p>
-                <span className={styles["see-more"]}>Add Cart</span>
-              </div>
-              <div className={styles["date-box"]}>
-                <span className={styles.month}>Maio</span>
-                <span className={styles.date}>12</span>
-              </div>
+        </div>
+
+        {/* Card 2 */}
+        <div className={styles.parent}>
+          <div className={styles.card}>
+            <img src={sapato} alt="Coleção Adidas" />
+            <div className={styles["date-box"]}>
+              <span className={styles.month}>30% OFF</span>
+            </div>
+            <div className={styles["content-box"]}>
+              <span className={styles["card-title"]}>Coleção Adidas</span>
+              <p className={styles["card-content"]}>Tênis super confortável</p>
+              <span className={styles["see-more"]}>Comprar</span>
             </div>
           </div>
-          <div className={styles.parent}>
-            <div className={styles.card}>
-              <img src={sapato} alt="Sapato Jordan" />
-              <div className={styles["content-box"]}>
-                <span className={styles["card-title"]}>Jordan</span>
-                <p className={styles["card-content"]}>Super confortavel</p>
-                <span className={styles["see-more"]}>Add Cart</span>
-              </div>
-              <div className={styles["date-box"]}>
-                <span className={styles.month}>Maio</span>
-                <span className={styles.date}>12</span>
-              </div>
+        </div>
+
+        {/* Card 3 */}
+        <div className={styles.parent}>
+          <div className={styles.card}>
+            <img src={fone} alt="Beats Bass" />
+            <div className={styles["date-box"]}>
+              <span className={styles.month}>30% OFF</span>
+            </div>
+            <div className={styles["content-box"]}>
+              <span className={styles["card-title"]}>Novo Beats Bass</span>
+              <p className={styles["card-content"]}>Qualidade de áudio premium</p>
+              <span className={styles["see-more"]}>Comprar</span>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

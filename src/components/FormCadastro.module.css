@@ -7,7 +7,15 @@
 }
 
 .backgroundFormulario {
-    background-color: #f9f8fe;
+    background-color: #f8f6ff;
+    padding: 3rem;
+     
+}
+
+.backgroundConteudo {
+    width: 90%;
+    margin: 0 auto;
+    background-color: white;
     
 }
 
