@@ -66,7 +66,7 @@ const Header = () => {
                 type="submit"
                 
               >
-                <i class="bi bi-search"></i>
+                <i className="bi bi-search"></i>
               </button>
             </form>
             <ul className="navbar-nav me-auto mt-3 mt-lg-0 d-xl-flex d-lg-none">

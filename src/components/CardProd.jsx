@@ -1,33 +1,55 @@
-import React from 'react'
-import tenisFundoRemovido from '../assets/Produtos/TênisDigitalStoreFundoRemovido.png'
+import React from 'react';
+import styles from './CardProd.module.css';
 
-const CardProd = () => {
+const CardProd = ({ produtos }) => {
   return (
-    <>
-        <section className='d-flex'>
-            <div className="container">
-                <div className="row">
-                        <div className="card" style={{width: "18rem"}}>
-                            <img src={tenisFundoRemovido} className="card-img-top" alt="Tênis Digital Store" />
-                            <div className="card-body">
-                                <h5 className="card-title">Tênis Digital Store</h5>
-                                <p className="card-text">R$ 199,99</p>
-                                <a href="#" className="btn btn-primary">Ver Produto</a>
-                            </div>
-                        </div>
-                        <div className="card" style={{width: "18rem"}}>
-                            <img src={tenisFundoRemovido} className="card-img-top" alt="Tênis Digital Store" />
-                            <div className="card-body">
-                                <h5 className="card-title">Tênis Digital Store</h5>
-                                <p className="card-text">R$ 199,99</p>
-                                <a href="#" className="btn btn-primary">Ver Produto</a>
-                            </div>
-                    </div>
+    <section className="d-flex">
+      <div className="container">
+        <div className="row">
+          {produtos.map((produto, index) => (
+            <div className="col-6 col-md-4 col-lg-3 mb-4" key={index}>
+              <div className="card p-2 h-100">
+                <h6
+                  className="rounded-5 p-1 text-center bold"
+                  style={{
+                    backgroundColor: '#E7ff86',
+                    width: '35%',
+                    fontSize: '10px',
+                  }}
+                >
+                  30% OFF
+                </h6>
+                <img
+                  src={produto.image}
+                  className={`${styles.cardImg} card-img-top`}
+                  alt={produto.title}
+                />
+                <div className="card-body">
+                  <p className={`${styles.cardText} mb-1`} style={{ fontSize: '12px', opacity: 0.4 }}>
+                    Tênis
+                  </p>
+                  <h6 className="card-title" style={{ opacity: 0.7 }}>
+                    {produto.title}
+                  </h6>
+                  <div className="d-flex gap-2 align-items-center">
+                    <h6
+                      className={`${styles.cardText} mb-0`}
+                      style={{ textDecoration: 'line-through', opacity: 0.4 }}
+                    >
+                      $200
+                    </h6>
+                    <h6 className={`${styles.cardText} mb-0`} style={{ fontWeight: 'bold' }}>
+                      {produto.price}
+                    </h6>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
-    </>
-  )
-}
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
-export default CardProd
+export default CardProd;
