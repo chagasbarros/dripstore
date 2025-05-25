@@ -1,8 +1,10 @@
+import FormSucesso from "../components/FormSucesso"
+
 const Sucesso = () => {
 
     return(
         <>
-        <h1>Página de sucesso</h1>
+        <FormSucesso/>
         </>
     )
 }
