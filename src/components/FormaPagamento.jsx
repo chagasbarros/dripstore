@@ -1,5 +1,12 @@
 import { useState } from "react"
 
+// Importar as imagens diretamente (método mais confiável)
+import visaImg from '/src/assets/cartaoLogo/visa.png'
+import mastercardImg from '/src/assets/cartaoLogo/master.png'
+import amexImg from '/src/assets/cartaoLogo/amex.png'
+import eloImg from '/src/assets/cartaoLogo/elo.png'
+import hipercardImg from '/src/assets/cartaoLogo/hipercard.png'
+
 const FormaPagamento = ({ formDados, setFormDados}) => {
 
   const handleMetodoChange = (e) => {
@@ -13,13 +20,50 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
     }))
   }
 
-const metodo = formDados.pagamento.metodo
+  const metodo = formDados.pagamento.metodo
 
-const [numeroCartao, setNumeroCartao] = useState('')
+  const bandeirasImgs = {
+    visa: visaImg,
+    mastercard: mastercardImg,
+    amex: amexImg,
+    elo: eloImg,
+    hipercard: hipercardImg,
+  };
 
-  const handleCepChange = (e) => {
-    const valor = e.target.value.replace(/\D/g, ''); // remove tudo que não for número
+  const detectarBandeira = (numero) => {
+    const bandeiras = {
+      visa: /^4[0-9]{0,}$/,
+      mastercard: /^5[1-5][0-9]{0,}$/,
+      amex: /^3[47][0-9]{0,}$/,
+      elo: /^6(?:011|5[0-9]{2})[0-9]{0,}$/,
+      discover: /^6(?:011|5[0-9]{2})[0-9]{0,}$/,
+      hipercard: /^(38|60)[0-9]{0,}$/,
+    };
+
+    for (let nome in bandeiras) {
+      if (bandeiras[nome].test(numero)) {
+        return nome;
+      }
+    }
+
+    return null;
+  };
+
+  const [numeroCartao, setNumeroCartao] = useState('')
+  const [bandeira, setBandeira] = useState(null)
+
+  const handleNumeroCartaoChange = (e) => {
+    const valor = e.target.value.replace(/\D/g, '');
     setNumeroCartao(valor);
+
+    const detectada = detectarBandeira(valor)
+    setBandeira(detectada)
+    
+    console.log('Número:', valor, 'Bandeira detectada:', detectada); // Para debug
+  };
+
+  const getImagemBandeira = (nome) => {
+    return bandeirasImgs[nome] || null;
   };
 
   return (
@@ -38,7 +82,6 @@ const [numeroCartao, setNumeroCartao] = useState('')
               value="cartao"
               checked={formDados.pagamento.metodo === "cartao"}
               onChange={handleMetodoChange}
-              
             />
             <label htmlFor="cartao">Cartão de Crédito ou Débito</label>
           </div>
@@ -51,7 +94,6 @@ const [numeroCartao, setNumeroCartao] = useState('')
               value="pix"
               checked={formDados.pagamento.metodo === "pix"}
               onChange={handleMetodoChange}
-              
             />
             <label htmlFor="pix">Pix</label>
           </div>
@@ -64,7 +106,6 @@ const [numeroCartao, setNumeroCartao] = useState('')
               value="boleto"
               checked={formDados.pagamento.metodo === 'boleto'}
               onChange={handleMetodoChange}
-              
             />
             <label htmlFor="boleto">Boleto</label>
           </div>
@@ -98,9 +139,25 @@ const [numeroCartao, setNumeroCartao] = useState('')
                       placeholder="Insira o numero do Cartão"
                       minLength={16}
                       maxLength={16}
-                      onChange={handleCepChange}
+                      onChange={handleNumeroCartaoChange} // Nome corrigido
                       value={numeroCartao}
                     />
+
+                    {bandeira && (
+                      <img 
+                        src={getImagemBandeira(bandeira)}
+                        alt={`Bandeira ${bandeira}`}
+                        style={{ 
+                          width: '40px', 
+                          height: 'auto',
+                          marginTop: '10px'
+                        }}
+                        onError={(e) => {
+                          console.error('Erro ao carregar imagem da bandeira:', bandeira);
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    )}
                   </div>
                   <div>
                     <label htmlFor="validadeCartao">
@@ -134,7 +191,6 @@ const [numeroCartao, setNumeroCartao] = useState('')
 
           {metodo === 'boleto' && (
               <div className='mt-5'>
-                 
                   <h3 className='text-center'>O <strong>boleto </strong> será gerado após a finalização do cadastro.</h3>                  
               </div>
           )}
@@ -145,8 +201,8 @@ const [numeroCartao, setNumeroCartao] = useState('')
               </div>
           )}
         </div>
+      </div>
     </div>
-  </div>
   );
 }
 
