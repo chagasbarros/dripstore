@@ -4,6 +4,7 @@ import FormCep from "./FormCep";
 import FormDadosPessoais from "./FormDadosPessoais";
 import FormResumo from "./FormResumo";
 import {useNavigate} from 'react-router-dom'
+import styles from './FormCadastro.module.css'
 
 const FormCadastro = () => {
 
@@ -58,10 +59,10 @@ const FormCadastro = () => {
 
   return (
     <>
-        <form onSubmit={handleSubmit}>
-          <div className="container">
+        <form onSubmit={handleSubmit} className={styles.backgroundFormulario}>
+          <div className={`container ${styles.conteudoForm}`}>
             <h2 className="fw-bold mt-5 ms-2">Finalizar Compra</h2>
-            <div className="row">
+            <div className='row'>
               <fieldset className="col-sm-12 col-md-7">
                 <FormDadosPessoais formDados={formDados} setFormDados={setFormDados} />
                 <FormCep formDados={formDados} setFormDados={setFormDados} />
