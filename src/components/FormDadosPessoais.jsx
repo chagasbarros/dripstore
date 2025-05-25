@@ -1,11 +1,30 @@
 const FormDadosPessoais = ({formDados, setFormDados}) => {
        const handleChange = (e) => {
         const { name, value} = e.target
+
+        let valorFormatado = value;
+
+        if (name === 'nome') {
+          valorFormatado = value.replace(/[^a-zA-ZÀ-ÿ\s]/g, "")
+        }
+
+        if( name === 'cpf') {
+          valorFormatado = value.replace(/\D/g, "")
+        }
+
+        if(name === 'celular') {
+          const numeros = value.replace(/\D/g, "")
+
+          const numeroCelular = numeros.slice(0,11)
+
+          valorFormatado = numeroCelular.replace( /^(\d{2})(\d{5})(\d{0,4})/,"($1) $2-$3")
+        }
+
         setFormDados((prev) => ({
             ...prev,
             usuario: {
                 ...prev.usuario, 
-                [name]: value
+                [name]: valorFormatado
             }
         }))
 
