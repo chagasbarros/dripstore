@@ -1,9 +1,12 @@
 import adereco from "../assets/cartaoLogo/adereco.png"
 import styles from './FormCadastro.module.css'
 import FormSucessoResumo from "./FormSucessoResumo"
+import {useForm } from '../contexts/FormContext'
+
 
 const FormSucesso = () => {
 
+    const {formDados} = useForm()
     return(
         <div className={styles.backgroundFormulario}>
             <div className={styles.backgroundConteudo}>
@@ -16,26 +19,26 @@ const FormSucesso = () => {
 
                     <section>
                         <h5>Informações Pessoais</h5>
-                        <p>Nome:</p>
-                        <p>CPF:</p>
-                        <p>Email:</p>
-                        <p>Celular</p>
+                        <p>Nome: {formDados.usuario.nome}</p>
+                        <p>CPF: {formDados.usuario.cpf}</p>
+                        <p>Email: {formDados.usuario.email} </p>
+                        <p>Celular {formDados.usuario.celular}</p>
                     </section>
                     <hr />
 
                     <section>
                         <h5>Informações de Entrega</h5>
-                        <p>Endereço: </p>
-                        <p>Bairro:</p>
-                        <p>Cidade:</p>
-                        <p>CEP:</p>
+                        <p>Endereço: {formDados.entrega.rua} </p>
+                        <p>Bairro: {formDados.entrega.bairro}</p>
+                        <p>Cidade: {formDados.entrega.cidade}</p>
+                        <p>CEP: {formDados.entrega.cep}</p>
                     </section>
                     <hr />
 
                     <section>
                         <h5>Informações de Pagamento</h5>
-                        <p>Titular do Cartão: </p>
-                        <p>Final</p>
+                        <p>Titular do Cartão: {formDados.pagamento.cartao.nomeCartao} </p>
+                        <p>Final {formDados.pagamento.cartao.numeroCartao.slice(-4)}</p>
                     </section>
                     <hr />
 
