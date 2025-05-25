@@ -1,52 +1,14 @@
-import { useState } from "react";
 import FormaPagamento from "./FormaPagamento";
 import FormCep from "./FormCep";
 import FormDadosPessoais from "./FormDadosPessoais";
 import FormResumo from "./FormResumo";
 import {useNavigate} from 'react-router-dom'
 import styles from './FormCadastro.module.css'
+import {useForm} from '../contexts/FormContext'
 
 const FormCadastro = () => {
 
-  const [formDados, setFormDados] = useState({
-    usuario: {
-      nome: "",
-      cpf: "",
-      email: "",
-      celular: ""
-    },
-
-    entrega: {
-      cep: "",
-      rua: "",
-      bairro: "",
-      cidade: "",
-      complemento:""
-    },
-
-    pagamento: {
-      metodo: 'cartao',
-
-      cartao: {
-        nomeCartao: '',
-        numeroCartao: '',
-        validade: '',
-        cvv: ''
-      },
-
-      boleto: {
-        nome: '',
-        cpf: '',
-        vencimento: '',
-        valorTotal: ''
-      },
-
-      pix: {
-        nome:'',
-        chave:''
-      }
-    }
-  })
+  const {formDados, setFormDados} = useForm()
 
   const navigate = useNavigate()
 
@@ -92,7 +54,7 @@ const FormCadastro = () => {
                         </div> 
               </fieldset>
               <fieldset className="col-md-5 d-none d-md-block">
-                <FormResumo formDados={formDados} setFormDados={setFormDados}/>
+                <FormResumo/>
               </fieldset>
             </div>
           </div>

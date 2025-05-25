@@ -1,6 +1,4 @@
 import { useState } from "react"
-
-// Importar as imagens diretamente (método mais confiável)
 import visaImg from '/src/assets/cartaoLogo/visa.png'
 import mastercardImg from '/src/assets/cartaoLogo/master.png'
 import amexImg from '/src/assets/cartaoLogo/amex.png'
@@ -56,11 +54,41 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
     const valor = e.target.value.replace(/\D/g, '');
     setNumeroCartao(valor);
 
+    setFormDados((prev) => ({
+      ...prev,
+      pagamento: {
+        ...prev.pagamento,
+        cartao: { 
+          ...prev.pagamento.cartao,
+          numeroCartao: valor
+
+        }
+      }
+
+    }))
+
+    
+
     const detectada = detectarBandeira(valor)
     setBandeira(detectada)
     
     console.log('Número:', valor, 'Bandeira detectada:', detectada); // Para debug
   };
+
+  const handleNomeCartaoChange = (e) => {
+  const valor = e.target.value;
+  setFormDados((prev) => ({
+    ...prev,
+    pagamento: {
+      ...prev.pagamento,
+      cartao: {
+        ...prev.pagamento.cartao,
+        nomeCartao: valor
+      }
+    }
+  }));
+}
+
 
   const getImagemBandeira = (nome) => {
     return bandeirasImgs[nome] || null;
@@ -124,6 +152,8 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
                 maxLength={50}
                 required
                 placeholder="Insira o nome do Cartão"
+                onChange={handleNomeCartaoChange}
+                value={formDados.pagamento.cartao.nomeCartao}
               />
 
               <div className="mt-3 ">
@@ -139,7 +169,7 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
                       placeholder="Insira o numero do Cartão"
                       minLength={16}
                       maxLength={16}
-                      onChange={handleNumeroCartaoChange} // Nome corrigido
+                      onChange={handleNumeroCartaoChange}
                       value={numeroCartao}
                     />
 
