@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ProdutosEmAlta = () => {
     const [produtos, setProdutos] = useState([]);
@@ -17,14 +18,16 @@ const ProdutosEmAlta = () => {
         <section style={{ background: "#f7f5ff" }} className="py-5 px-2 px-md-4 rounded-3">
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-2">
                 <h2 className="fs-6 fw-bold mb-0">Produtos em alta</h2>
-                <a href="#" className="text-decoration-none small fw-medium" style={{ color: '#d10f7d' }}>
+                <Link
+                    to="/DripStore/Produtos"
+                    className="text-decoration-none small fw-medium"
+                    style={{ color: '#d10f7d' }}
+                >
                     Ver todos →
-                </a>
+                </Link>
             </div>
 
-            <div
-                className="row g-3 g-md-4 justify-content-center"
-            >
+            <div className="row g-3 g-md-4 justify-content-center">
                 {produtos.map((produto, indice) => {
                     const temDesconto = indice % 3 === 0;
                     const precoComDesconto = calcularDesconto(produto.price, 30);
@@ -76,7 +79,7 @@ const ProdutosEmAlta = () => {
                                     />
                                 </div>
                                 <div className="card-body text-center p-2 d-flex flex-column justify-content-between" style={{ flex: 1 }}>
-                                    <p className="text-muted small mb-1">Tênis</p>
+                                    <p className="text-muted small mb-1">{produto.category}</p>
                                     <h3
                                         className="fs-6 fw-semibold mb-2"
                                         style={{
@@ -91,12 +94,20 @@ const ProdutosEmAlta = () => {
                                         {produto.title}
                                     </h3>
                                     <p className="mb-0" style={{ fontSize: "0.95rem" }}>
-                                        <span className="text-decoration-line-through text-black-50 me-1">
-                                            R${produto.price}
-                                        </span>
-                                        <span className="fw-bold">
-                                            R${temDesconto ? precoComDesconto : produto.price}
-                                        </span>
+                                        {temDesconto ? (
+                                            <>
+                                                <span className="text-decoration-line-through text-black-50 me-1">
+                                                    R${Number(produto.price).toFixed(2)}
+                                                </span>
+                                                <span className="fw-bold">
+                                                    R${precoComDesconto}
+                                                </span>
+                                            </>
+                                        ) : (
+                                            <span className="fw-bold">
+                                                R${Number(produto.price).toFixed(2)}
+                                            </span>
+                                        )}
                                     </p>
                                 </div>
                             </div>

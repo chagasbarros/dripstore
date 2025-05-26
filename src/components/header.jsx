@@ -3,7 +3,7 @@ import logoDrip from "../assets/logo/Vector.svg";
 import cartDrip from "../assets/logo/carrinho.svg";
 import { NavLink, Link } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
-import styles from './Header.module.css';
+import styles from "./Header.module.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +16,9 @@ const Header = () => {
   const handleSearch = (e) => {
     e.preventDefault();
   };
+
+  const getNavLinkClass = ({ isActive }) =>
+    `nav-link ${styles.linkHover} ${isActive ? styles.active : ""}`;
 
   return (
     <header className="sticky-top bg-light shadow-sm">
@@ -35,14 +38,7 @@ const Header = () => {
               Digital Store
             </span>
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            onClick={toggleMenu}
-            aria-controls="navbarNav"
-            aria-expanded={isMenuOpen}
-            aria-label="Toggle navigation"
-          >
+          <button className="navbar-toggler" type="button" onClick={toggleMenu}>
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
@@ -68,14 +64,17 @@ const Header = () => {
                 <i className="bi bi-search"></i>
               </button>
             </form>
+
             <ul className="navbar-nav me-auto mt-3 mt-lg-0 d-xl-flex d-lg-none">
               <li className="nav-item">
                 <NavLink
                   to="/DripStore"
-                  className={({ isActive }) =>
-                    `nav-link fw-bold ${styles.linkHover} ${isActive ? styles.active : ""}`
-                  }
-                  style={{ fontSize: "14px", whiteSpace: "nowrap" }}
+                  className={getNavLinkClass}
+                  style={{
+                    fontSize: "14px",
+                    whiteSpace: "nowrap",
+                    fontWeight: "bold",
+                  }}
                 >
                   Home
                 </NavLink>
@@ -83,10 +82,12 @@ const Header = () => {
               <li className="nav-item">
                 <NavLink
                   to="/DripStore/Produtos"
-                  className={({ isActive }) =>
-                    `nav-link text-dark ${styles.linkHover} ${isActive ? styles.active : ""}`
-                  }
-                  style={{ fontSize: "14px", whiteSpace: "nowrap" }}
+                  className={getNavLinkClass}
+                  style={{
+                    fontSize: "14px",
+                    whiteSpace: "nowrap",
+                    color: "black",
+                  }}
                 >
                   Produtos
                 </NavLink>
@@ -94,10 +95,12 @@ const Header = () => {
               <li className="nav-item">
                 <NavLink
                   to="/DripStore/Categorias"
-                  className={({ isActive }) =>
-                    `nav-link text-dark ${styles.linkHover} ${isActive ? styles.active : ""}`
-                  }
-                  style={{ fontSize: "14px", whiteSpace: "nowrap" }}
+                  className={getNavLinkClass}
+                  style={{
+                    fontSize: "14px",
+                    whiteSpace: "nowrap",
+                    color: "black",
+                  }}
                 >
                   Categoria
                 </NavLink>
@@ -105,18 +108,21 @@ const Header = () => {
               <li className="nav-item">
                 <NavLink
                   to="/DripStore/MeusPedidos"
-                  className={({ isActive }) =>
-                    `nav-link text-dark ${styles.linkHover} ${isActive ? styles.active : ""}`
-                  }
-                  style={{ fontSize: "14px", whiteSpace: "nowrap" }}
+                  className={getNavLinkClass}
+                  style={{
+                    fontSize: "14px",
+                    whiteSpace: "nowrap",
+                    color: "black",
+                  }}
                 >
                   Meus Pedidos
                 </NavLink>
               </li>
             </ul>
+
             <div className="d-flex align-items-center mt-3 mt-lg-0">
-              <Link
-                to={"/DripStore/Formulario"}
+              <NavLink
+                to="/DripStore/Formulario"
                 className="me-3 text-decoration-none fw-bold"
                 style={{
                   fontSize: "14px",
@@ -125,20 +131,20 @@ const Header = () => {
                 }}
               >
                 Cadastre-se
-              </Link>
+              </NavLink>
               <Link
                 className="btn btn-pink text-white fw-bold"
                 style={{ backgroundColor: "#d10f7d" }}
               >
                 Entrar
               </Link>
-              <Link to="/DripStore/Carrinho" className="ms-3">
+              <NavLink to="/DripStore/MeusPedidos" className="ms-3">
                 <img
                   src={cartDrip}
                   alt="Carrinho"
                   style={{ width: "30px", height: "30px" }}
                 />
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -150,10 +156,12 @@ const Header = () => {
           <li className="nav-item mx-2">
             <NavLink
               to="/DripStore"
-              className={({ isActive }) =>
-                `nav-link fw-bold ${styles.linkHover} ${isActive ? styles.active : ""}`
-              }
-              style={{ fontSize: "14px", whiteSpace: "nowrap" }}
+              className={getNavLinkClass}
+              style={{
+                fontSize: "14px",
+                whiteSpace: "nowrap",
+                fontWeight: "bold",
+              }}
             >
               Home
             </NavLink>
@@ -161,21 +169,17 @@ const Header = () => {
           <li className="nav-item mx-2">
             <NavLink
               to="/DripStore/Produtos"
-              className={({ isActive }) =>
-                `nav-link text-dark ${styles.linkHover} ${isActive ? styles.active : ""}`
-              }
-              style={{ fontSize: "14px", whiteSpace: "nowrap" }}
+              className={getNavLinkClass}
+              style={{ fontSize: "14px", whiteSpace: "nowrap", color: "black" }}
             >
               Produtos
             </NavLink>
           </li>
           <li className="nav-item mx-2">
             <NavLink
-              to="/DripStore/Categoria"
-              className={({ isActive }) =>
-                `nav-link text-dark ${styles.linkHover} ${isActive ? styles.active : ""}`
-              }
-              style={{ fontSize: "14px", whiteSpace: "nowrap" }}
+              to="/DripStore/Categorias"
+              className={getNavLinkClass}
+              style={{ fontSize: "14px", whiteSpace: "nowrap", color: "black" }}
             >
               Categoria
             </NavLink>
@@ -183,10 +187,8 @@ const Header = () => {
           <li className="nav-item mx-2">
             <NavLink
               to="/DripStore/MeusPedidos"
-              className={({ isActive }) =>
-                `nav-link text-dark ${styles.linkHover} ${isActive ? styles.active : ""}`
-              }
-              style={{ fontSize: "14px", whiteSpace: "nowrap" }}
+              className={getNavLinkClass}
+              style={{ fontSize: "14px", whiteSpace: "nowrap", color: "black" }}
             >
               Meus Pedidos
             </NavLink>

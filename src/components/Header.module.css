@@ -1,41 +1,40 @@
 .pesquisa {
-    border-radius: 0 !important;
-    padding: 0.5rem 1rem;
-    border: 1px solid #d10f7d;
-    outline: none;
-    font-size: 1rem;
-    background: #fff;
-    color: #222;
-    transition: border-color 0.3s;
-    box-shadow: 0 2px 8px rgba(209, 15, 125, 0.08);
+  border-radius: 0 !important;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d10f7d;
+  outline: none;
+  font-size: 1rem;
+  background: #fff;
+  color: #222;
+  transition: border-color 0.3s;
+  box-shadow: 0 2px 8px rgba(209, 15, 125, 0.08);
 }
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.form{
-    background: #ffffff;
-    color: #000000;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0px 4px !important;
-    font-size: 1rem;;
-    width: 100%;
-    cursor: pointer;
-    transition: background 0.3s;
+.form {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0px 4px !important;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 .form:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(209, 15, 125, 0.2);
-    border-right: none !important;
+  outline: none;
+  box-shadow: 0 0 5px rgba(209, 15, 125, 0.2);
+  border-right: none !important;
 }
 
-
 .pesquisa:hover {
-  box-shadow: 0 0 0 2px rgba(209, 15, 125, 0.2)!important;
+  box-shadow: 0 0 0 2px rgba(209, 15, 125, 0.2) !important;
   transition: all 0.5s ease-in-out !important;
 }
 a {
@@ -65,6 +64,15 @@ a {
   width: 100%;
 }
 
+.linkHover:hover {
+  text-decoration: underline;
+}
+
+.linkHover:hover {
+  text-decoration: underline;
+}
+
 .active {
   color: #d10f7d !important;
+  border-bottom: 2px solid #d10f7d;
 }

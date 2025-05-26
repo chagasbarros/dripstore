@@ -20,7 +20,7 @@
 }
 
 .loader::before {
-  border-top: 5px solid #e67e22;
+  border-top: 5px solid #d10f7d;
   transform: rotate(120deg);
 }
 
