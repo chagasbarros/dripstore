@@ -11,11 +11,10 @@ import DescricaoProd from "../components/DescricaoProd";
 
 const AppRoutes = () => {
   return (
-    <Routes>
-
+    <Routes>  
       <Route path="/DripStore" element={<Home />} />
       <Route path="/DripStore/Produtos" element={<Produtos />} />
-      <Route path="/DripStore/Categoria" element={<DescricaoProd/>} />
+      <Route path="/DripStore/DescricaoProd" element={<DescricaoProd/>} />
       <Route path="/DripStore/MeusPedidos" element={<MeusPedidos />} />
       <Route path="/DripStore/Formulario" element={<Formulario />} />
       <Route path="/DripStore/Sucesso" element={<Sucesso/>} />
