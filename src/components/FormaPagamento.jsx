@@ -97,7 +97,7 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
   return (
     <div>
       <div className="bg-white my-3 mb-2 d-flex flex-column p-5 gap-2">
-        <h3>Informações de Pagamento</h3>
+        <h3 className="fw-bold">Informações de Pagamento</h3>
         <hr />
 
         <h4>Forma de pagamento</h4>
