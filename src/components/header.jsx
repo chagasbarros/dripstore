@@ -68,7 +68,7 @@ const Header = () => {
             <ul className="navbar-nav me-auto mt-3 mt-lg-0 d-xl-flex d-lg-none">
               <li className="nav-item">
                 <NavLink
-                  to="/DripStore"
+                  to="/DripStore/Home"
                   className={getNavLinkClass}
                   style={{
                     fontSize: "14px",
