@@ -6,6 +6,7 @@ import produtosJson from '../assets/produtos.json';
 
 const Produtos = () => {
   const [produtos, setProdutos] = useState([]);
+  const [ordem, setOrdem] = useState("relevante");
   const [filtros, setFiltros] = useState({
     brand: [],
     category: [],
@@ -35,19 +36,30 @@ const Produtos = () => {
     });
   };
 
+  const ordenarProdutos = (lista) => {
+    const copia = [...lista];
+    if (ordem === 'preco') {
+      return copia.sort((a, b) => a.price - b.price);
+    } else if (ordem === 'popularidade') {
+      return copia.sort((a, b) => b.popularidade - a.popularidade); // precisa ter essa chave no JSON
+    }
+    return copia; // relevante = padrão
+  };
+
   useEffect(() => {
     setProdutos(produtosJson);
   }, []);
 
+  const produtosFiltradosEOrdenados = ordenarProdutos(filtrarProdutos());
+
   return (
     <div style={{ backgroundColor: '#f9f8f6' }}>
-      <Ordenar />
+      <Ordenar ordem={ordem} setOrdem={setOrdem} />
       <div className="d-flex">
         <FiltroProd filtros={filtros} onFiltroChange={handleFiltro} />
-        <CardProd produtos={filtrarProdutos()} />
+        <CardProd produtos={produtosFiltradosEOrdenados} />
       </div>
     </div>
   );
 };
-
-export default Produtos;
+export default Produtos
