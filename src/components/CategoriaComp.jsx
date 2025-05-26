@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './Categorias.module.css';
-
-// Imagens locais
 import tv from '../assets/Produtos/televisao.webp';
 import anel from '../assets/Produtos/anel.webp';
 import camisaM from '../assets/Produtos/camisaM.avif';
 import esporte from '../assets/Produtos/esporte.jpg';
+import beleza from '../assets/Produtos/beleza.jpg';
+import pumaChuteira from '../assets/Produtos/pumaChuteira.avif';
+import sapatojordan from '../assets/Produtos/sapatoJordan.webp';
 import vestido from '../assets/Produtos/vestido.jpg';
 
 const categoriaImagens = {
@@ -15,6 +16,9 @@ const categoriaImagens = {
   'Roupas Masculinas': camisaM,
   'Roupas Femininas': vestido,
   'Esportes': esporte,
+  'Beleza': beleza,
+  'Futebol': pumaChuteira,
+  'Sapatos': sapatojordan,
 };
 
 const categoriasMap = {
@@ -33,12 +37,19 @@ const CategoriasComp = () => {
       try {
         const response = await fetch('https://fakestoreapi.com/products/categories');
         const data = await response.json();
-        const extras = ['sports']; // Livros removido
+        const extras = ['sports'];
         const todas = [...data, ...extras];
         const traduzidas = todas
           .map(cat => categoriasMap[cat] || null)
           .filter(Boolean);
-        setCategorias(traduzidas);
+        const todasCategorias = [
+          ...traduzidas,
+          ...Object.keys(categoriaImagens).filter(
+            cat => !traduzidas.includes(cat)
+          ),
+        ];
+
+        setCategorias(todasCategorias);
       } catch (error) {
         console.error('Erro ao buscar categorias:', error);
       }

@@ -3,7 +3,7 @@
   height: 100px;
   box-sizing: border-box;
   border-radius: 50%;
-  border-top: 5px solid #e74c3c;
+  border-top: 5px solid #d10f7d;
   position: relative;
   animation: load 2s linear infinite;
 }
@@ -25,7 +25,7 @@
 }
 
 .loader::after {
-  border-top: 5px solid #3498db;
+  border-top: 5px solid #d10f7d;
   transform: rotate(240deg);
 }
 

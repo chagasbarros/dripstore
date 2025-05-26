@@ -29,6 +29,7 @@ const AppRoutes = () => {
 
   return (
     <Routes>  
+      <Route path="/DripStore" element={<Home />} />
       <Route path="/DripStore/Home" element={<Home />} />
       <Route path="/DripStore/Produtos" element={<Produtos />} />
       <Route path="/DripStore/DescricaoProd" element={<DescricaoProd/>} />
