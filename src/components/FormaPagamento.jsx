@@ -1,14 +1,98 @@
-import React, { useState } from 'react';
-import barras from "../assets/finalizarCompra/barras.svg"
-import logoPix from "../assets/finalizarCompra/logoPix.png"
-import qrCode from "../assets/finalizarCompra/qrCode.png"
+import { useState } from "react"
+import visaImg from '/src/assets/cartaoLogo/visa.png'
+import mastercardImg from '/src/assets/cartaoLogo/master.png'
+import amexImg from '/src/assets/cartaoLogo/amex.png'
+import eloImg from '/src/assets/cartaoLogo/elo.png'
+import hipercardImg from '/src/assets/cartaoLogo/hipercard.png'
 
-function FormaPagamento() {
-  const [formaPagamento, setFormaPagamento] = useState('');
-  
-  function copiar(){
-    alert('Finalize o cadastro!!!')
+const FormaPagamento = ({ formDados, setFormDados}) => {
+
+  const handleMetodoChange = (e) => {
+    const metodoSelecionado = e.target.value
+    setFormDados((prev) => ({
+      ...prev,
+      pagamento: {
+        ...prev.pagamento,
+        metodo: metodoSelecionado        
+      }
+    }))
   }
+
+  const metodo = formDados.pagamento.metodo
+
+  const bandeirasImgs = {
+    visa: visaImg,
+    mastercard: mastercardImg,
+    amex: amexImg,
+    elo: eloImg,
+    hipercard: hipercardImg,
+  };
+
+  const detectarBandeira = (numero) => {
+    const bandeiras = {
+      visa: /^4[0-9]{0,}$/,
+      mastercard: /^5[1-5][0-9]{0,}$/,
+      amex: /^3[47][0-9]{0,}$/,
+      elo: /^6(?:011|5[0-9]{2})[0-9]{0,}$/,
+      discover: /^6(?:011|5[0-9]{2})[0-9]{0,}$/,
+      hipercard: /^(38|60)[0-9]{0,}$/,
+    };
+
+    for (let nome in bandeiras) {
+      if (bandeiras[nome].test(numero)) {
+        return nome;
+      }
+    }
+
+    return null;
+  };
+
+  const [numeroCartao, setNumeroCartao] = useState('')
+  const [bandeira, setBandeira] = useState(null)
+
+  const handleNumeroCartaoChange = (e) => {
+    const valor = e.target.value.replace(/\D/g, '');
+    setNumeroCartao(valor);
+
+    setFormDados((prev) => ({
+      ...prev,
+      pagamento: {
+        ...prev.pagamento,
+        cartao: { 
+          ...prev.pagamento.cartao,
+          numeroCartao: valor
+
+        }
+      }
+
+    }))
+
+    
+
+    const detectada = detectarBandeira(valor)
+    setBandeira(detectada)
+    
+    console.log('Número:', valor, 'Bandeira detectada:', detectada); // Para debug
+  };
+
+  const handleNomeCartaoChange = (e) => {
+  const valor = e.target.value;
+  setFormDados((prev) => ({
+    ...prev,
+    pagamento: {
+      ...prev.pagamento,
+      cartao: {
+        ...prev.pagamento.cartao,
+        nomeCartao: valor
+      }
+    }
+  }));
+}
+
+
+  const getImagemBandeira = (nome) => {
+    return bandeirasImgs[nome] || null;
+  };
 
   return (
     <div>
@@ -21,10 +105,11 @@ function FormaPagamento() {
           <div className="d-flex gap-2">
             <input
               type="radio"
-              name="pagamento"
+              name="metodo"
               id="cartao"
               value="cartao"
-              onChange={(e) => setFormaPagamento(e.target.value)}
+              checked={formDados.pagamento.metodo === "cartao"}
+              onChange={handleMetodoChange}
             />
             <label htmlFor="cartao">Cartão de Crédito ou Débito</label>
           </div>
@@ -32,10 +117,11 @@ function FormaPagamento() {
           <div className="d-flex gap-2">
             <input
               type="radio"
-              name="pagamento"
+              name="metodo"
               id="pix"
               value="pix"
-              onChange={(e) => setFormaPagamento(e.target.value)}
+              checked={formDados.pagamento.metodo === "pix"}
+              onChange={handleMetodoChange}
             />
             <label htmlFor="pix">Pix</label>
           </div>
@@ -43,26 +129,31 @@ function FormaPagamento() {
           <div className="d-flex gap-2">
             <input
               type="radio"
-              name="pagamento"
+              name="metodo"
               id="boleto"
               value="boleto"
-              onChange={(e) => setFormaPagamento(e.target.value)}
+              checked={formDados.pagamento.metodo === 'boleto'}
+              onChange={handleMetodoChange}
             />
             <label htmlFor="boleto">Boleto</label>
           </div>
         </div>
 
         <div>
-          {formaPagamento === "cartao" && (
+          {metodo === "cartao" && (
             <div>
               <label htmlFor="nomeCartao">Nome do Cartão *</label>
               <input
                 className="form-control opacity-50"
-                type="number"
+                type="text"
                 name="nomeCartao"
                 id="nomeCartao"
+                minLength={10}
+                maxLength={50}
                 required
                 placeholder="Insira o nome do Cartão"
+                onChange={handleNomeCartaoChange}
+                value={formDados.pagamento.cartao.nomeCartao}
               />
 
               <div className="mt-3 ">
@@ -71,12 +162,32 @@ function FormaPagamento() {
                     <label htmlFor="numeroCartao">Numero do Cartão *</label>
                     <input
                       className="form-control opacity-50"
-                      type="number"
+                      type="text"
                       name="numeroCartao"
                       id="numeroCartao"
                       required
                       placeholder="Insira o numero do Cartão"
+                      minLength={16}
+                      maxLength={16}
+                      onChange={handleNumeroCartaoChange}
+                      value={numeroCartao}
                     />
+
+                    {bandeira && (
+                      <img 
+                        src={getImagemBandeira(bandeira)}
+                        alt={`Bandeira ${bandeira}`}
+                        style={{ 
+                          width: '40px', 
+                          height: 'auto',
+                          marginTop: '10px'
+                        }}
+                        onError={(e) => {
+                          console.error('Erro ao carregar imagem da bandeira:', bandeira);
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    )}
                   </div>
                   <div>
                     <label htmlFor="validadeCartao">
@@ -95,82 +206,33 @@ function FormaPagamento() {
               </div>
               <label htmlFor="ccv"> CVV *</label>
               <input
-                type="number"
+                type="text"
                 name="ccv"
                 id="ccv"
                 required
                 placeholder="Insira o CVV"
                 className="form-control opacity-50"
+                pattern="[0-9]{1,3}"
+                minLength={3}
+                maxLength={3}
               />
             </div>
           )}
 
-          {formaPagamento === 'boleto' && (
-              <div>
-                 
-                  <div className="d-flex flex-column gap-1">
-                    <label htmlFor="pagador">Pagador</label>
-                    <input
-                      type="text"
-                      name="pagador"
-                      id="pagador"
-                      className="form-control opacity-50"
-                    />
-
-                    <label htmlFor="dataVencimento">Data de vencimento</label>
-                    <input
-                      type="date"
-                      name="dataVencimento"
-                      id="dataVencimento"
-                      className="form-control opacity-50"
-                   />
-
-                    <label htmlFor="valorTotal">Valor a pagar</label>
-                    <input
-                      type="number"
-                      name="valorTotal"
-                      id="valorTotal"
-                      className="form-control opacity-50"
-                    />
-                  </div>
-
-                  <div className="mt-5">
-                    <p>Código de Barras</p>
-                    <hr />
-                    <img src={barras} alt="Uma imagem de código de barras" />
-                    <button onClick={copiar} type='button' className="btn btn-warning text-white fw-bold p-2 d-block">
-                      Copiar código
-                    </button>
-                  </div>
+          {metodo === 'boleto' && (
+              <div className='mt-5'>
+                  <h3 className='text-center'>O <strong>boleto </strong> será gerado após a finalização do cadastro.</h3>                  
               </div>
           )}
 
-          {formaPagamento === 'pix' && (
-             <div className="">
-                  <div className="d-flex flex-column flex-md-row justify-content-center gap-5 align-items-center">
-                      <div>
-                        <img src={logoPix} alt="logo do pix" />
-                      </div>
-                      <div >
-                        <img src={qrCode} width={175} alt="Imagem de QR Code" />
-                      </div>
-                  </div>
-                  <div className="text-center">
-                      <h5>Código de pagamento</h5>
-                      <p>
-                        Escanei o QR Code ou Copie e cole o código abaixo para finalizar a compra.
-                      </p>
-                      <p>Valor do pagamento</p>
-                      <h3>R$ 219,00</h3>
-                      <button type='button' onClick={copiar}  className="btn btn-warning text-white fw-bold p-2">
-                          Copiar código
-                      </button>
-                  </div>
+          {metodo === 'pix' && (
+             <div className='mt-5'>
+                  <h3 className='text-center'>O <strong>QR CODE </strong> será gerado após a finalização do cadastro.</h3>
               </div>
           )}
         </div>
+      </div>
     </div>
-  </div>
   );
 }
 

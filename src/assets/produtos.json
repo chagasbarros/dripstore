@@ -1,0 +1,252 @@
+[
+  {
+    "id": 1,
+    "title": "Headphones Nike #1",
+    "brand": "Nike",
+    "category": "Headphones",
+    "gender": "Masculino",
+    "estado": "Novo",
+    "price": "$185.13",
+    "image": "https://via.placeholder.com/200x200.png?text=Headphones+1"
+  },
+  {
+    "id": 2,
+    "title": "Calças Nike #2",
+    "brand": "Nike",
+    "category": "Calças",
+    "gender": "Feminino",
+    "estado": "Usado",
+    "price": "$172.62",
+    "image": "https://via.placeholder.com/200x200.png?text=Calças+2"
+  },
+  {
+    "id": 3,
+    "title": "Camisetas K-Swiss #3",
+    "brand": "K-Swiss",
+    "category": "Camisetas",
+    "gender": "Unisex",
+    "estado": "Usado",
+    "price": "$214.9",
+    "image": "https://via.placeholder.com/200x200.png?text=Camisetas+3"
+  },
+  {
+    "id": 4,
+    "title": "Bonés Nike #4",
+    "brand": "Nike",
+    "category": "Bonés",
+    "gender": "Feminino",
+    "estado": "Novo",
+    "price": "$472.4",
+    "image": "https://via.placeholder.com/200x200.png?text=Bonés+4"
+  },
+  {
+    "id": 5,
+    "title": "Tênis Adidas #5",
+    "brand": "Adidas",
+    "category": "Tênis",
+    "gender": "Feminino",
+    "estado": "Usado",
+    "price": "$466.74",
+    "image": "https://via.placeholder.com/200x200.png?text=Tênis+5"
+  },
+  {
+    "id": 6,
+    "title": "Headphones Puma #6",
+    "brand": "Puma",
+    "category": "Headphones",
+    "gender": "Feminino",
+    "estado": "Usado",
+    "price": "$367.28",
+    "image": "https://via.placeholder.com/200x200.png?text=Headphones+6"
+  },
+  {
+    "id": 7,
+    "title": "Headphones Puma #7",
+    "brand": "Puma",
+    "category": "Headphones",
+    "gender": "Masculino",
+    "estado": "Novo",
+    "price": "$251.49",
+    "image": "https://via.placeholder.com/200x200.png?text=Headphones+7"
+  },
+  {
+    "id": 8,
+    "title": "Tênis Nike #8",
+    "brand": "Nike",
+    "category": "Tênis",
+    "gender": "Feminino",
+    "estado": "Novo",
+    "price": "$170.36",
+    "image": "https://via.placeholder.com/200x200.png?text=Tênis+8"
+  },
+  {
+    "id": 9,
+    "title": "Bonés K-Swiss #9",
+    "brand": "K-Swiss",
+    "category": "Bonés",
+    "gender": "Masculino",
+    "estado": "Usado",
+    "price": "$326.26",
+    "image": "https://via.placeholder.com/200x200.png?text=Bonés+9"
+  },
+  {
+    "id": 10,
+    "title": "Headphones Puma #10",
+    "brand": "Puma",
+    "category": "Headphones",
+    "gender": "Feminino",
+    "estado": "Novo",
+    "price": "$493.84",
+    "image": "https://via.placeholder.com/200x200.png?text=Headphones+10"
+  },
+  {
+    "id": 11,
+    "title": "Calças Balenciaga #11",
+    "brand": "Balenciaga",
+    "category": "Calças",
+    "gender": "Feminino",
+    "estado": "Novo",
+    "price": "$114.13",
+    "image": "https://via.placeholder.com/200x200.png?text=Calças+11"
+  },
+  {
+    "id": 12,
+    "title": "Bonés Nike #12",
+    "brand": "Nike",
+    "category": "Bonés",
+    "gender": "Masculino",
+    "estado": "Novo",
+    "price": "$129.7",
+    "image": "https://via.placeholder.com/200x200.png?text=Bonés+12"
+  },
+  {
+    "id": 13,
+    "title": "Camisetas Nike #13",
+    "brand": "Nike",
+    "category": "Camisetas",
+    "gender": "Unisex",
+    "estado": "Novo",
+    "price": "$177.53",
+    "image": "https://via.placeholder.com/200x200.png?text=Camisetas+13"
+  },
+  {
+    "id": 14,
+    "title": "Camisetas Puma #14",
+    "brand": "Puma",
+    "category": "Camisetas",
+    "gender": "Masculino",
+    "estado": "Novo",
+    "price": "$149.6",
+    "image": "https://via.placeholder.com/200x200.png?text=Camisetas+14"
+  },
+  {
+    "id": 15,
+    "title": "Bonés K-Swiss #15",
+    "brand": "K-Swiss",
+    "category": "Bonés",
+    "gender": "Masculino",
+    "estado": "Novo",
+    "price": "$136.48",
+    "image": "https://via.placeholder.com/200x200.png?text=Bonés+15"
+  },
+  {
+    "id": 16,
+    "title": "Calças Balenciaga #16",
+    "brand": "Balenciaga",
+    "category": "Calças",
+    "gender": "Unisex",
+    "estado": "Novo",
+    "price": "$125.79",
+    "image": "https://via.placeholder.com/200x200.png?text=Calças+16"
+  },
+  {
+    "id": 17,
+    "title": "Headphones Puma #17",
+    "brand": "Puma",
+    "category": "Headphones",
+    "gender": "Masculino",
+    "estado": "Novo",
+    "price": "$172.54",
+    "image": "https://via.placeholder.com/200x200.png?text=Headphones+17"
+  },
+  {
+    "id": 18,
+    "title": "Tênis K-Swiss #18",
+    "brand": "K-Swiss",
+    "category": "Tênis",
+    "gender": "Unisex",
+    "estado": "Novo",
+    "price": "$115.74",
+    "image": "https://via.placeholder.com/200x200.png?text=Tênis+18"
+  },
+  {
+    "id": 19,
+    "title": "Camisetas Nike #19",
+    "brand": "Nike",
+    "category": "Camisetas",
+    "gender": "Unisex",
+    "estado": "Usado",
+    "price": "$431.41",
+    "image": "https://via.placeholder.com/200x200.png?text=Camisetas+19"
+  },
+  {
+    "id": 20,
+    "title": "Calças Adidas #20",
+    "brand": "Adidas",
+    "category": "Calças",
+    "gender": "Unisex",
+    "estado": "Usado",
+    "price": "$180.25",
+    "image": "https://via.placeholder.com/200x200.png?text=Calças+20"
+  },
+  {
+    "id": 21,
+    "title": "Bonés Nike #21",
+    "brand": "Nike",
+    "category": "Bonés",
+    "gender": "Feminino",
+    "estado": "Novo",
+    "price": "$167.51",
+    "image": "https://via.placeholder.com/200x200.png?text=Bonés+21"
+  },
+  {
+    "id": 22,
+    "title": "Bonés Balenciaga #22",
+    "brand": "Balenciaga",
+    "category": "Bonés",
+    "gender": "Feminino",
+    "estado": "Usado",
+    "price": "$202.07",
+    "image": "https://via.placeholder.com/200x200.png?text=Bonés+22"
+  },
+  {
+    "id": 23,
+    "title": "Camisetas Puma #23",
+    "brand": "Puma",
+    "category": "Camisetas",
+    "gender": "Masculino",
+    "estado": "Usado",
+    "price": "$494.89",
+    "image": "https://via.placeholder.com/200x200.png?text=Camisetas+23"
+  },
+  {
+    "id": 24,
+    "title": "Bonés Balenciaga #24",
+    "brand": "Balenciaga",
+    "category": "Bonés",
+    "gender": "Masculino",
+    "estado": "Novo",
+    "price": "$422.28",
+    "image": "https://via.placeholder.com/200x200.png?text=Bonés+24"
+  },
+  {   
+    "id": 25,
+    "title": "Bonés Puma #25",
+    "brand": "Puma",
+    "category": "Bonés",
+    "gender": "Feminino",
+    "estado": "Novo",
+    "price": "$87.71",
+    "image": "https://via.placeholder.com/200x200.png?text=Bonés+25"
+  }
+]

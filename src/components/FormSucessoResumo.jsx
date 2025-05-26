@@ -1,12 +1,12 @@
 import styles from './FormCadastro.module.css'
 import Sneakers from "../assets/finalizarCompra/Sneakers.svg"
 
-const FormResumo = () => {
+const FormSucessoResumo = () => {
 
     return (
       <>
         {/* CARD RESUMO (MOBILE) */}
-        <fieldset className="d-block d-md-none col-12 bg-white d-flex flex-column p-5">
+        <fieldset className="d-block d-md-none bg-white d-flex flex-column p-5">
           <h3>Resumo</h3>
           <hr />
           <div className="d-flex align-items-center gap-3">
@@ -93,16 +93,19 @@ const FormResumo = () => {
               </small>
             </div>
           </div>
+          <div className="text-center mb-2 text-decoration-underline">          
+            <a className='text-dark'>Imprimir Recibo</a>
+          </div>
 
           <button
-            className="btn btn-warning text-white fw-bold p-2 "
+            className="btn btn-warning text-white fw-bold p-2 w-100 "
             type="submit"
           >
-            Realizar Pagamento
+            Voltar para Home
           </button>
         </fieldset>
       </>
     );
 }
 
-export default FormResumo
+export default FormSucessoResumo

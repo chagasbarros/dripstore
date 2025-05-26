@@ -1,28 +1,37 @@
-import styles from "./FormCadastro.module.css";
-import Sneakers from "../assets/finalizarCompra/Sneakers.svg";
 import FormaPagamento from "./FormaPagamento";
 import FormCep from "./FormCep";
 import FormDadosPessoais from "./FormDadosPessoais";
 import FormResumo from "./FormResumo";
+import {useNavigate} from 'react-router-dom'
+import styles from './FormCadastro.module.css'
+import {useForm} from '../contexts/FormContext'
 
 const FormCadastro = () => {
+
+  const {formDados, setFormDados} = useForm()
+
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+      e.preventDefault()
+      console.log('Dados do formulário: ', formDados)
+      navigate('/DripStore/Sucesso')
+  }
+
+
   return (
     <>
-      <div className={`${styles.backgroundFormulario} ${styles.conteudoForm} `}>
-    
-
-        <form>
-          <div className="container">
-            <h2 className="fw-bold mt-2 ms-2">Finalizar Compra</h2>
-            <div className="row">
+        <form onSubmit={handleSubmit} className={styles.backgroundFormulario}>
+          <div className={`container ${styles.conteudoForm}`}>
+            <h2 className="fw-bold mt-5 ms-2">Finalizar Compra</h2>
+            <div className='row'>
               <fieldset className="col-sm-12 col-md-7">
-                <FormDadosPessoais />
-                <FormCep />
-                <FormaPagamento />
+                <FormDadosPessoais formDados={formDados} setFormDados={setFormDados} />
+                <FormCep formDados={formDados} setFormDados={setFormDados} />
+                <FormaPagamento formDados={formDados} setFormDados={setFormDados} />
                 <div className="d-block d-md-none">
-                  <FormResumo/>
+                  <FormResumo formDados={formDados} setFormDados={setFormDados}/>
                 </div>
-                
                 <div className="bg-white my-3 mb-2 d-flex flex-column p-5">
                           <hr />
                           <div className="d-flex justify-content-between mb-5">
@@ -47,14 +56,9 @@ const FormCadastro = () => {
               <fieldset className="col-md-5 d-none d-md-block">
                 <FormResumo/>
               </fieldset>
-              
-              
             </div>
           </div>
         </form>
-
-        <form action=""></form>
-      </div>
     </>
   );
 };
