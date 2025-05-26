@@ -42,10 +42,8 @@ const FormSucesso = () => {
                     </section>
                     <hr />
 
-                    <FormSucessoResumo/>
-
                 </div>
-               
+                 <FormSucessoResumo/>
             </div>
             
 
