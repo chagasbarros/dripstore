@@ -10,7 +10,7 @@ const CardProd = ({ produtos }) => {
       <div className="container">
         <div className="row">
             <div className="col-6 col-md-4 col-lg-3 mb-4">
-              <div className="card p-2 h-100">
+              <div className="card p-2 h-75">
                 <h6
                   className="rounded-5 p-1 text-center bold"
                   style={{
@@ -25,8 +25,7 @@ const CardProd = ({ produtos }) => {
                 <img
                   src={tenisNike2}
                   className={`${styles.cjardImg} card-img-top`}
-                  alt={'TênisNike'}
-                  style={{height: "100%"}} 
+                  alt={'TênisNike'} 
                 /></Link>
                 <div className="card-body">
                   <p className={`${styles.cardText} mb-1`} style={{ fontSize: '12px', opacity: 0.4 }}>
@@ -51,11 +50,12 @@ const CardProd = ({ produtos }) => {
             </div>
           {produtos.map((produto, index) => (
             <div className="col-6 col-md-4 col-lg-3 mb-4" key={index}>
-              <div className="card p-2 h-100">
+              <div className="card p-2 h-75">
                 <img
                   src={produto.image}
                   className={`${styles.cardImg} card-img-top`}
                   alt={produto.title}
+                  style={{height: "60%"}}
                 />
                 <div className="card-body">
                   <p className={`${styles.cardText} mb-1`} style={{ fontSize: '12px', opacity: 0.4 }}>

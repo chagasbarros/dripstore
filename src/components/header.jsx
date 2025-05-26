@@ -93,7 +93,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <NavLink
-                  to="/DripStore/Categoria"
+                  to="/DripStore/Categorias"
                   className={({ isActive }) =>
                     `nav-link text-dark ${styles.linkHover} ${isActive ? styles.active : ""}`
                   }

@@ -5,6 +5,8 @@ import Produtos from "../pages/Produtos";
 import MeusPedidos from "../pages/MeusPedidos";
 import Formulario from "../pages/Formulario";
 import Sucesso from "../pages/Sucesso";
+import DescricaoProd from "../pages/DescriProdutos"
+import Categorias from "../pages/Categorias"
 import styles from './Loade.module.css'
 
 const LoadingScreen = () => (
@@ -33,6 +35,8 @@ const AppRoutes = () => {
       <Route path="/DripStore/MeusPedidos" element={<MeusPedidos />} />
       <Route path="/DripStore/Formulario" element={<Formulario />} />
       <Route path="/DripStore/Sucesso" element={<Sucesso />} />
+      <Route path="/DripStore/Categorias" element={<Categorias />} />
+
     </Routes>
   );
 };
