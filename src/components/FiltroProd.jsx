@@ -1,7 +1,20 @@
 import React from 'react';
 import styles from './FiltroProd.module.css';
 
-const FiltroProd = () => {
+const FiltroProd = ({ filtros, onFiltroChange }) => {
+  const marcas = ['Nike', 'Adidas', 'Puma'];
+  const categorias = ['Headphones', 'Shoes', 'Accessories'];
+  const generos = ['Masculino', 'Feminino', 'Unisex'];
+  const estados = ['Novo', 'Usado'];
+
+  const handleCheckbox = (tipo, valor) => {
+    onFiltroChange(tipo, valor);
+  };
+
+  const handleRadio = (valor) => {
+    onFiltroChange('estado', valor);
+  };
+
   return (
     <div className="h-100" style={{ width: '18rem' }}>
       <div className="w-75 rounded-3 p-3 mx-5" style={{ backgroundColor: '#ffffff' }}>
@@ -10,9 +23,14 @@ const FiltroProd = () => {
 
         <div className="mb-3">
           <p className={styles.ptemafiltro}>Marca</p>
-          {['Adidas', 'Balenciaga', 'K-Swiss', 'Nike', 'Puma'].map((marca) => (
+          {marcas.map((marca) => (
             <div key={marca}>
-              <input type="checkbox" id={marca} value={marca} />
+              <input
+                type="checkbox"
+                id={marca}
+                checked={filtros.brand.includes(marca)}
+                onChange={() => handleCheckbox('brand', marca)}
+              />
               <label htmlFor={marca}> {marca}</label>
             </div>
           ))}
@@ -20,9 +38,14 @@ const FiltroProd = () => {
 
         <div className="mb-3">
           <p className={styles.ptemafiltro}>Categoria</p>
-          {['Esporte e lazer', 'Casual', 'Utilitários', 'Corrida'].map((cat) => (
+          {categorias.map((cat) => (
             <div key={cat}>
-              <input type="checkbox" id={cat} value={cat} />
+              <input
+                type="checkbox"
+                id={cat}
+                checked={filtros.category.includes(cat)}
+                onChange={() => handleCheckbox('category', cat)}
+              />
               <label htmlFor={cat}> {cat}</label>
             </div>
           ))}
@@ -30,9 +53,14 @@ const FiltroProd = () => {
 
         <div className="mb-3">
           <p className={styles.ptemafiltro}>Gênero</p>
-          {['Masculino', 'Feminino', 'Unisex'].map((gen) => (
+          {generos.map((gen) => (
             <div key={gen}>
-              <input type="checkbox" id={gen} value={gen} />
+              <input
+                type="checkbox"
+                id={gen}
+                checked={filtros.gender.includes(gen)}
+                onChange={() => handleCheckbox('gender', gen)}
+              />
               <label htmlFor={gen}> {gen}</label>
             </div>
           ))}
@@ -40,10 +68,16 @@ const FiltroProd = () => {
 
         <div className="mb-3">
           <p className={styles.ptemafiltro}>Estado</p>
-          {['Novo', 'Usado'].map((estado) => (
-            <div className="d-flex align-items-center" key={estado}>
-              <input type="radio" name="estado" id={estado} value={estado} className="m-1" />
-              <label htmlFor={estado} className="m-0">{estado}</label>
+          {estados.map((est) => (
+            <div key={est}>
+              <input
+                type="radio"
+                name="estado"
+                id={est}
+                checked={filtros.estado === est}
+                onChange={() => handleRadio(est)}
+              />
+              <label htmlFor={est}> {est}</label>
             </div>
           ))}
         </div>
