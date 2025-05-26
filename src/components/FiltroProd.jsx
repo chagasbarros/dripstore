@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './FiltroProd.module.css';
 
 const FiltroProd = ({ filtros, onFiltroChange }) => {
