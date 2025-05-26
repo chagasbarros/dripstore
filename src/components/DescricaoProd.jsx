@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './DescricaoProd.module.css'
 import tenisNike2 from '../assets/ProdDetDesign/tenisNike2.svg'
+import tenisNike from '../assets/ProdDetDesign/tenisNike.svg'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -36,7 +37,7 @@ const DescricaoProd = () => {
                 </div>
             </div>
 
-            <div className="col-md-6 info-produto">
+            <div className={`col-md-6 ${style.infoproduto}`}>
                 <h1>Tênis Nike Revolution 6 Next Nature Masculino</h1>
                 <p className="text-black-50">Casual | Nike | REF: 38416711</p>
                 <div className="d-flex align-items-center mb-2">
@@ -47,26 +48,28 @@ const DescricaoProd = () => {
                     <span className="fs-4 fw-bold">R$ 219,00</span>
                     <span className="text-black-50 text-decoration-line-through ms-2">R$ 319,00</span>
                 </div>
-                <p>Descrição do produto: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Descrição do produto: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Delectus assumenda omnis cumque architecto autem sed ab nam repudiandae quas amet! 
+                     Quam ab assumenda.</p>
 
                 <div className="mb-3">
                     <strong>Tamanho</strong> <br />
                     <div className="d-flex mt-2">
-                        <div className="tamanho-opcao">39</div>
-                        <div className="tamanho-opcao">40</div>
-                        <div className="tamanho-opcao selecao">41</div>
-                        <div className="tamanho-opcao">42</div>
-                        <div className="tamanho-opcao">43</div>
+                        <div className={`${style.tamanhopcao}`}>39</div>
+                        <div className={`${style.tamanhopcao} `}>40</div>
+                        <div className={`${style.tamanhopcao} `}>41</div>
+                        <div className={`${style.tamanhopcao} `}>42</div>
+                        <div className={`${style.tamanhopcao}`}>43</div>
                     </div>
                 </div>
 
                 <div className="mb-3">
                     <strong>Cor</strong> <br />
                     <div className="d-flex mt-2">
-                        <div className="cor-opcao cor-cyan"></div>
-                        <div className="cor-opcao cor-gray"></div>
-                        <div className="cor-opcao cor-purple"></div>
-                        <div className="cor-opcao cor-pink selecao"></div>
+                        <div className={`${style.coropcao} ${style.corcyan}`}></div>
+                        <div className={`${style.coropcao} ${style.corgray}`}></div>
+                        <div className={`${style.coropcao} ${style.corpurple}`}></div>
+                        <div className={`${style.coropcao} ${style.corpink}`}></div>
                     </div>
                 </div>
 
@@ -74,54 +77,62 @@ const DescricaoProd = () => {
             </div>
         </section>
 
-        <section className="mt-5 produtos-relacionados">
+        <section className={`mt-5 ${style.produtosrelacionados}`}>
             <h4>Produtos Relacionados</h4>
             <div className="row row-cols-2 row-cols-md-4 g-4">
                 <div className="col">
                     <div className="card">
-                        <img src={tenisNike2} className="card-img-top"
-                            alt="nike"/>
-                        <div className="card-body">
-                            <p className="card-text">Tenis Nike - Masculino</p>
-                            <p><span className="preco-original">R$ 289,00</span> <span className="preco-diconto">R$159,95</span>
+                        <div className={`${style.tagDesconto}`}>30% OFF</div>
+                        <img src={tenisNike} className="card-img-top"
+                            alt="nike"/>                       
+                    </div>
+                     <div className="card-body">
+                            <p className="card-text">Tenis</p>
+                            <h4 className="card-text">Tenis Nike&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;Masculino</h4>
+                            <p><span className={`${style.precooriginal}`}>R$ 289,00</span> <span className={`${style.precodiconto}`}>R$159,95</span>
                             </p>
-                        </div>
                     </div>
                 </div>
 
                 <div className="col">
                     <div className="card">
-                        <img src={tenisNike2} className="card-img-top"
-                            alt="nike"/>
-                        <div className="card-body">
-                            <p className="card-text">Tenis Nike - Masculino</p>
-                            <p><span className="preco-original">R$ 289,00</span> <span className="preco-diconto">R$159,95</span>
+                        <div className={`${style.tagDesconto}`}>30% OFF</div>
+                        <img src={tenisNike} className="card-img-top"
+                            alt="nike"/>                        
+                    </div>
+                    <div className="card-body">
+                            <p className="card-text">Tenis</p>
+                            <h4 className="card-text">Tenis Nike&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;Masculino</h4>
+                            <p><span className={`${style.precooriginal}`}>R$ 289,00</span> <span className={`${style.precodiconto}`}>R$159,95</span>
                             </p>
-                        </div>
                     </div>
                 </div>
 
                 <div className="col">
                     <div className="card">
-                        <img src={tenisNike2} className="card-img-top"
-                            alt="nike"/>
-                        <div className="card-body">
-                            <p className="card-text">Tenis Nike - Masculino</p>
-                            <p><span className="preco-original">R$ 289,00</span> <span className="preco-diconto">R$159,95</span>
+                        <div className={`${style.tagDesconto}`}>30% OFF</div>
+                        <img src={tenisNike} className="card-img-top"
+                            alt="nike"/>                       
+                    </div>
+                    <div className="card-body">
+                            <p className="card-text">Tenis</p>
+                            <h4 className="card-text">Tenis Nike&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;Masculino</h4>
+                            <p><span className={`${style.precooriginal}`}>R$ 289,00</span> <span className={`${style.precodiconto}`}>R$159,95</span>
                             </p>
-                        </div>
                     </div>
                 </div>
 
                 <div className="col">
                     <div className="card">
-                        <img src={tenisNike2} className="card-img-top"
-                            alt="nike"/>
-                        <div className="card-body">
-                            <p className="card-text">Tenis Nike - Masculino</p>
-                            <p><span className="preco-original">R$ 289,00</span> <span className="preco-diconto">R$159,95</span>
+                        <div className={`${style.tagDesconto}`}>30% OFF</div>
+                        <img src={tenisNike} className="card-img-top"
+                            alt="nike"/>                       
+                    </div>
+                    <div className="card-body">
+                            <p className="card-text">Tenis</p>
+                            <h4 className="card-text">Tenis Nike&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;Masculino</h4>
+                            <p><span className={`${style.precooriginal}`}>R$ 289,00</span> <span className={`${style.precodiconto}`}>R$159,95</span>
                             </p>
-                        </div>
                     </div>
                 </div>
             </div>

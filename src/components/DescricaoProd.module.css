@@ -1,7 +1,7 @@
 /* Produto.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-* {
+* h4 {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -17,7 +17,7 @@
   border-radius: 10px;
 }
 
-.info-produto h1 {
+.infoproduto h1 {
   font-size: 1.8rem;
   font-weight: bold;
 }
@@ -30,8 +30,21 @@
   cursor: pointer;
 }
 
-.tamanho-opcao,
-.cor-opcao {
+.tamanhopcao {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px; 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 8px;
+  border: 1px solid black;
+}
+.tamanhopcao:hover {
+  background-color: #E2E3FF;
+}
+.coropcao {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -41,39 +54,51 @@
   cursor: pointer;
   margin-right: 8px;
   border: 2px solid transparent;
+
 }
 
-.tamanho-opcao.selecao,
-.cor-opcao.selecao {
+.coropcao:hover {
   border-color: #000;
 }
 
-.cor-cyan {
+.corcyan {
   background-color: #00e6e6;
 }
 
-.cor-gray {
+.corgray {
   background-color: #888;
 }
 
-.cor-purple {
+.corpurple {
   background-color: #6c63ff;
 }
 
-.cor-pink {
+.corpink {
   background-color: #ff4f81;
 }
 
-.produtos-relacionados .card {
+.produtosrelacionados .card {
   text-align: center;
 }
 
-.preco-original {
+.precooriginal {
   text-decoration: line-through;
   color: gray;
+  text-align: center;
 }
 
-.preco-diconto {
-  color: green;
+.precodiconto {
+  color: black;
   font-weight: bold;
 }
+.tagDesconto {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #e4ffb7;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 15px;
+  }
