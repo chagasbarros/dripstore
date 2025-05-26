@@ -1,51 +1,14 @@
-import { useState } from "react";
 import FormaPagamento from "./FormaPagamento";
 import FormCep from "./FormCep";
 import FormDadosPessoais from "./FormDadosPessoais";
 import FormResumo from "./FormResumo";
 import {useNavigate} from 'react-router-dom'
+import styles from './FormCadastro.module.css'
+import {useForm} from '../contexts/FormContext'
 
 const FormCadastro = () => {
 
-  const [formDados, setFormDados] = useState({
-    usuario: {
-      nome: "",
-      cpf: "",
-      email: "",
-      celular: ""
-    },
-
-    entrega: {
-      cep: "",
-      rua: "",
-      bairro: "",
-      cidade: "",
-      complemento:""
-    },
-
-    pagamento: {
-      metodo: 'cartao',
-
-      cartao: {
-        nomeCartao: '',
-        numeroCartao: '',
-        validade: '',
-        cvv: ''
-      },
-
-      boleto: {
-        nome: '',
-        cpf: '',
-        vencimento: '',
-        valorTotal: ''
-      },
-
-      pix: {
-        nome:'',
-        chave:''
-      }
-    }
-  })
+  const {formDados, setFormDados} = useForm()
 
   const navigate = useNavigate()
 
@@ -58,10 +21,10 @@ const FormCadastro = () => {
 
   return (
     <>
-        <form onSubmit={handleSubmit}>
-          <div className="container">
+        <form onSubmit={handleSubmit} className={styles.backgroundFormulario}>
+          <div className={`container ${styles.conteudoForm}`}>
             <h2 className="fw-bold mt-5 ms-2">Finalizar Compra</h2>
-            <div className="row">
+            <div className='row'>
               <fieldset className="col-sm-12 col-md-7">
                 <FormDadosPessoais formDados={formDados} setFormDados={setFormDados} />
                 <FormCep formDados={formDados} setFormDados={setFormDados} />
@@ -91,7 +54,7 @@ const FormCadastro = () => {
                         </div> 
               </fieldset>
               <fieldset className="col-md-5 d-none d-md-block">
-                <FormResumo formDados={formDados} setFormDados={setFormDados}/>
+                <FormResumo/>
               </fieldset>
             </div>
           </div>

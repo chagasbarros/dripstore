@@ -1,0 +1,104 @@
+/* Produto.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* h4 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.produto {
+  padding: 2rem;
+}
+
+.galeria img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.infoproduto h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.produto-img img {
+  width: 60px;
+  height: auto;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.tamanhopcao {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px; 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 8px;
+  border: 1px solid black;
+}
+.tamanhopcao:hover {
+  background-color: #E2E3FF;
+}
+.coropcao {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 8px;
+  border: 2px solid transparent;
+
+}
+
+.coropcao:hover {
+  border-color: #000;
+}
+
+.corcyan {
+  background-color: #00e6e6;
+}
+
+.corgray {
+  background-color: #888;
+}
+
+.corpurple {
+  background-color: #6c63ff;
+}
+
+.corpink {
+  background-color: #ff4f81;
+}
+
+.produtosrelacionados .card {
+  text-align: center;
+}
+
+.precooriginal {
+  text-decoration: line-through;
+  color: gray;
+  text-align: center;
+}
+
+.precodiconto {
+  color: black;
+  font-weight: bold;
+}
+.tagDesconto {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #e4ffb7;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 15px;
+  }

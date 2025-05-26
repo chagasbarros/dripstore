@@ -5,10 +5,10 @@ const Ordenar = () => {
     const {searchTerm} = useContext(SearchContext)
   return (
     <>
-        <div className='container-fluid'>
-            <section className="row mx-auto d-flex align-items-center">
-                <div className="col-6 text-start my-3">
-                    <p className="m-0">Resultado para "<strong>{searchTerm}</strong>"" - produtos</p>
+        <div className='container-fluid' style={{width: "100%"}}>
+            <section className="row mx-auto d-flex align-items-center" style={{width: "90%"}}>
+                <div className="col-6 my-3">
+                    <p className="m-0"><strong>Resultado para "{searchTerm}"</strong> - produtos</p>
                 </div>
                 <div className="col-6 text-end my-3">
                     <p className="d-inline-flex"> Ordenar por:</p>

@@ -4,17 +4,21 @@ import Footer from "./components/footer"
 import Carrossel from "./components/Carrossel";
 import { BrowserRouter } from "react-router-dom"
 import { SearchProvider } from "./contexts/SearchContext";
+import { FormProvider } from "./contexts/FormContext";
 
 function App() {
   return (
     <div>
-      <SearchProvider>
+      <FormProvider>
+          <SearchProvider>
         <BrowserRouter>
           <Header />
           <AppRoutes />
           <Footer />
         </BrowserRouter>
       </SearchProvider>
+      </FormProvider>
+      
     </div>
     
   );
