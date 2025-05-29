@@ -53,13 +53,25 @@ const Produtos = () => {
   const produtosFiltradosEOrdenados = ordenarProdutos(filtrarProdutos());
 
   return (
+
+
+    
     <div style={{ backgroundColor: '#f9f8f6' }}>
+      
       <Ordenar ordem={ordem} setOrdem={setOrdem} />
-      <div className="d-flex">
+      
+      <div className=" justify-content-end  d-flex d-md-none">
+        <FiltroProd filtros={filtros} onFiltroChange={handleFiltro} />
+        </div><div  className="d-flex justify-content-center d-md-none">
+
+        <CardProd produtos={produtosFiltradosEOrdenados} />
+      </div>
+      <div className=" d-flex d-sm-none d-md-flex">
         <FiltroProd filtros={filtros} onFiltroChange={handleFiltro} />
         <CardProd produtos={produtosFiltradosEOrdenados} />
       </div>
     </div>
+    
   );
 };
 export default Produtos
