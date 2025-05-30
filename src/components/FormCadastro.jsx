@@ -39,9 +39,9 @@ const FormCadastro = () => {
                               <h3>Total</h3>
                             </div>
                             <div>
-                              <p className="m-0 text-end text-danger ">R$: 219,00</p>
+                              <p className="m-0 text-end text-danger ">R$: 180,00</p>
                               <small className="opacity-50">
-                                ou 10x de R$: 21,00 sem juros
+                                ou 10x de R$: 18,00 sem juros
                               </small>
                             </div>
                           </div>

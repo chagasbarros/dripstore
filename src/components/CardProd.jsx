@@ -15,7 +15,7 @@ const CardProd = ({ produtos }) => {
                   src={image}
                   className={`${styles.cardImg} card-img-top img-fluid`}
                   alt={'Tênis Nike'}
-                  style={{ objectFit: "contain", height: "180px", marginTop: "30px" }}
+                  style={{ objectFit: "contain", height: "180px", margin: "0 0 0 30px" }}
                 />
               </Link>
               <div className="card-body py-4">

@@ -66,7 +66,7 @@ const Produtos = () => {
 
         <CardProd produtos={produtosFiltradosEOrdenados} />
       </div>
-      <div className=" d-flex d-sm-none d-md-flex">
+      <div className=" d-none d-md-flex">
         <FiltroProd filtros={filtros} onFiltroChange={handleFiltro} />
         <CardProd produtos={produtosFiltradosEOrdenados} />
       </div>

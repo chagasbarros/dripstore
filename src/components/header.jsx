@@ -24,7 +24,7 @@ const Header = () => {
     <header className="sticky-top bg-light shadow-sm">
       <nav className="navbar navbar-expand-lg navbar-light px-4 py-3">
         <div className="container-fluid">
-          <Link className="navbar-brand d-flex align-items-center" to="#">
+          <Link className="navbar-brand d-flex align-items-center" to="/dripStore/Home">
             <img
               src={logoDrip}
               alt="Logo"

@@ -52,7 +52,7 @@ const Carrossel = () => {
                 </div>
                 <img
                   src={tenis}
-                  className={`d-block w-100 `}
+                  className={`d-block w-100 ${styles.sapatin}`}
                   alt="Tenis"
                   style={{ objectFit: "contain", maxHeight: "400px" }}
                 />
@@ -85,7 +85,7 @@ const Carrossel = () => {
                 </div>
                 <img
                   src={tenis}
-                  className={`d-block w-100 `}
+                  className={`d-block w-100 ${styles.sapatin} `}
                   alt="Tenis"
                   style={{ objectFit: "contain", maxHeight: "400px" }}
                 />
@@ -118,7 +118,7 @@ const Carrossel = () => {
                 </div>
                 <img
                   src={tenis}
-                  className={`d-block w-100 `}
+                  className={`d-block w-100 ${styles.sapatin} `}
                   alt="Tenis"
                   style={{ objectFit: "contain", maxHeight: "400px" }}
                 />
