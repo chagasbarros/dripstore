@@ -134,4 +134,37 @@ input[type=number] {
     font-size: 0.95rem;
     padding: 0.75rem;
   }
+
+ 
 }
+
+/* Input da página criar conta */
+.customInput2 {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 4px;
+  transition: background-color 0.3s,  border-color 0.1s;
+  position: relative;
+}
+
+.customInput2:checked {
+  background-color: #d10f7d;
+  
+}
+
+.customInput2:checked::after {
+  content: '✔';
+  color: white;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 0.3rem;
+  left: 0.4rem;
+  line-height: 1.3rem;
+  position: absolute;
+}
+
+
+
+
