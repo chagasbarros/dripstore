@@ -8,6 +8,7 @@ import Sucesso from "../pages/Sucesso";
 import DescricaoProd from "../pages/DescriProdutos"
 import Categorias from "../pages/Categorias"
 import styles from './Loade.module.css'
+import CadastreSe from "../pages/CadastreSe";
 
 const LoadingScreen = () => (
   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
@@ -37,6 +38,7 @@ const AppRoutes = () => {
       <Route path="/DripStore/Formulario" element={<Formulario />} />
       <Route path="/DripStore/Sucesso" element={<Sucesso />} />
       <Route path="/DripStore/Categorias" element={<Categorias />} />
+      <Route path="/DripStore/CadastreSe" element={<CadastreSe/>} />
 
     </Routes>
   );

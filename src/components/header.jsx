@@ -122,7 +122,7 @@ const Header = () => {
 
             <div className="d-flex align-items-center mt-3 mt-lg-0">
               <NavLink
-                to="/DripStore/Formulario"
+                to="/DripStore/CadastreSe"
                 className="me-3 text-decoration-none fw-bold"
                 style={{
                   fontSize: "14px",

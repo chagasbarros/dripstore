@@ -7,17 +7,6 @@ import hipercardImg from '/src/assets/cartaoLogo/hipercard.png'
 
 const FormaPagamento = ({ formDados, setFormDados}) => {
 
-  const handleMetodoChange = (e) => {
-    const metodoSelecionado = e.target.value
-    setFormDados((prev) => ({
-      ...prev,
-      pagamento: {
-        ...prev.pagamento,
-        metodo: metodoSelecionado        
-      }
-    }))
-  }
-
   const metodo = formDados.pagamento.metodo
 
   const bandeirasImgs = {
@@ -97,48 +86,13 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
   return (
     <div>
       <div className="bg-white my-3 mb-2 d-flex flex-column p-5 gap-2">
-        <h3 className="fw-bold">Informações de Pagamento</h3>
+        <h3 className="fw-bold">Forma de Pagamento</h3>
         <hr />
-
-        <h4>Forma de pagamento</h4>
         <div className="d-flex flex-column flex-md-row gap-5 mb-2">
           <div className="d-flex gap-2">
-            <input
-              type="radio"
-              name="metodo"
-              id="cartao"
-              value="cartao"
-              checked={formDados.pagamento.metodo === "cartao"}
-              onChange={handleMetodoChange}
-            />
-            <label htmlFor="cartao">Cartão de Crédito ou Débito</label>
-          </div>
-
-          <div className="d-flex gap-2">
-            <input
-              type="radio"
-              name="metodo"
-              id="pix"
-              value="pix"
-              checked={formDados.pagamento.metodo === "pix"}
-              onChange={handleMetodoChange}
-            />
-            <label htmlFor="pix">Pix</label>
-          </div>
-
-          <div className="d-flex gap-2">
-            <input
-              type="radio"
-              name="metodo"
-              id="boleto"
-              value="boleto"
-              checked={formDados.pagamento.metodo === 'boleto'}
-              onChange={handleMetodoChange}
-            />
-            <label htmlFor="boleto">Boleto</label>
+            <h4>Cartão de crédito ou Débito</h4>
           </div>
         </div>
-
         <div>
           {metodo === "cartao" && (
             <div>
