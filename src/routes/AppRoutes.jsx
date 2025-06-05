@@ -9,6 +9,7 @@ import DescricaoProd from "../pages/DescriProdutos"
 import Categorias from "../pages/Categorias"
 import styles from './Loade.module.css'
 import CadastreSe from "../pages/CadastreSe";
+import Login from "../pages/Login";
 
 const LoadingScreen = () => (
   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
@@ -30,7 +31,7 @@ const AppRoutes = () => {
 
   return (
     <Routes>  
-      <Route path="/DripStore" element={<Home />} />
+      <Route path="/DripStore" element={<Login/>} />
       <Route path="/DripStore/Home" element={<Home />} />
       <Route path="/DripStore/Produtos" element={<Produtos />} />
       <Route path="/DripStore/DescricaoProd" element={<DescricaoProd/>} />
@@ -39,7 +40,6 @@ const AppRoutes = () => {
       <Route path="/DripStore/Sucesso" element={<Sucesso />} />
       <Route path="/DripStore/Categorias" element={<Categorias />} />
       <Route path="/DripStore/CadastreSe" element={<CadastreSe/>} />
-
     </Routes>
   );
 };

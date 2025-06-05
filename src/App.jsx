@@ -4,6 +4,8 @@ import Footer from "./components/footer"
 import { BrowserRouter } from "react-router-dom"
 import { SearchProvider } from "./contexts/SearchContext";
 import { FormProvider } from "./contexts/FormContext";
+import AdmHeader from "./components/AdmHeader";
+import Login from "./pages/Login";
 
 function App() {
   return (
