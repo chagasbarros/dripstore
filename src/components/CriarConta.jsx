@@ -4,6 +4,7 @@ import FormDadosPessoais from "./FormDadosPessoais";
 import FormResumo from "./FormResumo";
 import styles from './FormCadastro.module.css'
 import {useForm} from '../contexts/FormContext'
+import Acesso from "./Acesso";
 
 const CriarConta = () => {
 
@@ -18,7 +19,8 @@ const CriarConta = () => {
               <fieldset className="col-12">
                 <FormDadosPessoais formDados={formDados} setFormDados={setFormDados} />
                 <FormCep formDados={formDados} setFormDados={setFormDados} />
-                <FormaPagamento formDados={formDados} setFormDados={setFormDados} /> 
+                <FormaPagamento formDados={formDados} setFormDados={setFormDados} />
+                <Acesso/> 
               </fieldset>
               <div className="d-flex align-items-center mb-2">
                   <input 
