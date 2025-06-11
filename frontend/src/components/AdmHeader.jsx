@@ -125,7 +125,7 @@ return (
 
                     <div className="d-flex align-items-center mt-3 mt-lg-0">
                         <Link
-                            to="/DripStore/Login"
+                            to="/DripStore"
                             className="btn btn-pink text-white fw-bold"
                             style={{ backgroundColor: "#d10f7d" }}
                         >

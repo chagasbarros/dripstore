@@ -5,15 +5,23 @@ import { BrowserRouter } from "react-router-dom"
 import { SearchProvider } from "./contexts/SearchContext";
 import { FormProvider } from "./contexts/FormContext";
 import AdmHeader from "./components/AdmHeader";
-import Login from "./pages/Login";
+
+
 
 function App() {
+
+  
+  let logado = JSON.parse(localStorage.getItem('usuario')).id_roles
+  console.log(logado)
+
+
   return (
     <div>
       <FormProvider>
           <SearchProvider>
         <BrowserRouter>
-          <Header />
+          {logado == 2 && <Header />}
+          {logado == 1 && <AdmHeader />}
           <AppRoutes />
           <Footer />
         </BrowserRouter>

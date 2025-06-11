@@ -15,11 +15,7 @@ const Carrossel = () => {
         className="container p-3 rounded-5"
         style={{ width: "80%", backgroundColor: "#f5f5f5" }}
       >
-        <img
-          src={bolinha}
-          alt=""
-          style={{ position: "relative", left: "75%", top: "40px" }}
-        />
+      
 
         {/* Carrossel Bootstrap com indicadores (sem setas) */}
         <div

@@ -1,8 +1,57 @@
 import React, { useState } from "react";
 import styles from "./CompLogin.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CompLogin = () => {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const [carregando, setCarregando] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const fazerLogin = async (e) => {
+    e.preventDefault();
+
+    if (!email.includes("@")) {
+      setMensagem("Informe um e-mail válido.");
+      return;
+    }
+
+    setCarregando(true);
+    setMensagem("");
+
+    try {
+      const resposta = await fetch("http://localhost:3000/verificarLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, senha }),
+      });
+
+      const dados = await resposta.json();
+
+      if (dados.sucesso && dados.token) {
+        localStorage.setItem("token", dados.token);
+        localStorage.setItem("usuario", JSON.stringify(dados.usuario));
+        setMensagem("Login realizado com sucesso!");
+
+        if (dados.usuario.id_roles === 1) {
+          navigate("/DripStore/AdmPerfil");
+        } else if (dados.usuario.id_roles === 2) {
+          navigate("/DripStore/Perfil");
+        }
+      } else {
+        setMensagem(dados.mensagem || "Email ou senha incorretos.");
+      }
+    } catch (error) {
+      console.error("Erro ao conectar com o servidor:", error);
+      setMensagem("Erro ao conectar com o servidor.");
+    } finally {
+      setCarregando(false);
+    }
+  };
 
   const mostrarSenha = () => {
     setShowPassword((prev) => !prev);
@@ -11,18 +60,20 @@ const CompLogin = () => {
   return (
     <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
       <div className={styles.card}>
-        <form className={styles.form}>
+        <form onSubmit={fazerLogin} className={styles.form}>
           <div className={styles.title}>Login</div>
 
           <label className={styles.label_input} htmlFor="email-input">
             Email
           </label>
           <input
+            onChange={(e) => setEmail(e.target.value)}
             spellCheck="false"
             className={styles.input}
             type="email"
             name="email"
             id="email-input"
+            required
           />
 
           <div className={styles.frg_pss}>
@@ -31,16 +82,19 @@ const CompLogin = () => {
             </label>
             <a href="#">Esqueceu a Senha?</a>
           </div>
+
           <div
             className={styles.passwordWrapper}
-            style={{ display: "flex", alignItems: "start" }}
+            style={{ display: "flex", alignItems: "start", gap: "10px" }}
           >
             <input
+              onChange={(e) => setSenha(e.target.value)}
               spellCheck="false"
               className={styles.input}
               type={showPassword ? "text" : "password"}
               name="password"
               id="password-input"
+              required
             />
             <button
               type="button"
@@ -52,9 +106,12 @@ const CompLogin = () => {
               {showPassword ? "Esconder" : "Mostrar"}
             </button>
           </div>
-          <button className={styles.submit} type="submit">
-            Logar
+
+          <button className={styles.submit} type="submit" disabled={carregando}>
+            {carregando ? "Entrando..." : "Logar"}
           </button>
+
+          {mensagem && <p className={styles.mensagem}>{mensagem}</p>}
         </form>
 
         <div className={styles.avatar}>

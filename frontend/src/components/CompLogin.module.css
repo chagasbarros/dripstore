@@ -16,6 +16,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  box-shadow: 0px 5px 15px rgba(17, 17, 17, 0.418);
   justify-content: space-evenly;
   flex-direction: column;
   overflow-y: auto;
@@ -50,6 +51,7 @@
   justify-content: center;
   align-items: center;
   --sz-svg: calc(var(--sz-avatar) - 10px);
+  background: linear-gradient(130deg, #d10f7d 35%, #00b7ff 100%);
 }
 .avatar svg {
   position: absolute;
@@ -174,26 +176,6 @@
   }
 }
 
-.card label.blind_input {
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: pointer;
-  z-index: 4;
-  position: absolute;
-  border: none;
-  right: calc(var(--p) + (var(--input-px) / 2));
-  bottom: calc(
-    var(--p) + var(--submit-h) + var(--space-y) + (var(--input-py) / 1) + 3px
-  );
-  padding: 4px 0;
-  width: var(--blind-w);
-  border-radius: 4px;
-  background-color: #fff;
-  color: #4d4d4d;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
 .card label.blind_input:before {
   content: "";
   position: absolute;
@@ -279,6 +261,7 @@
   display: inline-flex;
   align-items: center;
 }
+
 .form .frg_pss a {
   background-color: transparent;
   cursor: pointer;
@@ -300,7 +283,7 @@
   background-color: #fff;
   background-image: linear-gradient(
     -180deg,
-    rgba(255, 255, 255, 0.09) 0%,
+    rgba(0, 130, 252, 0.09) 0%,
     rgba(17, 17, 17, 0.04) 100%
   );
   border: 1px solid rgba(22, 22, 22, 0.2);
@@ -322,7 +305,7 @@
 .form .submit:hover {
   background-image: linear-gradient(
     -180deg,
-    rgba(255, 255, 255, 0.233) 0%,
+    rgba(0, 156, 204, 0.233) 0%,
     #d10f7d77 100%
   );
   border: 1px solid rgba(22, 22, 22, 0.2);

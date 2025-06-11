@@ -3,7 +3,7 @@ import { useState } from "react";
 const PerfilMenu = () => {
 
    const[mostrarCard, setMostrarCard] = useState("perfil")
-
+   let usuario = JSON.parse(localStorage.getItem('usuario'))
    
 
   return (
@@ -69,10 +69,10 @@ const PerfilMenu = () => {
               <div>
                 <h5>Informações Pessoais</h5>
                 <ul className="navbar-nav">
-                  <li>Nome:</li>
-                  <li>CPF:</li>
-                  <li>Email:</li>
-                  <li>Celular:</li>
+                  <li>Nome: {usuario.nome}</li>  {/*chagas, eu alterei aqui. */}
+                  <li>CPF: {usuario.cpf_cnpj}</li> {/*chagas, eu alterei aqui. */}
+                  <li>Email: {usuario.email}</li> {/*chagas, eu alterei aqui. */}
+                  <li>Celular: {usuario.celular}</li> {/*chagas, eu alterei aqui. */}
                 </ul>
                 <hr />
               </div>

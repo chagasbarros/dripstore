@@ -133,6 +133,7 @@ const Header = () => {
                 Cadastre-se
               </NavLink>
               <Link
+                to={"/DripStore"}
                 className="btn btn-pink text-white fw-bold"
                 style={{ backgroundColor: "#d10f7d" }}
               >

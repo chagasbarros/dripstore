@@ -11,6 +11,7 @@ import styles from './Loade.module.css'
 import CadastreSe from "../pages/CadastreSe";
 import Login from "../pages/Login";
 import Perfil from "../pages/Perfil";
+import AdmPerfil from "../pages/AdmPerfil";
 
 const LoadingScreen = () => (
   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
@@ -42,6 +43,7 @@ const AppRoutes = () => {
       <Route path="/DripStore/Categorias" element={<Categorias />} />
       <Route path="/DripStore/CadastreSe" element={<CadastreSe/>} />
       <Route path="/DripStore/Perfil" element={<Perfil/>} />
+      <Route path="/DripStore/AdmPerfil" element={<AdmPerfil/>} />
     </Routes>
   );
 };
