@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./CompLogin.module.css";
 import { useNavigate } from "react-router-dom";
 
-const CompLogin = () => {
+const CompLogin = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
@@ -36,6 +36,7 @@ const CompLogin = () => {
         localStorage.setItem("token", dados.token);
         localStorage.setItem("usuario", JSON.stringify(dados.usuario));
         setMensagem("Login realizado com sucesso!");
+        onLogin(dados.usuario);
 
         if (dados.usuario.id_roles === 1) {
           navigate("/DripStore/AdmPerfil");

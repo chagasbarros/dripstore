@@ -8,7 +8,7 @@ const PerfilMenu = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container vh-100">
         <div className="row">
           <section className=" p-5 col-4 ">
             <div className="">
@@ -72,7 +72,7 @@ const PerfilMenu = () => {
                   <li>Nome: {usuario.nome}</li>  {/*chagas, eu alterei aqui. */}
                   <li>CPF: {usuario.cpf_cnpj}</li> {/*chagas, eu alterei aqui. */}
                   <li>Email: {usuario.email}</li> {/*chagas, eu alterei aqui. */}
-                  <li>Celular: {usuario.celular}</li> {/*chagas, eu alterei aqui. */}
+                  <li>Celular: {usuario.telefone}</li> {/*chagas, eu alterei aqui. */}
                 </ul>
                 <hr />
               </div>

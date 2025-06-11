@@ -22,6 +22,29 @@ app.use(express.json())
 
 
 
+function autenticarUsuario(req, res, next){
+   const token = req.headers.authorization?.split(' ')[1]
+   if (!token){
+    return res.status(401).json({msg: 'token não fornecido'})
+   }
+   try{
+    const usuario = jwt.verify(token, senhaJWT)
+    req.usuario = usuario
+    next()
+   }catch(error){
+    return res.status(403).json({msg:'Token invalido'})
+   }
+}
+
+app.get('/dadosAdm', autenticarUsuario, (req, res) => {
+  if (req.usuario.tipo !== 1) {
+    return res.status(403).json({ msg: 'Acesso restrito a administradores' });
+  }
+  return res.send(`Bem-vindo, administrador ${req.usuario.nome}`);
+});
+
+
+
 
 
 app.get('/usuarios', async (req, res) => {
@@ -70,6 +93,12 @@ app.post('/verificarLogin', async (req, res) => {
     res.status(500).json({ erro: 'Erro no servidor' });
   }
 });
+
+
+
+
+
+
 
 
 

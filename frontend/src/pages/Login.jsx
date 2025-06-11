@@ -1,12 +1,7 @@
-import React from 'react'
-import CompLogin from '../components/CompLogin'
+import CompLogin from "../components/CompLogin";
 
-const Login = () => {
-  return (
-    <>
-    <CompLogin />
-    </>
-  )
-}
+const Login = ({ onLogin }) => {
+  return <CompLogin onLogin={onLogin} />;
+};
 
-export default Login
+export default Login;
