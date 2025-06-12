@@ -35,7 +35,7 @@ const AppRoutes = ({ onLogin }) => {
 
   return (
     <Routes>
-      <Route path="/DripStore" element={<Login onLogin={onLogin} />} />
+      <Route path="/DripStore" element={<Login/>} />
       <Route path="/DripStore/Home" element={<Home />} />
       <Route path="/DripStore/Produtos" element={<Produtos />} />
       <Route path="/DripStore/DescricaoProd" element={<DescricaoProd />} />
