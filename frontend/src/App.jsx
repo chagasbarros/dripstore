@@ -27,6 +27,7 @@ function App() {
       <FormProvider>
         <SearchProvider>
           <BrowserRouter>
+          {usuario?.id_roles === undefined && <Header />}
             {usuario?.id_roles === 1 && <AdmHeader />}
             {usuario?.id_roles === 2 && <Header />}
             <AppRoutes onLogin={setUsuario} />
