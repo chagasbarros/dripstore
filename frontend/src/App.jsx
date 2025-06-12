@@ -8,7 +8,7 @@ import { SearchProvider } from "./contexts/SearchContext";
 import { FormProvider } from "./contexts/FormContext";
 
 function App() {
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState(2);
 
   useEffect(() => {
     const usuarioStr = localStorage.getItem("usuario");
