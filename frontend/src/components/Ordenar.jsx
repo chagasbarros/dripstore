@@ -4,7 +4,7 @@ import { SearchContext } from '../contexts/SearchContext';
 
 const Ordenar = ({ ordem, setOrdem }) => {
   const { searchTerm } = useContext(SearchContext);
-
+//oi
   return (
     <div className='container-fluid' style={{ width: "100%" }}>
       <section className="row mx-auto d-flex align-items-center" style={{ width: "90%" }}>

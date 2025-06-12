@@ -3,7 +3,7 @@ import Carrossel from '../components/Carrossel'
 import ProdutosEmAlta from '../components/ProdutosEmAlta'
 import BannerOferta from '../components/BannerOferta'
 import ColecoesEmDestaque from '../components/ColecoesEmDestaque '
-
+//oi
 const Home = () => {
   return (
     <div>

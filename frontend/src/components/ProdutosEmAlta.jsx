@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ProdutosEmAlta = () => {
     const [produtos, setProdutos] = useState([]);
-
+//oi
     useEffect(() => {
         fetch("https://fakestoreapi.com/products?limit=8")
             .then(resposta => resposta.json())

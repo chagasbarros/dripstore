@@ -2,7 +2,7 @@ import styles from './FormCadastro.module.css'
 import Sneakers from "../assets/finalizarCompra/Sneakers.svg"
 
 const FormResumo = () => {
-
+//oi
     return (
       <>
         {/* CARD RESUMO (MOBILE) */}

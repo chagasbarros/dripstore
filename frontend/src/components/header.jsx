@@ -4,7 +4,7 @@ import cartDrip from "../assets/logo/carrinho.svg";
 import { NavLink, Link } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
 import styles from "./Header.module.css";
-
+//oi
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { setSearchTerm } = useContext(SearchContext);

@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 const senhaJWT = '1234'
 
-
+//oi
 const conexao = await mysql.createConnection({
     host: '184.72.192.43',
     user: 'geracao',

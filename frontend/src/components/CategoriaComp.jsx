@@ -9,7 +9,7 @@ import beleza from '../assets/Produtos/beleza.jpg';
 import pumaChuteira from '../assets/Produtos/pumaChuteira.avif';
 import sapatojordan from '../assets/Produtos/sapatoJordan.webp';
 import vestido from '../assets/Produtos/vestido.jpg';
-
+//oi
 const categoriaImagens = {
   'Eletrônicos': tv,
   'Joias': anel,

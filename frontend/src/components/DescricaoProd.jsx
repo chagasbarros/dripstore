@@ -5,7 +5,7 @@ import tenisNike from "../assets/ProdDetDesign/tenisNike.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Link } from "react-router-dom";
-
+//oi
 const galeriaImgs = [
   { src: tenisNike2, bg: "#E2E3FF" },
   { src: tenisNike2, bg: "#FFE8BC" },

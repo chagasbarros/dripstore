@@ -6,7 +6,7 @@ import Footer from "./components/footer";
 import { BrowserRouter } from "react-router-dom";
 import { SearchProvider } from "./contexts/SearchContext";
 import { FormProvider } from "./contexts/FormContext";
-
+//oi
 function App() {
   const [usuario, setUsuario] = useState(2);
 

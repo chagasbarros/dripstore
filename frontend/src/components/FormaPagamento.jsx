@@ -4,7 +4,7 @@ import mastercardImg from '/src/assets/cartaoLogo/master.png'
 import amexImg from '/src/assets/cartaoLogo/amex.png'
 import eloImg from '/src/assets/cartaoLogo/elo.png'
 import hipercardImg from '/src/assets/cartaoLogo/hipercard.png'
-
+//oi
 const FormaPagamento = ({ formDados, setFormDados}) => {
 
   const metodo = formDados.pagamento.metodo

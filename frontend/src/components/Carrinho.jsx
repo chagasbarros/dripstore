@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom"; // ✅ Importação corrigida
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./Carrinho.module.css";
-
+//oi
 export default function PaginaCarrinho() {
   const [quantidade, setQuantidade] = useState(1);
   const [itemRemovido, setItemRemovido] = useState(false);

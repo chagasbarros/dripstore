@@ -3,7 +3,7 @@ import Ordenar from '../components/Ordenar';
 import FiltroProd from '../components/FiltroProd';
 import CardProd from '../components/CardProd';
 import produtosJson from '../assets/produtos.json';
-
+//oi
 const Produtos = () => {
   const [produtos, setProdutos] = useState([]);
   const [ordem, setOrdem] = useState("relevante");
