@@ -38,7 +38,7 @@ const CompLogin = ({ onLogin }) => {
         localStorage.setItem("token", dados.token);
         localStorage.setItem("usuario", JSON.stringify(dados.usuario));
         setMensagem("Login realizado com sucesso!");
-        onLogin(dados.usuario);
+        
 
         if (dados.usuario.id_roles === 1) {
           navigate("/DripStore/AdmPerfil");
