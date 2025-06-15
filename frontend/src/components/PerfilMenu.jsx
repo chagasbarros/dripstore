@@ -3,7 +3,7 @@ import { useState } from "react";
 const PerfilMenu = () => {
 
    const[mostrarCard, setMostrarCard] = useState("perfil")
-   let usuario = JSON.parse(localStorage.getItem('usuario'))
+   let usuario = JSON.parse(localStorage.getItem('usuario')) || {}
    
 //oi
   return (
@@ -15,15 +15,15 @@ const PerfilMenu = () => {
               <ul className="navbar-nav">
                 <li
                   onClick={() => setMostrarCard("perfil")}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
-                 Meu Perfil
+                  Meu Perfil
                 </li>
                 <hr />
 
                 <li
                   onClick={() => setMostrarCard("pedido")}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
                   Meus Pedidos
                 </li>
@@ -31,7 +31,7 @@ const PerfilMenu = () => {
 
                 <li
                   onClick={() => setMostrarCard("informacao")}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
                   Minhas Informações
                 </li>
@@ -39,7 +39,7 @@ const PerfilMenu = () => {
 
                 <li
                   onClick={() => setMostrarCard("pagamento")}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
                   Métodos de Pagamento
                 </li>
@@ -49,13 +49,40 @@ const PerfilMenu = () => {
 
           {mostrarCard === "perfil" && (
             <section className="bg-white p-5 col-8 ">
-              <h1>As informações do Meu Perfil aparecerão aqui</h1>
+              <div className="d-flex justify-content-between">
+                <h6>Informações de Perfil</h6>
+                <button
+                  className="btn btn-pink text-white fw-bold"
+                  style={{ backgroundColor: "#d10f7d" }}
+                >
+                  Alterar
+                </button>
+              </div>
+              <hr />
+              <div className="container">
+                <h4 className="mb-3">Alterar Senha</h4>
+                <div className="row">
+                  <div className="col-6">
+                  <label htmlFor="" className="form-label"> Digite nova Senha: </label>
+                  <input type="password" name="" id="" className="form-control" placeholder="Digite nova senha" />
+                </div>
+                <div className="col-6">
+                  <label htmlFor="" className="form-label"> Repita nova Senha: </label>
+                  <input type="password" name="" id="" className="form-control" placeholder="Repita nova senha" />
+                </div>
+                </div>
+                <div className="mt-4">
+                  <span>Data de criação da Conta:</span> 
+                </div>
+                
+                
+              </div>
             </section>
           )}
 
           {mostrarCard === "pedido" && (
             <section className="bg-white p-5 col-8">
-              <h1>As informaçõe do Meu Pedido aparecerão aqui</h1>
+              <h1>Não há pedidos</h1>
             </section>
           )}
 
@@ -63,16 +90,25 @@ const PerfilMenu = () => {
             <section className="bg-white p-5 col-8">
               <div className="d-flex justify-content-between">
                 <h6>Minhas Informações</h6>
-                <a>Editar</a>
+                <button
+                  className="btn btn-pink text-white fw-bold"
+                  style={{ backgroundColor: "#d10f7d" }}
+                >
+                  Editar
+                </button>
               </div>
               <hr />
               <div>
                 <h5>Informações Pessoais</h5>
                 <ul className="navbar-nav">
-                  <li>Nome: {usuario.nome}</li>  {/*chagas, eu alterei aqui. */}
-                  <li>CPF: {usuario.cpf_cnpj}</li> {/*chagas, eu alterei aqui. */}
-                  <li>Email: {usuario.email}</li> {/*chagas, eu alterei aqui. */}
-                  <li>Celular: {usuario.telefone}</li> {/*chagas, eu alterei aqui. */}
+                  <li>Nome: {usuario.nome || ""}</li>{" "}
+                  {/*chagas, eu alterei aqui. */}
+                  <li>CPF: {usuario.cpf_cnpj || " "}</li>{" "}
+                  {/*chagas, eu alterei aqui. */}
+                  <li>Email: {usuario.email || " "}</li>{" "}
+                  {/*chagas, eu alterei aqui. */}
+                  <li>Celular: {usuario.telefone || " "}</li>{" "}
+                  {/*chagas, eu alterei aqui. */}
                 </ul>
                 <hr />
               </div>
@@ -93,7 +129,12 @@ const PerfilMenu = () => {
             <section className="bg-white p-5 col-8">
               <div className="d-flex justify-content-between">
                 <h6>Métodos de pagamento</h6>
-                <a>Editar</a>
+                <button
+                  className="btn btn-pink text-white fw-bold"
+                  style={{ backgroundColor: "#d10f7d" }}
+                >
+                  Editar
+                </button>
               </div>
               <hr />
               <div>
