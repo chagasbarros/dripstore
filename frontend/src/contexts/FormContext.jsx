@@ -18,28 +18,15 @@ export const FormProvider = ({ children }) => {
             cidade: '',
             complemento: ''
         },
+            
+        cartao: {
+            nomeCartao: '',
+            numeroCartao: '',
+            validade: '',
+            cvv: ''
+        },
 
-        pagamento: {
-            metodo: 'cartao',
-            cartao: {
-                nomeCartao: '',
-                numeroCartao: '',
-                validade: '',
-                cvv: ''
-            },
-
-            boleto: {
-                nome: '',
-                cpf: '',
-                vencimento: '',
-                valorTotal: ''
-            },
-
-            pix: {
-                nome: '',
-                chave: ''
-            }
-        }
+        senha: ''
     })
 
     return (
