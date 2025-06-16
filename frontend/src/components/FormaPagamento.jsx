@@ -7,8 +7,6 @@ import hipercardImg from '/src/assets/cartaoLogo/hipercard.png'
 //oi
 const FormaPagamento = ({ formDados, setFormDados}) => {
 
-  const metodo = formDados.pagamento.metodo
-
   const bandeirasImgs = {
     visa: visaImg,
     mastercard: mastercardImg,
@@ -42,21 +40,15 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
   const handleNumeroCartaoChange = (e) => {
     const valor = e.target.value.replace(/\D/g, '');
     setNumeroCartao(valor);
+    setBandeira(detectarBandeira(valor));
 
-    setFormDados((prev) => ({
+    setFormDados(prev => ({
       ...prev,
-      pagamento: {
-        ...prev.pagamento,
-        cartao: { 
-          ...prev.pagamento.cartao,
-          numeroCartao: valor
-
-        }
+      cartao: {
+        ...prev.cartao,
+        numeroCartao: valor
       }
-
-    }))
-
-    
+    }));
 
     const detectada = detectarBandeira(valor)
     setBandeira(detectada)
@@ -65,18 +57,37 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
   };
 
   const handleNomeCartaoChange = (e) => {
-  const valor = e.target.value;
-  setFormDados((prev) => ({
-    ...prev,
-    pagamento: {
-      ...prev.pagamento,
+    const valor = e.target.value;
+    setFormDados(prev => ({
+      ...prev,
       cartao: {
-        ...prev.pagamento.cartao,
+        ...prev.cartao,
         nomeCartao: valor
       }
-    }
-  }));
-}
+    }));
+  };
+
+  const handleValidadeCartaoChange = (e) => {
+    const valor = e.target.value;
+    setFormDados(prev => ({
+      ...prev,
+      cartao: {
+        ...prev.cartao,
+        validade: valor
+      }
+    }));
+  };
+
+   const handleCVVChange = (e) => {
+    const valor = e.target.value.replace(/\D/g, '');
+    setFormDados(prev => ({
+      ...prev,
+      cartao: {
+        ...prev.cartao,
+        cvv: valor
+      }
+    }));
+  };
 
 
   const getImagemBandeira = (nome) => {
@@ -94,8 +105,7 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
           </div>
         </div>
         <div>
-          {metodo === "cartao" && (
-            <div>
+          <div>
               <label htmlFor="nomeCartao">Nome do Cartão *</label>
               <input
                 className="form-control opacity-50"
@@ -107,7 +117,6 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
                 required
                 placeholder="Insira o nome do Cartão"
                 onChange={handleNomeCartaoChange}
-                value={formDados.pagamento.cartao.nomeCartao}
               />
 
               <div className="mt-3 ">
@@ -154,6 +163,7 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
                       id="validadeCartao"
                       required
                       placeholder="Insira a validade do Cartão"
+                      onChange={handleValidadeCartaoChange}
                     />
                   </div>
                 </div>
@@ -169,21 +179,9 @@ const FormaPagamento = ({ formDados, setFormDados}) => {
                 pattern="[0-9]{1,3}"
                 minLength={3}
                 maxLength={3}
+                onChange={handleCVVChange}
               />
             </div>
-          )}
-
-          {metodo === 'boleto' && (
-              <div className='mt-5'>
-                  <h3 className='text-center'>O <strong>boleto </strong> será gerado após a finalização do cadastro.</h3>                  
-              </div>
-          )}
-
-          {metodo === 'pix' && (
-             <div className='mt-5'>
-                  <h3 className='text-center'>O <strong>QR CODE </strong> será gerado após a finalização do cadastro.</h3>
-              </div>
-          )}
         </div>
       </div>
     </div>

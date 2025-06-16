@@ -60,12 +60,17 @@ app.get('/usuarios', async (req, res) => {
 });
 
 app.post('/cadastrarUsuario', async (req, res) => {
-  const { nome, email, senha, id_roles} = req.body
+  const { usuario, senha} = req.body
+
+  if (!usuario || !senha || !usuario.nome || !usuario.email) {
+    return res.status(400).json({ msg: 'Dados incompletos para cadastro' });
+  }
+
   try{
     const senhaCriptografada = await bcrypt.hash(senha, 10)
     
-    const sql = `INSERT INTO usuarios (nome, email, senha, id_roles) VALUES (?, ?, ?, ?)'`
-    const valores = [nome, email, senhaCriptografada, id_roles]
+    const sql = `INSERT INTO usuarios (nome, email, senha, cpf_cnpj, telefone) VALUES (?, ?, ?, ?, ?)`
+    const valores = [usuario.nome, usuario.email, senhaCriptografada, usuario.cpf, usuario.celular]
 
     await conexao.query(sql, valores)
 

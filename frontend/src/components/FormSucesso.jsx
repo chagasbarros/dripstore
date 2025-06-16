@@ -37,8 +37,8 @@ const FormSucesso = () => {
 
                     <section>
                         <h5>Informações de Pagamento</h5>
-                        <p>Titular do Cartão: {formDados.pagamento.cartao.nomeCartao} </p>
-                        <p>Final {formDados.pagamento.cartao.numeroCartao.slice(-4)}</p>
+                        <p>Titular do Cartão: {formDados.cartao.nomeCartao} </p>
+                        <p>Final {formDados.cartao.numeroCartao.slice(-4)}</p>
                     </section>
                     <hr />
 
