@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import InformacaoPerfil from "./InformacaoPerfil";
+import PerfilInformacao from "./PerfilInformacao";
 import PerfilPedido from "./PerfilPedido";
 import PerfilPessoal from "./PerfilPessoal";
 import PerfilPagamento from "./PerfilPagamento";
@@ -70,7 +70,7 @@ const PerfilMenu = () => {
           </section>
 
           {mostrarCard === "perfil" && perfil &&  (
-            <div className="col-8"><InformacaoPerfil/></div>
+            <div className="col-8"><PerfilInformacao perfil={perfil}/></div>
             )}
 
           {mostrarCard === "pedido" && perfil && (
