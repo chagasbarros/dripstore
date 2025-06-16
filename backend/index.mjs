@@ -59,6 +59,30 @@ app.get('/usuarios', async (req, res) => {
   }
 });
 
+app.get('/perfil/:id', async (req, res) => {
+  try {
+    let id = req.params.id
+    const [rows] = await conexao.execute(`SELECT 
+  u.id, u.nome, u.email, u.senha, u.data_cadastro, u.id_roles, u.cpf_cnpj, u.telefone,
+  e.cep, e.rua, e.bairro, e.cidade, 
+  GROUP_CONCAT(p.nomeCartao SEPARATOR ' | ') AS cartoes,
+  GROUP_CONCAT(p.numeroCartao SEPARATOR ' | ') AS numerosCartoes
+  FROM usuarios u
+  JOIN enderecos e ON u.id = e.id_usuario
+  JOIN pagamento p ON u.id = p.id_usuario
+  WHERE u.id = ${id}
+  GROUP BY 
+  u.id, u.nome, u.email, u.senha, u.data_cadastro, 
+  u.id_roles, u.cpf_cnpj, u.telefone,
+  e.cep, e.rua, e.bairro, e.cidade;
+`)
+    res.json(rows)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Erro ao buscar usuários')
+  }
+})
+
 app.post('/cadastrarUsuario', async (req, res) => {
   const { nome, email, senha, id_roles} = req.body
   try{
