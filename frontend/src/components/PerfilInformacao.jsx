@@ -1,4 +1,6 @@
-const InformacaoPerfil = () => {
+const PerfilInformacaoPerfil = ({perfil}) => {
+const dataCadastro = perfil[0].data_cadastro
+const dataCriaçao = new Date(dataCadastro).toLocaleDateString()
     return(
         <div>
             <section className="bg-white p-5 col-8 ">
@@ -25,7 +27,7 @@ const InformacaoPerfil = () => {
                 </div>
                 </div>
                 <div className="mt-4">
-                  <span>Data de criação da Conta:</span> 
+                  <span>Data de criação da Conta: {dataCriaçao}</span> 
                 </div>
               </div>
             </section>
@@ -33,4 +35,4 @@ const InformacaoPerfil = () => {
     )
 }
 
-export default InformacaoPerfil
+export default PerfilInformacaoPerfil

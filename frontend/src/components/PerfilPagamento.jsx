@@ -7,7 +7,7 @@ const PerfilPagamento = ({perfil}) => {
             className="btn btn-pink text-white fw-bold"
             style={{ backgroundColor: "#d10f7d" }}
           >
-            Editar
+            Adicionar
           </button>
         </div>
         <hr />
