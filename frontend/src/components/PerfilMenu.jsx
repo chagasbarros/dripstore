@@ -8,11 +8,14 @@ const PerfilMenu = () => {
 
   const [perfil, setPerfil] = useState(null)
   const[mostrarCard, setMostrarCard] = useState("perfil")
-  // let usuario = JSON.parse(localStorage.getItem('usuario')) || {}
-  const idPerfil = 8
 
+  let usuarioLocal = JSON.parse(localStorage.getItem('usuario'))
+  const idPerfil = usuarioLocal.id
 
   useEffect(() => {
+
+    if(!idPerfil) return
+    
     async function buscarPerfil() {
       try {
         const resposta = await fetch(`http://localhost:3000/perfil/${idPerfil}`)
@@ -24,8 +27,9 @@ const PerfilMenu = () => {
     }
 
     buscarPerfil()
-  }, [])
+  }, [idPerfil])
 
+  
   console.log(perfil)
 
   return (

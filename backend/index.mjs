@@ -61,7 +61,7 @@ app.get('/usuarios', async (req, res) => {
 
 app.get('/perfil/:id', async (req, res) => {
   try {
-    let id = req.params.id
+    const id = parseInt(req.params.id)
     const [rows] = await conexao.execute(`SELECT 
   u.id, u.nome, u.email, u.senha, u.data_cadastro, u.id_roles, u.cpf_cnpj, u.telefone,
   e.cep, e.rua, e.bairro, e.cidade, 
@@ -70,12 +70,12 @@ app.get('/perfil/:id', async (req, res) => {
   FROM usuarios u
   JOIN enderecos e ON u.id = e.id_usuario
   JOIN pagamento p ON u.id = p.id_usuario
-  WHERE u.id = ${id}
+  WHERE u.id = ?
   GROUP BY 
   u.id, u.nome, u.email, u.senha, u.data_cadastro, 
   u.id_roles, u.cpf_cnpj, u.telefone,
   e.cep, e.rua, e.bairro, e.cidade;
-`)
+`, [id])
     res.json(rows)
   } catch (error) {
     console.error(error)
