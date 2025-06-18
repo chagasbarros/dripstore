@@ -112,30 +112,59 @@ app.put("/alterarSenha/:id", async (req, res) => {
 });
 
 app.put("/alterarInformacoes/:id", async(req, res)=>{
+
+  const bdPromise = await conexao.getConnection()
   const { id } = req.params
   const {nome, cpf, email, telefone, rua, bairro, cidade, cep} = req.body
 
   try {
-    await conexao.beginTransaction()
+    await bdPromise.beginTransaction()
 
-    await conexao.execute(
+    await bdPromise.execute(
       `UPDATE usuarios SET nome = ?, cpf_cnpj = ?, email = ?, telefone = ? WHERE id = ?`,
       [nome, cpf, email, telefone, id]
     )
 
-    await conexao.execute(
+    await bdPromise.execute(
       `UPDATE enderecos SET rua = ?, bairro = ?, cidade = ?, cep = ? WHERE id_usuario = ?`,
       [rua, bairro, cidade, cep, id]
     )
     
-    await conexao.commit()
+    await bdPromise.commit()
     res.status(200).json({ mensagem: 'Informações atualizadas com sucesso!'})
 
   } catch (error) {
-    await conexao.rollback()
+    await bdPromise.rollback()
     console.error(error)
     res.status(500).json({ mensagem: 'Erro ao atualizar informações'})
     
+  }
+})
+
+app.post("/adicionarPagamento", async (req, res) => {
+  const { nomeCartao, numeroCartao, cvv, id_usuario, validade } = req.body;
+
+  try {
+    const [resultado] = await conexao.execute(
+      "INSERT INTO pagamento (nomeCartao, numeroCartao, cvv, id_usuario, validade) VALUES (?, ?, ?, ?, ?)",
+      [nomeCartao, numeroCartao, cvv, id_usuario, validade]
+    );
+    res.status(201).json({ mensagem: "Pagamento cadastrado com sucesso"})
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ mensagem: "Erro no Servidor"})
+  }
+});
+
+app.delete("/deletarPagamento/:id", async (req, res)=>{
+  const { id } = req.params
+
+  try {
+    const [resultado] = await conexao.execute('DELETE FROM pagamento WHERE id = ?', [id] )
+    res.status(200).json({ mensagem: "Pagamento deletado com sucesso"})
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ mensagem: "Erro ao Deletar"})
   }
 })
 
@@ -155,7 +184,7 @@ app.post('/cadastrarUsuario', async (req, res) => {
 
     await conexao.query(sql, valores)
 
-    res.status(201).json({ msg: 'usuário cadastrado com secesso!'})
+    res.status(201).json({ msg: 'usuário cadastrado com sucesso!'})
   }catch(erro){
     console.error(erro)
     res.status(500).json({ errp: 'Erro ao cadastrar usuário'})
