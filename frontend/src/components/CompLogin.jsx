@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./CompLogin.module.css";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext"; // IMPORTANTE
 
-//oi
-
-const CompLogin = ({ onLogin }) => {
+const CompLogin = () => {
+  const { login } = useContext(UserContext); // FUNÇÃO login do contexto
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
@@ -36,10 +36,10 @@ const CompLogin = ({ onLogin }) => {
 
       if (dados.sucesso && dados.token) {
         localStorage.setItem("token", dados.token);
-        localStorage.setItem("usuario", JSON.stringify(dados.usuario));
+        login(dados.usuario); // <-- ATUALIZA O CONTEXTO GLOBAL
         setMensagem("Login realizado com sucesso!");
-        
 
+        // Redireciona conforme a role
         if (dados.usuario.id_roles === 1) {
           navigate("/DripStore/AdmPerfil");
         } else if (dados.usuario.id_roles === 2) {
@@ -47,6 +47,7 @@ const CompLogin = ({ onLogin }) => {
         }
       } else {
         setMensagem(dados.mensagem || "Email ou senha incorretos.");
+        setSenha(""); // Limpa senha em caso de erro
       }
     } catch (error) {
       console.error("Erro ao conectar com o servidor:", error);
@@ -76,6 +77,7 @@ const CompLogin = ({ onLogin }) => {
             type="email"
             name="email"
             id="email-input"
+            value={email}
             required
           />
 
@@ -97,6 +99,7 @@ const CompLogin = ({ onLogin }) => {
               type={showPassword ? "text" : "password"}
               name="password"
               id="password-input"
+              value={senha}
               required
             />
             <button
@@ -116,6 +119,7 @@ const CompLogin = ({ onLogin }) => {
 
           {mensagem && <p className={styles.mensagem}>{mensagem}</p>}
         </form>
+
 
         <div className={styles.avatar}>
           {/* SVG do macaco */}
