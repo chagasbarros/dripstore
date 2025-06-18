@@ -59,6 +59,8 @@ app.get('/usuarios', async (req, res) => {
   }
 });
 
+// Rotas da página de perfil do cliente
+
 app.get('/perfil/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id)
@@ -83,6 +85,58 @@ app.get('/perfil/:id', async (req, res) => {
   }
 })
 
+
+app.put("/alterarSenha/:id", async (req, res) => {
+  const { id } = req.params;
+  const { senha } = req.body;
+  const senhaCriptografada = await bcrypt.hash(senha, 10)
+
+  try {
+    const [resultado] = await conexao.execute(
+      `UPDATE usuarios SET senha = ? WHERE id = ?`,
+      [senhaCriptografada, id]
+    );
+    
+    if (resultado.affectedRows === 0) {
+      return res.status(404).json({ mensagem: 'Usuário não encontrado.' });
+    }
+
+    res.json({ mensagem: 'Usuário atualizado com sucesso.' });
+  } catch (error) {
+    console.error(erro)
+    res.status(500).json({ mensagem: 'Erro ao atualizar senha'})
+  }
+});
+
+app.put("/alterarInformacoes/:id", async(req, res)=>{
+  const { id } = req.params
+  const {nome, cpf, email, telefone, rua, bairro, cidade, cep} = req.body
+
+  try {
+    await conexao.beginTransaction()
+
+    await conexao.execute(
+      `UPDATE usuarios SET nome = ?, cpf_cnpj = ?, email = ?, telefone = ? WHERE id = ?`,
+      [nome, cpf, email, telefone, id]
+    )
+
+    await conexao.execute(
+      `UPDATE enderecos SET rua = ?, bairro = ?, cidade = ?, cep = ? WHERE id_usuario = ?`,
+      [rua, bairro, cidade, cep, id]
+    )
+    
+    await conexao.commit()
+    res.status(200).json({ mensagem: 'Informações atualizadas com sucesso!'})
+
+  } catch (error) {
+    await conexao.rollback()
+    console.error(error)
+    res.status(500).json({ mensagem: 'Erro ao atualizar informações'})
+    
+  }
+})
+
+//Rota para cadastrar usuário da página cadestre-se
 app.post('/cadastrarUsuario', async (req, res) => {
   const { usuario, senha} = req.body
 
@@ -105,6 +159,8 @@ app.post('/cadastrarUsuario', async (req, res) => {
   }
 })
 
+
+//Rota da página de login
 app.post('/verificarLogin', async (req, res) => {
   const { email, senha } = req.body;
   console.log({ email, senha });
