@@ -11,10 +11,17 @@ import CadastreSe from "../pages/CadastreSe";
 import Login from "../pages/Login";
 import Perfil from "../pages/Perfil";
 import AdmPerfil from "../pages/AdmPerfil";
-import styles from './Loade.module.css';
+import styles from "./Loade.module.css";
 //oi
 const LoadingScreen = () => (
-  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}
+  >
     <div className={styles.loader} style={{ margin: "0 auto" }}>
       <span>Loading...</span>
     </div>
@@ -35,7 +42,7 @@ const AppRoutes = ({ onLogin }) => {
 
   return (
     <Routes>
-      <Route path="/DripStore" element={<Login/>} />
+      <Route path="/DripStore" element={<Login />} />
       <Route path="/DripStore/Home" element={<Home />} />
       <Route path="/DripStore/Produtos" element={<Produtos />} />
       <Route path="/DripStore/DescricaoProd" element={<DescricaoProd />} />
@@ -46,6 +53,7 @@ const AppRoutes = ({ onLogin }) => {
       <Route path="/DripStore/CadastreSe" element={<CadastreSe />} />
       <Route path="/DripStore/Perfil" element={<Perfil />} />
       <Route path="/DripStore/AdmPerfil" element={<AdmPerfil />} />
+      <Route path="/DripStore/Listagem" element={<Listagem />} />
     </Routes>
   );
 };
