@@ -1,41 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "./components/header";
 import AdmHeader from "./components/AdmHeader";
 import AppRoutes from "./routes/AppRoutes";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 import { BrowserRouter } from "react-router-dom";
 import { SearchProvider } from "./contexts/SearchContext";
 import { FormProvider } from "./contexts/FormContext";
-//oi
-function App() {
-  const [usuario, setUsuario] = useState(2);
+import { UserProvider, UserContext } from "./contexts/UserContext";
+import { useContext } from "react";
+
+function AppContent() {
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     const usuarioStr = localStorage.getItem("usuario");
     if (usuarioStr) {
       try {
         const parsedUser = JSON.parse(usuarioStr);
-        setUsuario(parsedUser);
+        setUser(parsedUser);
       } catch (error) {
         console.error("Erro ao fazer parse do usuário:", error);
       }
     }
-  }, []);
+  }, [setUser]);
 
   return (
-    <div>
-      <FormProvider>
-        <SearchProvider>
+    <>
+      {user?.id_roles === undefined && <Header />}
+      {user?.id_roles === 1 && <AdmHeader />}
+      {user?.id_roles === 2 && <Header />}
+      <AppRoutes />
+      <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <FormProvider>
+      <SearchProvider>
+        <UserProvider>
           <BrowserRouter>
-          {usuario?.id_roles === undefined && <Header />}
-            {usuario?.id_roles === 1 && <AdmHeader />}
-            {usuario?.id_roles === 2 && <Header />}
-            <AppRoutes onLogin={setUsuario} />
-            <Footer />
+            <AppContent />
           </BrowserRouter>
-        </SearchProvider>
-      </FormProvider>
-    </div>
+        </UserProvider>
+      </SearchProvider>
+    </FormProvider>
   );
 }
 

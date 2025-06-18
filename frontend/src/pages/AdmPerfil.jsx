@@ -5,7 +5,6 @@ const AdmPerfil = () => {
         <>
             
             <PerfilMenu/>
-            <h1>Eae ADM</h1>
         </>
     )
 }

@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { SearchContext } from "../contexts/SearchContext";
+import { UserContext } from "../contexts/UserContext";
 import logoDrip from "../assets/logo/Vector.svg";
 import cartDrip from "../assets/logo/carrinho.svg";
-import { NavLink, Link } from "react-router-dom";
-import { SearchContext } from "../contexts/SearchContext";
 import styles from "./Header.module.css";
-//oi
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { setSearchTerm } = useContext(SearchContext);
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -17,6 +20,13 @@ const Header = () => {
     e.preventDefault();
   };
 
+  const handleLogout = () => {
+    setUser({});
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("token");
+    navigate("/DripStore");
+  };
+
   const getNavLinkClass = ({ isActive }) =>
     `nav-link ${styles.linkHover} ${isActive ? styles.active : ""}`;
 
@@ -24,7 +34,7 @@ const Header = () => {
     <header className="sticky-top bg-light shadow-sm">
       <nav className="navbar navbar-expand-lg navbar-light px-4 py-3">
         <div className="container-fluid">
-          <Link className="navbar-brand d-flex align-items-center" to="/dripStore/Home">
+          <Link className="navbar-brand d-flex align-items-center" to="/DripStore/Home">
             <img
               src={logoDrip}
               alt="Logo"
@@ -38,13 +48,13 @@ const Header = () => {
               Digital Store
             </span>
           </Link>
+
           <button className="navbar-toggler" type="button" onClick={toggleMenu}>
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div
-            className={`collapse navbar-collapse ${isMenuOpen ? "show" : ""}`}
-            id="navbarNav"
-          >
+
+          <div className={`collapse navbar-collapse ${isMenuOpen ? "show" : ""}`}>
+            {/* Barra de pesquisa */}
             <form
               className="d-flex mx-auto w-100 mt-3 mt-lg-0 justify-content-lg-center"
               onSubmit={handleSearch}
@@ -65,16 +75,13 @@ const Header = () => {
               </button>
             </form>
 
+            {/* Menu mobile */}
             <ul className="navbar-nav me-auto mt-3 mt-lg-0 d-xl-flex d-lg-none">
               <li className="nav-item">
                 <NavLink
                   to="/DripStore/Home"
                   className={getNavLinkClass}
-                  style={{
-                    fontSize: "14px",
-                    whiteSpace: "nowrap",
-                    fontWeight: "bold",
-                  }}
+                  style={{ fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}
                 >
                   Home
                 </NavLink>
@@ -83,11 +90,7 @@ const Header = () => {
                 <NavLink
                   to="/DripStore/Produtos"
                   className={getNavLinkClass}
-                  style={{
-                    fontSize: "14px",
-                    whiteSpace: "nowrap",
-                    color: "black",
-                  }}
+                  style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Produtos
                 </NavLink>
@@ -96,11 +99,7 @@ const Header = () => {
                 <NavLink
                   to="/DripStore/Categorias"
                   className={getNavLinkClass}
-                  style={{
-                    fontSize: "14px",
-                    whiteSpace: "nowrap",
-                    color: "black",
-                  }}
+                  style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Categoria
                 </NavLink>
@@ -109,36 +108,46 @@ const Header = () => {
                 <NavLink
                   to="/DripStore/MeusPedidos"
                   className={getNavLinkClass}
-                  style={{
-                    fontSize: "14px",
-                    whiteSpace: "nowrap",
-                    color: "black",
-                  }}
+                  style={{ fontSize: "14px", whiteSpace: "nowrap" }}
                 >
                   Meus Pedidos
                 </NavLink>
               </li>
             </ul>
 
-            <div className="d-flex align-items-center mt-3 mt-lg-0">
-              <NavLink
-                to="/DripStore/CadastreSe"
-                className="me-3 text-decoration-none fw-bold"
-                style={{
-                  fontSize: "14px",
-                  whiteSpace: "nowrap",
-                  color: "#00bcd4",
-                }}
-              >
-                Cadastre-se
-              </NavLink>
-              <Link
-                to={"/DripStore"}
-                className="btn btn-pink text-white fw-bold"
+            {/* Parte lateral (login, carrinho) */}
+            <div className="d-flex align-items-center mt-3 mt-lg-0">👤
+              {!user?.email ? (
+                <>
+                  <NavLink
+                    to="/DripStore/CadastreSe"
+                    className="me-3 text-decoration-none fw-bold"
+                    style={{ fontSize: "14px", whiteSpace: "nowrap", color: "#00bcd4" }}
+                  >
+                    Cadastre-se
+                  </NavLink>
+                  <Link
+                    to="/DripStore"
+                    className="btn btn-pink text-white fw-bold"
+                    style={{ backgroundColor: "#d10f7d" }}
+                  >
+                    Entrar
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <span className="me-3 fw-bold" style={{ color: "#00bcd4", fontSize: "14px" }}>
+                    {user.email}
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-pink text-white fw-bold"
                 style={{ backgroundColor: "#d10f7d" }}
-              >
-                Entrar
-              </Link>
+                  >
+                    Sair
+                  </button>
+                </>
+              )}
               <NavLink to="/DripStore/MeusPedidos" className="ms-3">
                 <img
                   src={cartDrip}
@@ -158,11 +167,7 @@ const Header = () => {
             <NavLink
               to="/DripStore/Home"
               className={getNavLinkClass}
-              style={{
-                fontSize: "14px",
-                whiteSpace: "nowrap",
-                fontWeight: "bold",
-              }}
+              style={{ fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}
             >
               Home
             </NavLink>
@@ -171,7 +176,7 @@ const Header = () => {
             <NavLink
               to="/DripStore/Produtos"
               className={getNavLinkClass}
-              style={{ fontSize: "14px", whiteSpace: "nowrap", color: "black" }}
+              style={{ fontSize: "14px", whiteSpace: "nowrap" }}
             >
               Produtos
             </NavLink>
@@ -180,7 +185,7 @@ const Header = () => {
             <NavLink
               to="/DripStore/Categorias"
               className={getNavLinkClass}
-              style={{ fontSize: "14px", whiteSpace: "nowrap", color: "black" }}
+              style={{ fontSize: "14px", whiteSpace: "nowrap" }}
             >
               Categoria
             </NavLink>
@@ -189,7 +194,7 @@ const Header = () => {
             <NavLink
               to="/DripStore/MeusPedidos"
               className={getNavLinkClass}
-              style={{ fontSize: "14px", whiteSpace: "nowrap", color: "black" }}
+              style={{ fontSize: "14px", whiteSpace: "nowrap" }}
             >
               Meus Pedidos
             </NavLink>
