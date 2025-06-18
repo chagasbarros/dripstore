@@ -205,6 +205,55 @@ app.post('/verificarLogin', async (req, res) => {
 });
 
 
+// Rotas da pagina de listagem
+
+app.get('/produtos', async (req, res) => {
+  try { const [rows] = await conexao.execute ('SELECT * FROM produtos')
+    res.json(rows)
+    
+  } catch (error) { 
+    console.error(error)
+    res.status(500).send('Erro ao buscar produtos')
+    
+  }
+});
+
+app.post('/produtos', async (req, res) => {
+  try {
+    const { nome, descricao, preco, categoria, estoque, imagem } = req.body;
+    
+    // Validação básica
+    if (!nome || !descricao || !preco || !categoria || !estoque) {
+      return res.status(400).json({ 
+        erro: 'Campos obrigatórios: nome, descricao, preco, categoria, estoque' 
+      });
+    }
+
+    // URL padrão para imagem se não fornecida
+    const imagemUrl = imagem || 'https://via.placeholder.com/300';
+
+    // Inserir produto no banco
+    const [result] = await conexao.execute(
+      'INSERT INTO produtos (nome, descricao, preco, categoria, estoque, imagem) VALUES (?, ?, ?, ?, ?, ?)',
+      [nome, descricao, parseFloat(preco), categoria, parseInt(estoque), imagemUrl]
+    );
+
+    // Buscar o produto inserido para retornar
+    const [rows] = await conexao.execute(
+      'SELECT * FROM produtos WHERE id = ?',
+      [result.insertId]
+    );
+
+    res.status(201).json({
+      mensagem: 'Produto criado com sucesso',
+      produto: rows[0]
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: 'Erro ao criar produto' });
+  }
+});
 
 
 

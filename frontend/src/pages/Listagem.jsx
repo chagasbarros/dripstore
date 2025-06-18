@@ -11,13 +11,16 @@ import {
 } from "lucide-react";
 
 export default function ListaProdutos() {
+  // Estados
   const [produtos, setProdutos] = useState([]);
   const [produtosFiltrados, setProdutosFiltrados] = useState([]);
   const [busca, setBusca] = useState("");
   const [categoriaFiltro, setCategoriaFiltro] = useState("");
   const [viewMode, setViewMode] = useState("grid");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [modalAberto, setModalAberto] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
     descricao: "",
@@ -27,94 +30,69 @@ export default function ListaProdutos() {
     imagem: "",
   });
 
-  // Dados de exemplo com estoque
-  const produtosExemplo = [
-    {
-      id: 1,
-      nome: "iPhone 14 Pro",
-      descricao: "Smartphone Apple com chip A16 Bionic e câmera de 48MP",
-      preco: 7999.99,
-      categoria: "Eletrônicos",
-      estoque: 15,
-      imagem:
-        "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop",
-    },
-    {
-      id: 2,
-      nome: "Nike Air Max",
-      descricao: "Tênis esportivo confortável para corrida e caminhada",
-      preco: 299.9,
-      categoria: "Calçados",
-      estoque: 42,
-      imagem:
-        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop",
-    },
-    {
-      id: 3,
-      nome: "MacBook Pro M2",
-      descricao: "Notebook profissional com chip M2 e tela Retina 13 polegadas",
-      preco: 12999.99,
-      categoria: "Eletrônicos",
-      estoque: 8,
-      imagem:
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&h=300&fit=crop",
-    },
-    {
-      id: 4,
-      nome: "Camiseta Básica",
-      descricao: "Camiseta 100% algodão, confortável para o dia a dia",
-      preco: 49.9,
-      categoria: "Roupas",
-      estoque: 76,
-      imagem:
-        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop",
-    },
-    {
-      id: 5,
-      nome: "Fone Bluetooth",
-      descricao: "Fone de ouvido sem fio com cancelamento de ruído",
-      preco: 450.0,
-      categoria: "Eletrônicos",
-      estoque: 23,
-      imagem:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
-    },
-    {
-      id: 6,
-      nome: "Jaqueta Jeans",
-      descricao: "Jaqueta jeans clássica, perfeita para o inverno",
-      preco: 189.9,
-      categoria: "Roupas",
-      estoque: 34,
-      imagem:
-        "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=300&h=300&fit=crop",
-    },
-  ];
+  // Configuração da API
+  const API_URL = "http://localhost:3000/produtos";
 
+  // Buscar produtos da API
   useEffect(() => {
-    // Simula carregamento da API
-    const timer = setTimeout(() => {
-      setProdutos(produtosExemplo);
-      setProdutosFiltrados(produtosExemplo);
-      setLoading(false);
-    }, 1000);
+    const fetchProdutos = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(API_URL);
 
-    return () => clearTimeout(timer);
+        if (!response.ok) {
+          throw new Error(`Erro ao carregar produtos: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Adaptar e validar os dados
+        const produtosAdaptados = data.map((produto) => {
+          // Garantir que preço é número
+          const preco =
+            typeof produto.preco === "string"
+              ? parseFloat(produto.preco.replace(",", "."))
+              : Number(produto.preco);
+
+          return {
+            ...produto,
+            id: produto.id,
+            nome: produto.nome || "Sem nome",
+            descricao: produto.descricao || "",
+            preco: isNaN(preco) ? 0 : preco,
+            categoria: produto.categoria || "Sem categoria",
+            estoque: produto.quantidade_estoque || 0,
+            imagem: produto.imagem || "https://via.placeholder.com/300",
+          };
+        });
+
+        setProdutos(produtosAdaptados);
+        setProdutosFiltrados(produtosAdaptados);
+        setError(null);
+      } catch (err) {
+        setError(err);
+        console.error("Erro ao buscar produtos:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProdutos();
   }, []);
 
+  // Filtros
   useEffect(() => {
     let produtosFiltradosTemp = produtos;
 
-    // Filtro por nome
     if (busca) {
       produtosFiltradosTemp = produtosFiltradosTemp.filter(
         (produto) =>
           produto.nome.toLowerCase().includes(busca.toLowerCase()) ||
-          produto.descricao.toLowerCase().includes(busca.toLowerCase())
+          (produto.descricao &&
+            produto.descricao.toLowerCase().includes(busca.toLowerCase()))
       );
     }
 
-    // Filtro por categoria
     if (categoriaFiltro) {
       produtosFiltradosTemp = produtosFiltradosTemp.filter(
         (produto) => produto.categoria === categoriaFiltro
@@ -124,14 +102,17 @@ export default function ListaProdutos() {
     setProdutosFiltrados(produtosFiltradosTemp);
   }, [busca, categoriaFiltro, produtos]);
 
-  const categorias = [...new Set(produtos.map((produto) => produto.categoria))];
+  // Funções auxiliares
+  const categorias = [
+    ...new Set(produtos.map((produto) => produto.categoria).filter(Boolean)),
+  ];
 
   const limparFiltros = () => {
     setBusca("");
     setCategoriaFiltro("");
   };
 
-  // Funções para o modal
+  // Funções do modal
   const abrirModal = () => {
     setModalAberto(true);
   };
@@ -156,8 +137,9 @@ export default function ListaProdutos() {
     });
   };
 
-  const adicionarProduto = () => {
-    // Validação básica
+  // Adicionar novo produto
+  const adicionarProduto = async () => {
+    // Validação
     if (
       !novoProduto.nome ||
       !novoProduto.descricao ||
@@ -169,21 +151,79 @@ export default function ListaProdutos() {
       return;
     }
 
-    const produto = {
-      id: produtos.length > 0 ? Math.max(...produtos.map((p) => p.id)) + 1 : 1,
-      nome: novoProduto.nome,
-      descricao: novoProduto.descricao,
-      preco: parseFloat(novoProduto.preco),
-      categoria: novoProduto.categoria,
-      estoque: parseInt(novoProduto.estoque),
-      imagem: novoProduto.imagem || "https://via.placeholder.com/300",
-    };
+    try {
+      setIsSubmitting(true);
 
-    setProdutos([...produtos, produto]);
-    setProdutosFiltrados([...produtos, produto]);
-    fecharModal();
+      const precoNumerico = parseFloat(
+        novoProduto.preco.toString().replace(",", ".")
+      );
+      const estoqueNumerico = parseInt(novoProduto.estoque);
+
+      if (isNaN(precoNumerico) || isNaN(estoqueNumerico)) {
+        throw new Error("Preço e estoque devem ser números válidos");
+      }
+
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nome: novoProduto.nome,
+          descricao: novoProduto.descricao,
+          preco: precoNumerico,
+          categoria: novoProduto.categoria,
+          quantidade_estoque: estoqueNumerico,
+          imagem: novoProduto.imagem || "https://via.placeholder.com/300",
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.erro || `Erro ${response.status} ao criar produto`
+        );
+      }
+
+      const produtoCriado = await response.json();
+
+      // Adaptar o produto retornado para o frontend
+      const produtoAdaptado = {
+        ...produtoCriado.produto,
+        id: produtoCriado.produto.id,
+        estoque: produtoCriado.produto.quantidade_estoque || 0,
+        imagem:
+          produtoCriado.produto.imagem || "https://via.placeholder.com/300",
+        preco:
+          typeof produtoCriado.produto.preco === "string"
+            ? parseFloat(produtoCriado.produto.preco.replace(",", "."))
+            : Number(produtoCriado.produto.preco),
+      };
+
+      setProdutos([...produtos, produtoAdaptado]);
+      setProdutosFiltrados([...produtosFiltrados, produtoAdaptado]);
+      fecharModal();
+    } catch (err) {
+      console.error("Erro ao criar produto:", err);
+      alert(`Erro: ${err.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
+  // Função para formatar o preço corretamente
+  const formatarPreco = (preco) => {
+    if (preco === undefined || preco === null) return "0,00";
+
+    const numero =
+      typeof preco === "string"
+        ? parseFloat(preco.replace(",", "."))
+        : Number(preco);
+
+    return isNaN(numero) ? "0,00" : numero.toFixed(2).replace(".", ",");
+  };
+
+  // Renderização condicional
   if (loading) {
     return (
       <div className="container my-5">
@@ -251,6 +291,18 @@ export default function ListaProdutos() {
               </div>
             </div>
           </div>
+
+          {/* Exibir erros */}
+          {error && (
+            <div className="alert alert-danger mb-4">
+              <button
+                type="button"
+                className="btn-close float-end"
+                onClick={() => setError(null)}
+              />
+              <strong>Erro:</strong> {error.message}
+            </div>
+          )}
 
           {/* Filtros */}
           <div className="row g-3">
@@ -341,12 +393,6 @@ export default function ListaProdutos() {
                   <div key={produto.id} className="col-sm-6 col-lg-4 col-xl-3">
                     <div className="card h-100 shadow-sm border-0 produto-card">
                       <div className="position-relative overflow-hidden">
-                        <img
-                          src={produto.imagem}
-                          alt={produto.nome}
-                          className="card-img-top"
-                          style={{ height: "220px", objectFit: "cover" }}
-                        />
                         <div className="position-absolute top-0 end-0 p-2">
                           <button className="btn btn-light btn-sm rounded-circle shadow-sm">
                             <Star size={16} className="text-warning" />
@@ -356,22 +402,22 @@ export default function ListaProdutos() {
                       <div className="card-body d-flex flex-column">
                         <div className="mb-2">
                           <span className="badge bg-light text-dark border me-2">
-                            Estoque: {produto.estoque}
+                            Estoque: {produto.estoque || 0}
                           </span>
                           <span className="badge bg-danger rounded-pill">
-                            {produto.categoria}
+                            {produto.categoria || "Sem categoria"}
                           </span>
                         </div>
                         <h5 className="card-title fw-bold mb-2">
-                          {produto.nome}
+                          {produto.nome || "Sem nome"}
                         </h5>
                         <p className="card-text text-muted small flex-grow-1 mb-3">
-                          {produto.descricao}
+                          {produto.descricao || "Sem descrição"}
                         </p>
                         <div className="d-flex justify-content-between align-items-center mt-auto">
                           <div>
                             <span className="h5 text-dark fw-bold mb-0">
-                              R$ {produto.preco.toFixed(2).replace(".", ",")}
+                              R$ {formatarPreco(produto.preco)}
                             </span>
                           </div>
                         </div>
@@ -386,37 +432,28 @@ export default function ListaProdutos() {
                   <div key={produto.id} className="col-12">
                     <div className="card shadow-sm border-0">
                       <div className="row g-0">
-                        <div className="col-md-3">
-                          <img
-                            src={produto.imagem}
-                            alt={produto.nome}
-                            className="img-fluid rounded-start h-100"
-                            style={{ objectFit: "cover", minHeight: "200px" }}
-                          />
-                        </div>
                         <div className="col-md-9">
                           <div className="card-body h-100 d-flex flex-column">
                             <div className="d-flex justify-content-between">
                               <div className="flex-grow-1">
                                 <div className="mb-2">
                                   <span className="badge bg-danger rounded-pill me-2">
-                                    {produto.categoria}
+                                    {produto.categoria || "Sem categoria"}
                                   </span>
                                   <span className="badge bg-light text-dark border">
-                                    Estoque: {produto.estoque}
+                                    Estoque: {produto.estoque || 0}
                                   </span>
                                 </div>
                                 <h5 className="card-title fw-bold">
-                                  {produto.nome}
+                                  {produto.nome || "Sem nome"}
                                 </h5>
                                 <p className="card-text text-muted">
-                                  {produto.descricao}
+                                  {produto.descricao || "Sem descrição"}
                                 </p>
                               </div>
                               <div className="d-flex flex-column align-items-end ms-4">
                                 <span className="h4 text-dark fw-bold mb-3">
-                                  R${" "}
-                                  {produto.preco.toFixed(2).replace(".", ",")}
+                                  R$ {formatarPreco(produto.preco)}
                                 </span>
                               </div>
                             </div>
@@ -495,13 +532,12 @@ export default function ListaProdutos() {
                     <div className="input-group">
                       <span className="input-group-text">R$</span>
                       <input
-                        type="number"
+                        type="text"
                         className="form-control"
                         name="preco"
                         value={novoProduto.preco}
                         onChange={handleInputChange}
-                        step="0.01"
-                        min="0"
+                        placeholder="0,00"
                         required
                       />
                     </div>
@@ -543,41 +579,24 @@ export default function ListaProdutos() {
                   type="button"
                   className="btn btn-primary"
                   onClick={adicionarProduto}
+                  disabled={isSubmitting}
                 >
-                  <Plus size={18} className="me-1" /> Salvar Produto
+                  {isSubmitting ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-1"></span>
+                      Salvando...
+                    </>
+                  ) : (
+                    <>
+                      <Plus size={18} className="me-1" /> Salvar Produto
+                    </>
+                  )}
                 </button>
               </div>
             </div>
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .produto-card {
-          transition: all 0.3s ease;
-        }
-        .produto-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-        }
-        .modal {
-          backdrop-filter: blur(5px);
-        }
-        .modal-content {
-          border: none;
-          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-        .form-label {
-          font-weight: 500;
-          color: #555;
-        }
-        .modal-header {
-          border-bottom: 1px solid #eee;
-        }
-        .modal-footer {
-          border-top: 1px solid #eee;
-        }
-      `}</style>
     </div>
   );
 }
