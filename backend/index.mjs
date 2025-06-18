@@ -10,11 +10,14 @@ dotenv.config()
 const senhaJWT = '1234'
 
 // Conexão com o banco de dados MySQL
-const conexao = await mysql.createConnection({
+const conexao = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB
+    database: process.env.DB,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 })
 
 const porta = process.env.DB_PORTA
