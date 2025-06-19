@@ -13,6 +13,7 @@ import Perfil from "../pages/Perfil";
 import AdmPerfil from "../pages/AdmPerfil";
 import styles from "./Loade.module.css";
 import Listagem from "../pages/Listagem.jsx";
+import RotasProtegidas from "../routes/RoutesProtegidas.jsx";
 //oi
 const LoadingScreen = () => (
   <div
@@ -43,18 +44,30 @@ const AppRoutes = ({ onLogin }) => {
 
   return (
     <Routes>
-      <Route path="/DripStore" element={<Login />} />
-      <Route path="/DripStore/Home" element={<Home />} />
+      <Route path="/DripStore" element={<Home />} />
       <Route path="/DripStore/Produtos" element={<Produtos />} />
       <Route path="/DripStore/DescricaoProd" element={<DescricaoProd />} />
       <Route path="/DripStore/MeusPedidos" element={<MeusPedidos />} />
       <Route path="/DripStore/Formulario" element={<Formulario />} />
-      <Route path="/DripStore/Sucesso" element={<Sucesso />} />
+      <Route path="/DripStore/Login" element={<Login/>} />
+      <Route path="/DripStore/Sucesso" element={
+        <RotasProtegidas tipoPermitido="2">
+        <Sucesso />
+        </RotasProtegidas>
+        } />
       <Route path="/DripStore/Categorias" element={<Categorias />} />
       <Route path="/DripStore/CadastreSe" element={<CadastreSe />} />
       <Route path="/DripStore/Perfil" element={<Perfil />} />
-      <Route path="/DripStore/AdmPerfil" element={<AdmPerfil />} />
-      <Route path="/DripStore/Listagem" element={<Listagem />} />
+      <Route path="/DripStore/AdmPerfil" element={
+        <RotasProtegidas tipoPermitido="1">
+        <AdmPerfil />
+        </RotasProtegidas>
+        } />
+      <Route path="/DripStore/Listagem" element={
+        <RotasProtegidas tipoPermitido="1">
+        <Listagem />
+        </RotasProtegidas>
+        } />
     </Routes>
   );
 };

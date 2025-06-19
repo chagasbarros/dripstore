@@ -33,6 +33,7 @@ const CardProd = ({ produtos }) => {
                     R$ 219,00
                   </h6>
                 </div>
+                <button className="btn" style={{backgroundColor: "#C92071", color: "white"}}>Comprar</button>
               </div>
             </div>
           </div>
@@ -58,6 +59,7 @@ const CardProd = ({ produtos }) => {
                       R${produto.price}
                     </h6>
                   </div>
+                  <button className="btn" style={{backgroundColor: "#C92071", color: "white"}}>Comprar</button>
                 </div>
               </div>
             </div>
