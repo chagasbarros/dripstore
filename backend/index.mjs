@@ -106,7 +106,7 @@ app.put("/alterarSenha/:id", async (req, res) => {
 
     res.json({ mensagem: 'Usuário atualizado com sucesso.' });
   } catch (error) {
-    console.error(erro)
+    console.error(error)
     res.status(500).json({ mensagem: 'Erro ao atualizar senha'})
   }
 });
