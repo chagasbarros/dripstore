@@ -37,6 +37,7 @@ export const FormProvider = ({ children }) => {
     )
 }
 
+// useForm → hook personalizado para acessar formDados e setFormDados com segurança.
 export const useForm = () => {
     const context = useContext(FormContext)
     if(!context) {
