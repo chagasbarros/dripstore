@@ -1,12 +1,48 @@
 import { useState } from "react"
-const PerfilInformacaoPerfil = ({perfil}) => {
+import { Navigate, useNavigate } from "react-router-dom"
+
+
+const PerfilInformacao = ({perfil}) => {
+const navigate = useNavigate()
 
 const dataCadastro = perfil[0].data_cadastro
 const dataCriaçao = new Date(dataCadastro).toLocaleDateString()
+
 const [senha, setSenha] = useState('')
 const [repitaSenha, setRepitaSenha] = useState('')
+const [mensagemErro, setMensagemErro] = useState('')
 
-const senhasIguais = senha === repitaSenha
+const usuarioLocal = JSON.parse(localStorage.getItem('usuario'))
+const idUsuario = usuarioLocal.id
+
+
+async function alterarSenha() {
+
+  if(!senha.trim() || !repitaSenha.trim()){
+    setMensagemErro('Preencha todo os campos da senha')
+    return
+  }
+  if(senha !== repitaSenha){
+    setMensagemErro('As senhas não coincidem')
+    return
+  }
+  setMensagemErro('')
+
+  const senhaAlterada = await fetch(`http://localhost:3000/alterarSenha/${idUsuario}`,{
+    method: 'PUT',
+    headers: { 
+      'Content-Type':'application/json'
+    }, 
+    body: JSON.stringify({ senha: repitaSenha})
+  })
+  if(senhaAlterada.ok) {
+    alert('Senha Alterada com sucesso')
+    navigate('/Dripstore')
+  }else{
+    console.log('Erro ao alterar senha') 
+  }
+  
+}
 
     return (
       <div>
@@ -16,6 +52,7 @@ const senhasIguais = senha === repitaSenha
             <button
               className="btn btn-pink text-white fw-bold"
               style={{ backgroundColor: "#d10f7d" }}
+              onClick={alterarSenha}
             >
               Alterar
             </button>
@@ -51,11 +88,15 @@ const senhasIguais = senha === repitaSenha
                   id="repitaSenha"
                   className="form-control"
                   placeholder="Repita nova senha"
-                  onChange={(e) => setRepitaSenha(e.target.value)}
+                  onChange={(e) => {
+                      setRepitaSenha(e.target.value)
+                      setMensagemErro('')
+                  }}
                 />
-                {!senhasIguais && repitaSenha && (
-                  <p style={{color: "red"}}>Senhas não são iguais</p>
+                {mensagemErro && (
+                  <p style={{color: 'red'}}>{mensagemErro}</p>
                 )}
+                
               </div>
             </div>
 
@@ -68,4 +109,4 @@ const senhasIguais = senha === repitaSenha
     );
 }
 
-export default PerfilInformacaoPerfil
+export default PerfilInformacao
