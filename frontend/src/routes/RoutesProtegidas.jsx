@@ -1,17 +1,24 @@
-import { useContext } from 'react'
-import { Navigate } from 'react-router-dom'
-import { UserContext } from '../contexts/UserContext'
+import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
 const RotasProtegidas = ({ children, tipoPermitido }) => {
-    let {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
-    if (!user){
-        return <Navigate to= '/DripStore'/>
-    }
-    if(user.tipo != tipoPermitido){
-        return <Navigate to= '/DripStore'/>
-    }
-    return children
-}
+  if (!user) {
+    return <Navigate to="/DripStore/Login" replace />;
+  }
 
-export default RotasProtegidas
+  // Permitir um único tipo (ex: 1) ou múltiplos (ex: [1, 2])
+  const tiposPermitidos = Array.isArray(tipoPermitido)
+    ? tipoPermitido
+    : [tipoPermitido];
+
+  if (!tiposPermitidos.includes(user.id_roles)) {
+    return <Navigate to="/DripStore" replace />;
+  }
+
+  return children;
+};
+
+export default RotasProtegidas;

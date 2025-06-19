@@ -51,20 +51,24 @@ const AppRoutes = ({ onLogin }) => {
       <Route path="/DripStore/Formulario" element={<Formulario />} />
       <Route path="/DripStore/Login" element={<Login/>} />
       <Route path="/DripStore/Sucesso" element={
-        <RotasProtegidas tipoPermitido="2">
+        <RotasProtegidas tipoPermitido={2}>
         <Sucesso />
         </RotasProtegidas>
         } />
       <Route path="/DripStore/Categorias" element={<Categorias />} />
       <Route path="/DripStore/CadastreSe" element={<CadastreSe />} />
-      <Route path="/DripStore/Perfil" element={<Perfil />} />
+      <Route path="/DripStore/Perfil" element={
+        <RotasProtegidas tipoPermitido={2}>
+        <Perfil />
+        </RotasProtegidas>
+        } />
       <Route path="/DripStore/AdmPerfil" element={
-        <RotasProtegidas tipoPermitido="1">
+        <RotasProtegidas tipoPermitido={1}>
         <AdmPerfil />
         </RotasProtegidas>
         } />
       <Route path="/DripStore/Listagem" element={
-        <RotasProtegidas tipoPermitido="1">
+        <RotasProtegidas tipoPermitido={1}>
         <Listagem />
         </RotasProtegidas>
         } />
