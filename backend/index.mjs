@@ -266,15 +266,18 @@ app.post('/produtos', async (req, res) => {
 
     // Inserir produto no banco
     const [result] = await conexao.execute(
-      'INSERT INTO produtos (nome, descricao, preco, categoria, estoque, imagem) VALUES (?, ?, ?, ?, ?, ?)',
-      [nome, descricao, parseFloat(preco), categoria, parseInt(estoque), imagemUrl]
+  'INSERT INTO produtos (nome, descricao, preco, categoria, quantidade_estoque, imagem) VALUES (?, ?, ?, ?, ?, ?)',
+  [nome, descricao, parseFloat(preco), categoria, parseInt(estoque), imagemUrl]
     );
 
+    
+
+
     // Buscar o produto inserido para retornar
-    const [rows] = await conexao.execute(
-      'SELECT * FROM produtos WHERE id = ?',
-      [result.insertId]
-    );
+   const [rows] = await conexao.execute(
+  'SELECT * FROM produtos WHERE id = ?',
+  [result.insertId]
+);
 
     res.status(201).json({
       mensagem: 'Produto criado com sucesso',

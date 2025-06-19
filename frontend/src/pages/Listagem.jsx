@@ -173,7 +173,7 @@ export default function ListaProdutos() {
           descricao: novoProduto.descricao,
           preco: precoNumerico,
           categoria: novoProduto.categoria,
-          quantidade_estoque: estoqueNumerico,
+          estoque: estoqueNumerico,
           imagem: novoProduto.imagem || "https://via.placeholder.com/300",
         }),
       });
@@ -191,7 +191,7 @@ export default function ListaProdutos() {
       const produtoAdaptado = {
         ...produtoCriado.produto,
         id: produtoCriado.produto.id,
-        estoque: produtoCriado.produto.quantidade_estoque || 0,
+        estoque: produtoCriado.produto.quantidade_estoqueestoque || 0,
         imagem:
           produtoCriado.produto.imagem || "https://via.placeholder.com/300",
         preco:
