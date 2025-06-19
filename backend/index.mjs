@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt'
 
 // Configuração do dotenv
 dotenv.config()
-const senhaJWT = '1234'
+const senhaJWT = process.env.JWT
 
 // Conexão com o banco de dados MySQL
 const conexao = mysql.createPool({
@@ -314,7 +314,17 @@ app.post('/produtos', async (req, res) => {
 });
 
 
-
+app.get('/produtos/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const [rows] = await conexao.execute('SELECT * FROM produtos WHERE id = ?', [id]);
+    if (rows.length === 0) return res.status(404).json({ msg: "Produto não encontrado" });
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Erro no servidor" });
+  }
+});
 
 app.listen(porta, () => {
     console.log('O servidor está rodando na porta 3000')

@@ -14,7 +14,7 @@ function AppContent() {
 
   useEffect(() => {
     const usuarioStr = localStorage.getItem("usuario");
-    if (usuarioStr) {
+    if (usuarioStr && !user?.email) {
       try {
         const parsedUser = JSON.parse(usuarioStr);
         setUser(parsedUser);
@@ -22,7 +22,7 @@ function AppContent() {
         console.error("Erro ao fazer parse do usuário:", error);
       }
     }
-  }, [setUser]);
+  }, [user, setUser]);
 
   return (
     <>
