@@ -67,20 +67,36 @@ app.get('/usuarios', async (req, res) => {
 app.get('/perfil/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id)
-    const [rows] = await conexao.execute(`SELECT 
-  u.id, u.nome, u.email, u.senha, u.data_cadastro, u.id_roles, u.cpf_cnpj, u.telefone,
-  e.cep, e.rua, e.bairro, e.cidade, 
-  GROUP_CONCAT(p.nomeCartao SEPARATOR ' | ') AS cartoes,
-  GROUP_CONCAT(p.numeroCartao SEPARATOR ' | ') AS numerosCartoes
-  FROM usuarios u
-  JOIN enderecos e ON u.id = e.id_usuario
-  JOIN pagamento p ON u.id = p.id_usuario
-  WHERE u.id = ?
-  GROUP BY 
-  u.id, u.nome, u.email, u.senha, u.data_cadastro, 
-  u.id_roles, u.cpf_cnpj, u.telefone,
-  e.cep, e.rua, e.bairro, e.cidade;
-`, [id])
+    const [rows] = await conexao.execute(
+      `SELECT 
+  u.id AS id_usuario,
+  u.nome,
+  u.email,
+  u.senha,
+  u.data_cadastro,
+  u.id_roles,
+  u.cpf_cnpj,
+  u.telefone,
+
+  e.cep,
+  e.rua,
+  e.bairro,
+  e.cidade,
+
+  p.id AS id_cartao,
+  p.nomeCartao,
+  p.numeroCartao,
+  p.cvv,
+  p.validade
+
+FROM usuarios u
+JOIN enderecos e ON u.id = e.id_usuario
+LEFT JOIN pagamento p ON u.id = p.id_usuario
+WHERE u.id = ?;
+
+`,
+      [id]
+    );
     res.json(rows)
   } catch (error) {
     console.error(error)
@@ -116,7 +132,7 @@ app.put("/alterarInformacoes/:id", async(req, res)=>{
   const bdPromise = await conexao.getConnection()
   const { id } = req.params
   const {nome, cpf, email, telefone, rua, bairro, cidade, cep} = req.body
-
+  console.log(nome, cpf, email, telefone, rua, bairro, cidade, cep)
   try {
     await bdPromise.beginTransaction()
 
@@ -143,6 +159,7 @@ app.put("/alterarInformacoes/:id", async(req, res)=>{
 
 app.post("/adicionarPagamento", async (req, res) => {
   const { nomeCartao, numeroCartao, cvv, id_usuario, validade } = req.body;
+  console.log(nomeCartao, numeroCartao, cvv, id_usuario, validade)
 
   try {
     const [resultado] = await conexao.execute(
@@ -157,11 +174,17 @@ app.post("/adicionarPagamento", async (req, res) => {
 });
 
 app.delete("/deletarPagamento/:id", async (req, res)=>{
-  const { id } = req.params
-
+  const  id = req.params.id
+  console.log(id)
   try {
     const [resultado] = await conexao.execute('DELETE FROM pagamento WHERE id = ?', [id] )
-    res.status(200).json({ mensagem: "Pagamento deletado com sucesso"})
+    
+    if(resultado.affectedRows > 0 ) {
+      res.status(200).json({ mensagem: 'Cartão deletado com sucesso'})
+    }else {
+      res.status(404).json({ mensagem: 'cartão não encontrado'})
+    }
+    
   } catch (error) {
     console.error(error)
     res.status(500).json({ mensagem: "Erro ao Deletar"})
