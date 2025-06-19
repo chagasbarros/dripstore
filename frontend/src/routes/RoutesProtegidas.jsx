@@ -10,9 +10,7 @@ const RotasProtegidas = ({ children, tipoPermitido }) => {
   }
 
   // Permitir um único tipo (ex: 1) ou múltiplos (ex: [1, 2])
-  const tiposPermitidos = Array.isArray(tipoPermitido)
-    ? tipoPermitido
-    : [tipoPermitido];
+  const tiposPermitidos = Array.isArray(tipoPermitido) ? tipoPermitido : [tipoPermitido];
 
   if (!tiposPermitidos.includes(user.id_roles)) {
     return <Navigate to="/DripStore" replace />;

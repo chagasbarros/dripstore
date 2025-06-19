@@ -136,9 +136,11 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <span className="me-3 fw-bold" style={{ color: "#00bcd4", fontSize: "14px" }}>👤
-                    {user.email}
-                  </span>
+                  <Link to="/DripStore/Perfil">
+                    <span className="me-3 fw-bold" style={{ color: "#00bcd4", fontSize: "14px" }}>👤
+                      {user.email}
+                    </span>
+                  </Link>
                   <button
                     onClick={handleLogout}
                     className="btn btn-pink text-white fw-bold"
