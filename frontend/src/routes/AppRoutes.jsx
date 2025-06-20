@@ -56,7 +56,7 @@ const AppRoutes = () => {
       <Route path="/DripStore/MeusPedidos" element={<MeusPedidos />} />
       <Route path="/DripStore/Formulario" element={<Formulario />} />
       <Route path="/DripStore/Login" element={<Login />} />
-      <Route path="/DripStore" element={<Login />} />
+      <Route path="/DripStore" element={<Home />} />
       <Route path="/DripStore/Categorias" element={<Categorias />} />
       <Route path="/DripStore/CadastreSe" element={<CadastreSe />} />
 
