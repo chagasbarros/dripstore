@@ -6,7 +6,7 @@ const RotasProtegidas = ({ children, tipoPermitido }) => {
   const { user } = useContext(UserContext);
 
   if (!user) {
-    return <Navigate to="/DripStore/Login" replace />;
+    return <Navigate to="/DripStore/Home" replace />;
   }
 
   // Permitir um único tipo (ex: 1) ou múltiplos (ex: [1, 2])
