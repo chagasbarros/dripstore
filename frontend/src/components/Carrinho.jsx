@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; // ✅ Importação corrigida
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./Carrinho.module.css";
-//oi
+
+// Importando as imagens corretamente
+import sapatoImg from "../assets/carrinho/sapato.png";
+import nikeShoeImg from "../assets/carrinho/nike-shoe.png";
+
 export default function PaginaCarrinho() {
   const [quantidade, setQuantidade] = useState(1);
   const [itemRemovido, setItemRemovido] = useState(false);
@@ -27,10 +31,12 @@ export default function PaginaCarrinho() {
   return (
     <div className="container-fluid bg-light-subtle py-4">
       <div className="row justify-content-center">
+
         {/* COLUNA PRINCIPAL */}
         <div className="col-12 col-lg-9 pe-lg-4">
           {/* CARD DO CARRINHO */}
           <div className="card p-3 p-md-4 mb-4 border-0 shadow-sm">
+
             {/* CABEÇALHO */}
             <div className="row border-bottom pb-3 mb-3 mx-0">
               <div className="col-12 col-md-6 mb-3 mb-md-0">
@@ -38,15 +44,9 @@ export default function PaginaCarrinho() {
               </div>
               <div className="col-12 col-md-6 d-none d-md-block">
                 <div className="d-flex justify-content-between text-uppercase small fw-semibold">
-                  <div className="text-center" style={{ width: "120px" }}>
-                    Quantidade
-                  </div>
-                  <div className="text-center" style={{ width: "100px" }}>
-                    Unitário
-                  </div>
-                  <div className="text-center" style={{ width: "100px" }}>
-                    Total
-                  </div>
+                  <div className="text-center" style={{ width: "120px" }}>Quantidade</div>
+                  <div className="text-center" style={{ width: "100px" }}>Unitário</div>
+                  <div className="text-center" style={{ width: "100px" }}>Total</div>
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@ export default function PaginaCarrinho() {
                 <div className="col-12 col-md-6 d-flex align-items-center mb-3 mb-md-0">
                   <div className="position-relative me-3 flex-shrink-0">
                     <img
-                      src="./src/assets/carrinho/sapato.png"
+                      src={sapatoImg}
                       alt="Tênis"
                       className="rounded-3"
                       style={{
@@ -100,17 +100,10 @@ export default function PaginaCarrinho() {
 
                 {/* CONTROLES E PREÇOS */}
                 <div className="col-12 col-md-6">
-                  {/* RÓTULOS PARA MOBILE */}
                   <div className="d-flex d-md-none justify-content-between small fw-semibold mb-2 text-muted px-2">
-                    <div className="text-center" style={{ width: "33%" }}>
-                      Quantidade
-                    </div>
-                    <div className="text-center" style={{ width: "33%" }}>
-                      Unitário
-                    </div>
-                    <div className="text-center" style={{ width: "33%" }}>
-                      Total
-                    </div>
+                    <div className="text-center" style={{ width: "33%" }}>Quantidade</div>
+                    <div className="text-center" style={{ width: "33%" }}>Unitário</div>
+                    <div className="text-center" style={{ width: "33%" }}>Total</div>
                   </div>
 
                   <div className="d-flex justify-content-between align-items-center">
@@ -172,32 +165,14 @@ export default function PaginaCarrinho() {
             {/* CUPOM E FRETE */}
             <div className="row g-3">
               <div className="col-12 col-md-6">
-                <label className="form-label fw-semibold">
-                  Cupom de desconto
-                </label>
+                <label className="form-label fw-semibold">Cupom de desconto</label>
                 <div className="d-flex">
                   <input
                     type="text"
                     className={`form-control rounded-2 ${styles.BotaoOk}`}
                     placeholder="Insira seu código"
-                    style={{
-                      width: "280px",
-                      height: "60px",
-                      border: "1px solid #f5f5f5",
-                      backgroundColor: "#f5f5f5",
-                    }}
                   />
-                  <button
-                    className={`${styles.BotaoOk} btn ms-2 rounded-2`}
-                    style={{
-                      width: "114px",
-                      height: "60px",
-                      backgroundColor: "#f5f5f5",
-                      color: "#c92071",
-                      fontWeight: "700",
-                      border: "1px solid #f5f5f5",
-                    }}
-                  >
+                  <button className={`${styles.BotaoOk} btn ms-2 rounded-2`}>
                     OK
                   </button>
                 </div>
@@ -210,24 +185,8 @@ export default function PaginaCarrinho() {
                     type="text"
                     className={`form-control rounded-2 ${styles.BotaoOk}`}
                     placeholder="Insira seu CEP"
-                    style={{
-                      width: "280px",
-                      height: "60px",
-                      border: "1px solid #f5f5f5",
-                      backgroundColor: "#f5f5f5",
-                    }}
                   />
-                  <button
-                    className={`${styles.BotaoOk} btn ms-2 rounded-2`}
-                    style={{
-                      width: "114px",
-                      height: "60px",
-                      backgroundColor: "#f5f5f5",
-                      color: "#c92071",
-                      fontWeight: "700",
-                      border: "1px solid #f5f5f5",
-                    }}
-                  >
+                  <button className={`${styles.BotaoOk} btn ms-2 rounded-2`}>
                     OK
                   </button>
                 </div>
@@ -263,7 +222,7 @@ export default function PaginaCarrinho() {
                       style={{ height: "120px" }}
                     >
                       <img
-                        src="./src/assets/carrinho/nike-shoe.png"
+                        src={nikeShoeImg}
                         alt="Produto"
                         className="img-fluid"
                         style={{
@@ -274,9 +233,7 @@ export default function PaginaCarrinho() {
                     </div>
                     <div className="mt-3">
                       <small className="text-muted d-block">Tênis</small>
-                      <h6 className="fw-semibold mb-1">
-                        K-Swiss V8 - Masculino
-                      </h6>
+                      <h6 className="fw-semibold mb-1">K-Swiss V8 - Masculino</h6>
                       <div className="d-flex align-items-center">
                         <small className="text-muted text-decoration-line-through me-2">
                           R$ 200,00
