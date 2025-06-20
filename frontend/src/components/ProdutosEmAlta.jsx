@@ -43,80 +43,85 @@ const ProdutosEmAlta = () => {
               className="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center"
               key={produto.id}
             >
-              <div
-                className="card h-100 border-0 shadow-sm rounded-3 position-relative w-100"
-                style={{
-                  transition: "transform .2s",
-                  cursor: "pointer",
-                  maxWidth: "100%",
-                  minWidth: 0,
-                  padding: "14px",
-                  margin: "0 0 8px 0",
-                  display: "flex",
-                  flexDirection: "column"
-                }}
-                onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.02)")}
-                onMouseLeave={e => (e.currentTarget.style.transform = "none")}
+              <Link
+                to={`/DripStore/DescricaoProd/${produto.id}`}
+                className="text-decoration-none text-dark w-100"
               >
-                <div className="position-relative bg-white d-flex justify-content-center align-items-center" style={{ minHeight: "120px" }}>
-                  {temDesconto && (
-                    <span
-                      className="position-absolute top-0 start-0 m-2 badge rounded-pill fw-bold"
-                      style={{
-                        background: "#ecffdb",
-                        color: "#4aa71b",
-                        fontSize: ".65rem"
-                      }}
-                      aria-label="30% de desconto"
-                    >
-                      30% OFF
-                    </span>
-                  )}
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQERbIKOZRxxTQegTBEHWKUJk2leSgzXpJQWA&s"
-                    alt={produto.nome}
-                    className="card-img-top p-2"
-                    style={{
-                      objectFit: "contain",
-                      height: "7rem",
-                      width: "100%",
-                      maxWidth: "120px"
-                    }}
-                  />
-                </div>
-                <div className="card-body text-center p-2 d-flex flex-column justify-content-between" style={{ flex: 1 }}>
-                  <p className="text-muted small mb-1">{produto.categoria}</p>
-                  <h3
-                    className="fs-6 fw-semibold mb-2"
-                    style={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                      fontSize: "0.95rem",
-                      minHeight: "2.4em"
-                    }}
-                  >
-                    {produto.nome}
-                  </h3>
-                  <p className="mb-0" style={{ fontSize: "0.95rem" }}>
-                    {temDesconto ? (
-                      <>
-                        <span className="text-decoration-line-through text-black-50 me-1">
-                          R${Number(produto.preco).toFixed(2).replace(".", ",")}
-                        </span>
-                        <span className="fw-bold">
-                          R${precoComDesconto.replace(".", ",")}
-                        </span>
-                      </>
-                    ) : (
-                      <span className="fw-bold">
-                        R${Number(produto.preco).toFixed(2).replace(".", ",")}
+                <div
+                  className="card h-100 border-0 shadow-sm rounded-3 position-relative w-100"
+                  style={{
+                    transition: "transform .2s",
+                    cursor: "pointer",
+                    maxWidth: "100%",
+                    minWidth: 0,
+                    padding: "14px",
+                    margin: "0 0 8px 0",
+                    display: "flex",
+                    flexDirection: "column"
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.02)")}
+                  onMouseLeave={e => (e.currentTarget.style.transform = "none")}
+                >
+                  <div className="position-relative bg-white d-flex justify-content-center align-items-center" style={{ minHeight: "120px" }}>
+                    {temDesconto && (
+                      <span
+                        className="position-absolute top-0 start-0 m-2 badge rounded-pill fw-bold"
+                        style={{
+                          background: "#ecffdb",
+                          color: "#4aa71b",
+                          fontSize: ".65rem"
+                        }}
+                        aria-label="30% de desconto"
+                      >
+                        30% OFF
                       </span>
                     )}
-                  </p>
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQERbIKOZRxxTQegTBEHWKUJk2leSgzXpJQWA&s"
+                      alt={produto.nome}
+                      className="card-img-top p-2"
+                      style={{
+                        objectFit: "contain",
+                        height: "7rem",
+                        width: "100%",
+                        maxWidth: "120px"
+                      }}
+                    />
+                  </div>
+                  <div className="card-body text-center p-2 d-flex flex-column justify-content-between" style={{ flex: 1 }}>
+                    <p className="text-muted small mb-1">{produto.categoria}</p>
+                    <h3
+                      className="fs-6 fw-semibold mb-2"
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                        fontSize: "0.95rem",
+                        minHeight: "2.4em"
+                      }}
+                    >
+                      {produto.nome}
+                    </h3>
+                    <p className="mb-0" style={{ fontSize: "0.95rem" }}>
+                      {temDesconto ? (
+                        <>
+                          <span className="text-decoration-line-through text-black-50 me-1">
+                            R${Number(produto.preco).toFixed(2).replace(".", ",")}
+                          </span>
+                          <span className="fw-bold">
+                            R${precoComDesconto.replace(".", ",")}
+                          </span>
+                        </>
+                      ) : (
+                        <span className="fw-bold">
+                          R${Number(produto.preco).toFixed(2).replace(".", ",")}
+                        </span>
+                      )}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           );
         })}

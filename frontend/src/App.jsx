@@ -8,6 +8,7 @@ import { SearchProvider } from "./contexts/SearchContext";
 import { FormProvider } from "./contexts/FormContext";
 import { UserProvider, UserContext } from "./contexts/UserContext";
 import { useContext } from "react";
+import ScrollToTop from "./components/ScrollToTop"; // ✅ Importação do ScrollToTop
 
 function AppContent() {
   const { user, setUser } = useContext(UserContext);
@@ -41,6 +42,7 @@ function App() {
       <SearchProvider>
         <UserProvider>
           <BrowserRouter>
+            <ScrollToTop /> 
             <AppContent />
           </BrowserRouter>
         </UserProvider>
