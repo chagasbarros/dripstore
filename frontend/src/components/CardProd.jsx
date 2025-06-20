@@ -45,7 +45,14 @@ const CardProd = () => {
                       R${formatarPreco(produto.preco)}
                     </h6>
                   </div>
-                  <button className="btn" style={{backgroundColor: "#C92071", color: "white"}}>Comprar</button>
+                  <Link to={`/DripStore/DescricaoProd/${produto.id}`}>
+                    <button
+                      className="btn mt-2 w-100"
+                      style={{ backgroundColor: "#C92071", color: "white" }}
+                    >
+                      Comprar
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
