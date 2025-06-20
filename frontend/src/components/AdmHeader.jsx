@@ -68,17 +68,7 @@ const AdmHeader = () => {
             <ul className="navbar-nav me-auto mt-3 mt-lg-0 d-xl-flex d-lg-none">
               <li className="nav-item">
                 <NavLink to="/DripStore/Listagem" className={getNavLinkClass} style={{ fontSize: "14px", whiteSpace: "nowrap", fontWeight: "bold" }}>
-                  Listagem
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/DripStore/Cadastrar" className={getNavLinkClass} style={{ fontSize: "14px", whiteSpace: "nowrap", color: "black" }}>
-                  Cadastrar
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/DripStore/Estoque" className={getNavLinkClass} style={{ fontSize: "14px", whiteSpace: "nowrap", color: "black" }}>
-                  Estoque
+                  Produtos
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -88,13 +78,15 @@ const AdmHeader = () => {
               </li>
             </ul>
 
-            <div className="d-flex align-items-center mt-3 mt-lg-0">
-              {/* 👤 Mostrar nome/email do usuário logado */}👤
+            <div className="d-flex align-items-center mt-3 mt-lg-0">👤
+              <Link to="/DripStore/AdmPerfil">
+              {/* 👤 Mostrar nome/email do usuário logado */}
               {user?.email && (
                 <span className="me-3 fw-bold" style={{ color: "#00bcd4", fontSize: "14px" }}>
                   {user.email}
                 </span>
               )}
+              </Link>
               <button
                 onClick={handleLogout}
                 className="btn btn-pink text-white fw-bold"
