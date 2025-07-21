@@ -5,11 +5,9 @@ import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
 
-// Configuração do dotenv
 dotenv.config()
 const senhaJWT = process.env.JWT
 
-// Conexão com o banco de dados MySQL
 const conexao = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -28,7 +26,6 @@ app.use(cors())
 app.use(express.json())
 
 
-// Middleware para autenticação de usuário
 function autenticarUsuario(req, res, next){
    const token = req.headers.authorization?.split(' ')[1]
    if (!token){
